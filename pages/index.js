@@ -1,4 +1,4 @@
-import React from 'react'
+import { observer, inject } from "mobx-react";
 import cookie from 'cookie'
 import { ApolloConsumer } from 'react-apollo'
 
@@ -7,17 +7,18 @@ import Landing from '../components/Landing'
 import redirect from '../lib/redirect'
 import checkLoggedIn from '../lib/checkLoggedIn'
 
+
+@inject("store")
+@observer
 export default class Index extends React.Component {
 
-  static async getInitialProps (context, apolloClient) {
+  static async getInitialProps (context) {
     const { loggedInUser } = await checkLoggedIn(context.apolloClient)
-
-    // if (!loggedInUser.user) {
-    //   // If not signed in, send them somewhere more useful
-    //   redirect(context, '/signin')
-    // }
-
-    return { loggedInUser }
+    console.log({loggedInUser})
+    if (loggedInUser.getCurrentUser) {
+      this.props.store.authStore.login()
+    }
+    return {}
   }
 
   signout = apolloClient => () => {

@@ -1,4 +1,5 @@
 import { observer, inject } from "mobx-react";
+import Router from 'next/router'
 import { withApollo } from 'react-apollo'
 import cookie from 'cookie'
 import redirect from '../../lib/redirect'
@@ -30,13 +31,20 @@ class Header extends React.Component{
     })
   }
 
+  goHome=()=>{
+    const { client } = this.props
+    client.cache.reset().then(() => {
+      redirect({}, '/')
+    })
+  }
+
   render() {
     const { withHeader, store } = this.props
     // console.log({store})
     return (
       <header>
         <div className="header-container">
-          <a href="/" onClick={()=>redirect({}, '/')}>
+          <a href="#" onClick={this.goHome}>
             <img src={logo} width='150px' height='150px'/>
           </a>
           <div>

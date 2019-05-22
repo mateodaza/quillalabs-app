@@ -43,9 +43,9 @@ class Landing extends React.Component {
         padding: 5%;
       }
 
-      @media ( max-width:1000px ) {
+      @media ( max-width: 600px ) {
         .cards-container {
-          grid-gap: 15%;
+          grid-gap: 5%;
         }
       }
     `}</style>

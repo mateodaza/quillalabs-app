@@ -8,13 +8,21 @@ import logo from '../../assets/logo.svg'
 class Header extends React.Component{
 
 
-  handleClick=(e)=> {
+  login=(e)=> {
     const { client } = this.props
     e.preventDefault();
     client.cache.reset().then(() => {
       redirect({}, '/signin')
     })
-    console.log('The link was clicked.');
+  }
+
+  logout=(e)=> {
+    const { client, store } = this.props
+    e.preventDefault();
+    store.authStore.logout()
+    client.cache.reset().then(() => {
+      redirect({}, '/')
+    })
   }
 
   render() {
@@ -27,9 +35,17 @@ class Header extends React.Component{
             <img src={logo} width='150px' height='150px'/>
           </div>
           <div>
-            <a href="#" onClick={this.handleClick}>
-              <p>Login</p>
-            </a>
+          {
+            !store.authStore.isLogged ? (
+              <a href="#" onClick={this.login}>
+                <p>Signin</p>
+              </a>
+            ): (
+              <a href="#" onClick={this.logout}>
+                <p>Logout</p>
+              </a>
+            )
+          }
           </div>
         </div>      
         <style jsx>{`

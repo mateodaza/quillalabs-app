@@ -1,3 +1,5 @@
+import localStore from 'store'
+import cookie from 'cookie'
 import {observable, computed, action} from 'mobx';
 
 export default class AuthStore {
@@ -5,8 +7,9 @@ export default class AuthStore {
   @observable isLogged = false;
   @observable auth = null;
 
-   constructor (auth) {
-    // this.checkStorage(auth)
+  constructor (auth) {
+    // example
+    // let user = localStore.get('USERSESSION')
   }
 
   @action login(auth) {
@@ -16,6 +19,9 @@ export default class AuthStore {
   }
 
   @action logout() {
+    document.cookie = cookie.serialize('token', '', {
+      maxAge: -1 // Expire the cookie immediately
+    })
     this.isLogged = false;
     this.auth = null;
   }

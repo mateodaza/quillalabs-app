@@ -1,5 +1,6 @@
 import { observer, inject } from "mobx-react";
 import { withApollo } from 'react-apollo'
+import cookie from 'cookie'
 import redirect from '../../lib/redirect'
 import logo from '../../assets/logo.svg'
 
@@ -19,6 +20,10 @@ class Header extends React.Component{
   logout=(e)=> {
     const { client, store } = this.props
     e.preventDefault();
+    console.log({document})
+    document.cookie = cookie.serialize('token', '', {
+      maxAge: -1 // Expire the cookie immediately
+    })
     store.authStore.logout()
     client.cache.reset().then(() => {
       redirect({}, '/')

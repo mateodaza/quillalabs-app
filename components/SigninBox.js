@@ -35,7 +35,7 @@ class SigninBox extends React.Component{
           console.log(document.cookie)
 
           //update store
-          // store.authStore.login(data)
+          store.authStore.login(data)
 
           // Force a reload of all the current queries now that the user is
           // logged in

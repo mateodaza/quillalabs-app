@@ -2,9 +2,9 @@ import { withApollo } from 'react-apollo'
 import colors from '../../common/colors'
 import Head from 'next/head'
 import Header from './Header'
+import Footer from './Footer'
 
-const SigninBox = ({ client, withHeader, children }) => {
-
+const Layout = ({ client, withHeader, children }) => {
 
   return (
     <div>
@@ -17,8 +17,11 @@ const SigninBox = ({ client, withHeader, children }) => {
       <div className="main-container">
         {children}
       </div>
+      <Footer />
       <style global jsx>{`
       * {
+        margin: 0;
+        padding: 0;
         background-color: ${colors.white};
         font-family: 'Noto Sans'
       }
@@ -29,12 +32,41 @@ const SigninBox = ({ client, withHeader, children }) => {
         color: ${colors.black}
       }
       .main-container {
+        min-height: 100vh;
         margin: 0 10%;
         background-color: ${colors.white}
+      }
+      input {
+        padding: 5px;
+        margin: 10px 0;
+        min-width: 200px;
+        border: 1px solid #ccc;
+      }
+      input:focus {
+        border: 0.5px solid transparent;
+      }
+
+      .button {
+        background-color: ${colors.green}; 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 20px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+      }
+      .button:hover {
+        box-shadow: 0 7px 11px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
       }
     `}</style>
     </div>
   )
 }
 
-export default withApollo(SigninBox)
+export default withApollo(Layout)

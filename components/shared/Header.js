@@ -32,13 +32,13 @@ class Header extends React.Component{
 
   render() {
     const { withHeader, store } = this.props
-    console.log({store})
+    // console.log({store})
     return (
       <header>
         <div className="header-container">
-          <div>
+          <a href="/" onClick={()=>redirect({}, '/')}>
             <img src={logo} width='150px' height='150px'/>
-          </div>
+          </a>
           <div>
           {
             !store.authStore.isLogged ? (

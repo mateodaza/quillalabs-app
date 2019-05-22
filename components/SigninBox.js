@@ -32,7 +32,7 @@ class SigninBox extends React.Component{
           document.cookie = cookie.serialize('token', data.signInUser.token, {
             maxAge: 30 * 24 * 60 * 60 // 30 days
           })
-          console.log(document.cookie)
+          // console.log(document.cookie)
 
           //update store
           store.authStore.login(data)
@@ -82,7 +82,7 @@ class SigninBox extends React.Component{
               type='password'
             />
             <br />
-            <button>Sign in</button>
+            <button className="button">Sign in</button>
           </form>
         )}
       </Mutation>

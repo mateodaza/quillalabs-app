@@ -26,26 +26,28 @@ class Landing extends React.Component {
       }
       .cards-container {
         display: grid;
+        height: 100%;
         min-height: 80vh;
         justify-items: center;
         grid-template-columns: repeat(auto-fit, minmax(256px, 1fr)); /* Where the magic happens */
         grid-auto-rows: 94px;
-        grid-gap: 5%;
       }
       .cards-container * {
         background-color: lightgrey;
       }
-      .card {
+      .card{
         width: 80%;
         min-height: 200px;
         height: 100%;
         margin: 5% 0;
-        padding: 5%;
+        padding: 5% 0;
       }
 
-      @media ( max-width: 600px ) {
+      @media ( max-width: 1000px ) {
         .cards-container {
-          grid-gap: 5%;
+          grid-template-rows: repeat(auto-fit, minmax(256px, 1fr)); /* Where the magic happens */
+          grid-gap: 15%;
+          margin-bottom: 115%;
         }
       }
     `}</style>

@@ -84,7 +84,7 @@ const RegisterBox = ({ client }) => {
             type='password'
           />
           <br />
-          <button>Register</button>
+          <button className="button">Register</button>
         </form>
       )}
     </Mutation>

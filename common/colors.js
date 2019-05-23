@@ -9,5 +9,7 @@ export default {
   yellow: 'rgba(244, 213, 72, 1)',
   lightYellow: 'rgba(244, 213, 72, 0.9)',
   red: 'rgba(201, 61, 55, 1)',
-  green: 'rgba(90, 141, 73, 1)'
+  green: 'rgba(90, 141, 73, 1)',
+  pastel: '#E7DECD'
+
 }

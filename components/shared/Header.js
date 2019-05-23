@@ -1,6 +1,7 @@
 import { observer, inject } from "mobx-react";
 import Router from 'next/router'
 import { withApollo } from 'react-apollo'
+import colors from '../../common/colors'
 import cookie from 'cookie'
 import redirect from '../../lib/redirect'
 import logo from '../../assets/logo.svg'
@@ -45,7 +46,12 @@ class Header extends React.Component{
       <header>
         <div className="header-container">
           <a href="#" onClick={this.goHome}>
-            <img src={logo} width='150px' height='150px'/>
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+              <img src={logo} width='150px' height='150px'/>
+              <div style={{alignSelf: 'center'}}>
+                <h1>QuillaLabs</h1>
+              </div>
+            </div>
           </a>
           <div>
           {
@@ -62,13 +68,16 @@ class Header extends React.Component{
           </div>
         </div>      
         <style jsx>{`
-        a {
+        a{
+          color: ${colors.black}
+        }
+        a:focus { 
           text-decoration: none;
         }
         .header-container{
           display: flex;
           justify-content: space-between;
-          padding: 5% 10%
+          padding: 5% 10% 0 10%;
         }
       `}</style>
       </header>

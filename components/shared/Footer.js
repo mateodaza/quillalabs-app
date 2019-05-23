@@ -16,10 +16,15 @@ class Footer extends React.Component{
             <p>&copy; QuillaLabs - 2019</p>
           </div>
           <div className="social">
-            <a href="#" className="support">Contact Us</a>
-            <a href="#" className="face">f</a>
-            <a href="#" className="tweet">t</a>
-            <a href="#" className="linked">in</a>
+            <a href="https://www.instagram.com/quillalabs/" className="insta">
+              <img className="icon" src="https://en.instagram-brand.com/wp-content/themes/ig-branding/prj-ig-branding/assets/images/ig-logo.svg" />
+            </a>
+            <a href="https://twitter.com/QuillaLabs" className="tweet">
+              <img className="icon" src="http://www.macdrifter.com/theme/images/twitter-snow.svg" />
+            </a>
+            <a href="https://www.linkedin.com/company/quillalabs" className="linked">
+              <img className="icon" src="http://vcmediapartners.com/media/images/linkedin-white-icon.svg" />
+            </a>
           </div>
         </footer>
         <style jsx>{`
@@ -34,21 +39,31 @@ class Footer extends React.Component{
           bottom: 0;
         }
 
+        .icon {
+          width: 32px;
+          height: 32px;
+          top: 10px;
+          position: relative;
+          background-color: transparent;
+        }
+
         .copyright {
-          width: 55%;
+          width: 75%;
         }
         .copyright * {
-          background-color: ${Colors.lightYellow};
+          background: #ADA996;  /* fallback for old browsers */
+          background: -webkit-linear-gradient(to left, #0000,  #F2F2F2, ${Colors.pastel}, #ADA996);
+          background: linear-gradient(to left, #0000, #F2F2F2, ${Colors.pastel}, #ADA996 );
         }
         .copyright p {
-          color: ${Colors.black};
+          color: ${Colors.white};
           font-size: 14px;
           font-weight: bold;
         }
 
         .social {
           background-color: ${Colors.red};
-          width: 45%;
+          width: 30%;
         }
 
         p {
@@ -66,7 +81,8 @@ class Footer extends React.Component{
           color: white;
           text-align: center;
           font-weight: bold; 
-          transition: all 0.3s;      
+          transition: all 0.3s;  
+          
         }
 
         a:hover {
@@ -74,40 +90,36 @@ class Footer extends React.Component{
         }
         
         .linked {
-          background-color: ${Colors.red};
+          background-color: #0077B5;
           font-size: 20px;
-          width: 15%;
+          width: 33.3%;
         }
         .linked:hover {
-          background-color: #0077B5;
+          background-color: ${Colors.black};
         }
         
-        .face {
-          background-color: ${Colors.red};
+        .insta {
+          background: #f09433; 
+          background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+          background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+          background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
           font-size: 20px;
-          width: 15%;
+          width: 33.3%;
         }
-        .face:hover {
-          background-color: #3b5998;
+        .insta:hover {
+          background: ${Colors.black};
         }
         
         .tweet {
-          background-color: ${Colors.red};
+          background-color: #0084b4;
           font-size: 20px;
-          width: 15%;
+          width: 33.3%;
         }
         .tweet:hover {
-          background-color: #0084b4;
+          background-color: ${Colors.black};
         }
         
-        .support {
-          background-color: ${Colors.green};
-          font-size: 0.8em;
-          width: 55%;
-        }  
-        .support:hover {
-          background-color: ${Colors.black};
-        } 
 
         @media only screen and (max-width: 600px) {
           footer {
@@ -115,6 +127,14 @@ class Footer extends React.Component{
           }
           .copyright {
             width: 100%;
+          }
+          .copyright * {
+            background: #ADA996;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom, #0000 1%, #ADA996 100%);
+            background: linear-gradient(to bottom, #0000 15%, ${Colors.pastel} 5%, #ADA996 80%);
+          }
+          .copyright p {
+            color: ${Colors.white};
           }
           .social {
             width: 100%;

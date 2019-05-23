@@ -1,5 +1,6 @@
 import { observer, inject } from "mobx-react";
 import Router from 'next/router'
+import { Link } from '../../routes'
 import { withApollo } from 'react-apollo'
 import colors from '../../common/colors'
 import cookie from 'cookie'
@@ -45,14 +46,16 @@ class Header extends React.Component{
     return (
       <header>
         <div className="header-container">
-          <a href="#" onClick={this.goHome}>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-              <img src={logo} width='150px' height='150px'/>
-              <div style={{alignSelf: 'center'}}>
-                <h1>QuillaLabs</h1>
+          <Link route='/'>
+            <a onClick={this.goHome}>
+              <div style={{display: 'flex', flexDirection: 'row'}}>
+                <img src={logo} width='150px' height='150px'/>
+                <div style={{alignSelf: 'center'}}>
+                  <h1>QuillaLabs</h1>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </Link>
           <div>
           {
             !store.authStore.isLogged ? (

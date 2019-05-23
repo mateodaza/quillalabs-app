@@ -10,13 +10,13 @@ import SigninBox from '../components/SigninBox'
 export default class Signin extends React.Component {
 
   static async getInitialProps (context) {
-    // const { loggedInUser } = await checkLoggedIn(context.apolloClient)
+    const { loggedInUser } = await checkLoggedIn(context.apolloClient)
     // console.log({loggedInUser})
-    // if (loggedInUser.getCurrentUser) {
-    //   // Already signed in? No need to continue.
-    //   // Throw them back to the main page
-    //   redirect(context, '/')
-    // }
+    if (loggedInUser.getCurrentUser) {
+      // Already signed in? No need to continue.
+      // Throw them back to the main page
+      redirect(context, '/')
+    }
     return {}
   }
 

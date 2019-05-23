@@ -47,6 +47,9 @@ class Landing extends React.Component {
       }
 
       @media ( max-width: 1000px ) {
+        .main {
+          margin-bottom: 15%;
+        }
         .cards-container {
           grid-template-columns: repeat(1, 1fr);
           grid-gap: 5%;

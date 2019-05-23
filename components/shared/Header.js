@@ -77,7 +77,7 @@ class Header extends React.Component{
         .header-container{
           display: flex;
           justify-content: space-between;
-          padding: 5% 10% 0 10%;
+          margin: 5% 2%;
         }
       `}</style>
       </header>

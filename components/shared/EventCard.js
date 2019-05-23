@@ -17,7 +17,6 @@ class EventCard extends React.Component{
       dates[0] = dateFormat.format('D')
       dates[1] = dateFormat.format('MMMM')
       dates[2] = dateFormat.format('YYYY')
-      console.log(dateFormat, dates)
     }
     // console.log({store})
     return (

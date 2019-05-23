@@ -1,5 +1,6 @@
 import React from 'react'
-import Link from 'next/link'
+// import Link from 'next/link'
+import { Link } from '../routes'
 
 import Layout from '../components/shared/Layout'
 import redirect from '../lib/redirect'

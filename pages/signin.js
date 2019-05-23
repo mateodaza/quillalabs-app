@@ -1,4 +1,5 @@
-import Link from 'next/link'
+// import Link from 'next/link'
+import { Link } from '../routes'
 
 import redirect from '../lib/redirect'
 import checkLoggedIn from '../lib/checkLoggedIn'

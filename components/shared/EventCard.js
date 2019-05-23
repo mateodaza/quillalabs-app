@@ -13,7 +13,7 @@ class EventCard extends React.Component{
     let dateFormat = null
     let dates = []
     if(date){
-      dateFormat = moment.unix(date).lang("es")
+      dateFormat = moment.unix(date).locale("es")
       dates[0] = dateFormat.format('D')
       dates[1] = dateFormat.format('MMMM')
       dates[2] = dateFormat.format('YYYY')
@@ -28,12 +28,12 @@ class EventCard extends React.Component{
               {
                 date ? (
                   <span>
-                    <span class="day">{dates[0]}</span>
-                    <span class="month">{dates[1]}</span>
-                    <span class="year">{dates[2]}</span>
+                    <span className="day">{dates[0]}</span>
+                    <span className="month">{dates[1]}</span>
+                    <span className="year">{dates[2]}</span>
                   </span>
                 ): (
-                  <span class="day">coming soon</span>
+                  <span className="day">coming soon</span>
                 )
               }
               

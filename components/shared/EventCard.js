@@ -1,5 +1,6 @@
 import { observer, inject } from "mobx-react";
 import { withApollo } from 'react-apollo'
+import { Link } from '../../routes'
 import Colors from '../../common/colors'
 import moment from 'moment'
 import "./EventCard.scss"
@@ -9,7 +10,7 @@ import "./EventCard.scss"
 class EventCard extends React.Component{
 
   render() {
-    const { store, title, content, date, type, bgImage } = this.props
+    const { store, event, title, content, date, type, bgImage } = this.props
     let dateFormat = null
     let dates = []
     if(date){
@@ -41,17 +42,13 @@ class EventCard extends React.Component{
             <div className="data">
               <div className="content">
                 <span className="author">{type}</span>
-                <h1 className="title"><a href="#">{title}</a></h1>
+                <h1 className="title">
+                  <Link route='event' params={{name: event}}>
+                   <a href="#">{title}</a>
+                  </Link>
+                </h1>
                 <p className="text">{content}</p>
               </div>
-              <input type="checkbox" id="show-menu" />
-              <ul className="menu-content">
-                <li>
-                  <a href="#" className="fa fa-bookmark-o"></a>
-                </li>
-                <li><a href="#" className="fa fa-heart-o"><span>47</span></a></li>
-                <li><a href="#" className="fa fa-comment-o"><span>8</span></a></li>
-              </ul>
             </div>
           </div>
         </div>

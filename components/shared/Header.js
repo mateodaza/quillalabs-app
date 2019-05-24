@@ -46,7 +46,7 @@ class Header extends React.Component{
     return (
       <header>
         <div className="header-container">
-          <Link route='/'>
+          <Link route='index'>
             <a onClick={this.goHome}>
               <div style={{display: 'flex', flexDirection: 'row'}}>
                 <img src={logo} width='150px' height='150px'/>

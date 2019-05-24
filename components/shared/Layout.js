@@ -25,6 +25,9 @@ const Layout = ({ client, withHeader, children }) => {
         background-color: ${colors.white};
         font-family: 'Noto Sans'
       }
+      a {
+        text-decoration: none
+      }
       p {
         color: ${colors.black}
       }

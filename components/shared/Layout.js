@@ -50,13 +50,12 @@ const Layout = ({ client, withHeader, children }) => {
       }
 
       .button {
-        background-color: ${colors.green}; 
+        background-color: ${colors.green};
         border: none;
         color: white;
-        padding: 15px 32px;
+        padding: 15px 0 ;
         text-align: center;
         text-decoration: none;
-        display: inline-block;
         font-size: 16px;
         margin: 20px 2px;
         cursor: pointer;

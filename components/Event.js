@@ -1,9 +1,21 @@
 import { observer, inject } from "mobx-react";
 import { Mutation, withApollo } from 'react-apollo'
+import redirect from '../lib/redirect'
 
 @inject("store")
 @observer
 class Event extends React.Component{
+
+  goCheckout =()=> {
+    const { store, client } = this.props
+    let route = '/create-account'
+    if( store.authStore.isLogged ){ 
+      route = '/checkout'
+    }
+    client.cache.reset().then(() => {
+      redirect({}, route)
+    })
+  }
 
   render() {
     const { event } = this.props
@@ -29,13 +41,20 @@ class Event extends React.Component{
       <div>
         <div className="container">
           <img src={image}/>
-
+          <button onClick={this.goCheckout}
+           className="button" style={{width: '25%'}}>Get Your TIcket!</button>
         </div>
 
         <style jsx>{`
           .container {
             display: flex;
-            justify-content: center
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5% 0;
+          }
+          button {
+            margin-top: 5%
           }
           img {
             align-self: center;

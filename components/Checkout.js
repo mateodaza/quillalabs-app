@@ -3,6 +3,11 @@ import { Mutation, withApollo } from 'react-apollo'
 import redirect from '../lib/redirect'
 import './Checkout.scss'
 
+import visa from 'payment-icons/min/flat/visa.svg';
+import mastercard from 'payment-icons/min/flat/mastercard.svg';
+import amex from 'payment-icons/min/flat/amex.svg';
+import discover from 'payment-icons/min/flat/discover.svg';
+
 @inject("store")
 @observer
 class Event extends React.Component{
@@ -10,7 +15,7 @@ class Event extends React.Component{
   render() {
     let cardname, cardnumber, expmonth, expyear, cvv
     const { event } = this.props
-
+    console.log('visa', visa)
     return (
       <div>
         <div className="container">
@@ -18,10 +23,10 @@ class Event extends React.Component{
             <h3>Payment</h3>
             <label htmlFor="fname"> </label>
             <div className="icon-container">
-              <i className="pf pf-stripe"></i>
-              <i className="fa fa-cc-amex"></i>
-              <i className="fa fa-cc-mastercard"></i>
-              <i className="fa fa-cc-discover"></i>
+              <img src={visa} className="credit-icon"/>
+              <img src={mastercard} className="credit-icon"/>
+              <img src={amex} className="credit-icon"/>
+              <img src={discover} className="credit-icon"/>
             </div>
               <form
               onSubmit={e => {

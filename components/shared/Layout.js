@@ -53,7 +53,7 @@ const Layout = ({ client, withHeader, children }) => {
         background-color: ${colors.green};
         border: none;
         color: white;
-        padding: 15px 0 ;
+        padding: 15px 10px;
         text-align: center;
         text-decoration: none;
         font-size: 16px;

@@ -23,6 +23,7 @@ const CREATE_USER = gql`
 @observer
 class RegisterBox extends React.Component{
   render() {
+    const { store, client } = this.props
     let name, email, password
     return (
       <Mutation

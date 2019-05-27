@@ -6,6 +6,7 @@ module.exports = routes()                           // ----   ----      -----
 .add('signin')
 .add('create-account')
 .add('event', '/event/:name')
+.add('checkout')
 
 // .add('about')                                       // about  about     /about
 // .add('blog', '/blog/:slug')                         // blog   blog      /blog/:slug

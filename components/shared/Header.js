@@ -59,11 +59,11 @@ class Header extends React.Component{
           <div>
           {
             !store.authStore.isLogged ? (
-              <a href="#" onClick={this.login}>
+              <a href="" onClick={this.login}>
                 <p>Signin</p>
               </a>
             ): (
-              <a href="#" onClick={this.logout}>
+              <a href="" onClick={this.logout}>
                 <p>Logout</p>
               </a>
             )

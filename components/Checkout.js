@@ -6,7 +6,7 @@ import './Checkout.scss'
 import visa from 'payment-icons/min/flat/visa.svg';
 import mastercard from 'payment-icons/min/flat/mastercard.svg';
 import amex from 'payment-icons/min/flat/amex.svg';
-import discover from 'payment-icons/min/flat/discover.svg';
+import diners from 'payment-icons/min/flat/diners.svg';
 
 @inject("store")
 @observer
@@ -26,7 +26,7 @@ class Event extends React.Component{
               <img src={visa} className="credit-icon"/>
               <img src={mastercard} className="credit-icon"/>
               <img src={amex} className="credit-icon"/>
-              <img src={discover} className="credit-icon"/>
+              <img src={diners} className="credit-icon"/>
             </div>
               <form
               onSubmit={e => {

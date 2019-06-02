@@ -8,11 +8,11 @@ class Landing extends React.Component {
         <h1 style={{ color: 'rgba(0,0,0,0.6)', fontWeight: 'light'}}>Embajada Blockchain en Barranquilla Colombia</h1>
       </div>
       <div className="cards-container">
-        <EventCard title="Startup Grind" event="startup" content="lorem ipsum lorem ipsum lorem ipsum"
+        <EventCard title="Startup Grind" event="startup" content="Fireside Chat con Edward Sosa y Jose Bell. Expertos en el tema de blockchain y Criptomonedas. "
            date="1535660673" type="Meetup" bgImage={require("../assets/startupgrind.png")}/>
-        <EventCard title="BoT Latam" event="botlatam" content="lorem ipsum lorem ipsum lorem ipsum"
+        <EventCard title="BoT Latam" event="botlatam" content="Ven a conocer casos de uso en la Blockchain con proyectos directos del crypto valley en suiza!"
             date="1543609443" type="Conferencia" bgImage={require("../assets/bot.png")}/>
-        <EventCard title="MakerDAO Meetup" event="maker" content="lorem ipsum lorem ipsum lorem ipsum" 
+        <EventCard title="MakerDAO Meetup" event="maker" content="Aprende acerca de MakerDAO y DAI, compartiendo una cerveza e intercambiando cripto!"
             type="Meetup" bgImage={require("../assets/maker.jpg")}/>
         </div>
       <style jsx>{`

@@ -10,12 +10,12 @@ const CREATE_USER = gql`
       username: $name
       authProvider: { credentials: { email: $email, password: $password } }
     ) {
-      id
-      email
-      username
-    }
-    signInUser(credentials: { email: $email, password: $password }) {
       token
+      user {
+        id
+        email,
+        username
+      }
     }
   }
 `
@@ -30,7 +30,8 @@ class RegisterBox extends React.Component{
         mutation={CREATE_USER}
         onCompleted={data => {
           // Store the token in cookie
-          document.cookie = cookie.serialize('token', data.signInUser.token, {
+          console.log({data})
+          document.cookie = cookie.serialize('token', data.createUser.token, {
             maxAge: 30 * 24 * 60 * 60 // 30 days
           })
   

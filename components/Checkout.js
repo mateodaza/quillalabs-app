@@ -7,7 +7,38 @@ import visa from 'payment-icons/min/flat/visa.svg';
 import mastercard from 'payment-icons/min/flat/mastercard.svg';
 import amex from 'payment-icons/min/flat/amex.svg';
 import diners from 'payment-icons/min/flat/diners.svg';
+import gql from "graphql-tag";
 
+const SET_PAYMENT = gql`
+  mutation Create($number: String!, $exp_year: String!, $exp_month: String!, $cvc: String!,
+    $event_name: String!, $price: String!, $quantity: String!, $document: String!, $name: String!, $last_name: String!) {
+    createCreditCardPayment(
+      creditCard: {
+        number: $number,
+        expYear: $exp_year,
+        expMonth: $exp_month,
+        cvc: $cvc
+      },
+      event: {
+        name: $event_name,
+        price: $price,
+        quantity: $quantity
+      },
+      customerDetails: {
+        document: $document,
+        name: $name,
+        lastName: $last_name
+      }
+    ){
+      transaction {
+        transactionId,
+        transactionType,
+        eventName,
+        ticketQuantity
+      }
+    }
+  }
+`
 @inject("store")
 @observer
 class Event extends React.Component{
@@ -29,13 +60,29 @@ class Event extends React.Component{
    }
 
   render() {
-    let cardname, cardlastname, cardnumber, expmonth, expyear, cvv
+    let cardname, cardlastname, idnumber, cardnumber, expmonth, expyear, cvv
     const { tickets } = this.state
     const { event } = this.props
     console.log('visa', visa)
     return (
-      <div>
+      <Mutation
+      mutation={SET_PAYMENT}
+      onCompleted={data => {
+        console.log({data})
+
+        // Force a reload of all the current queries now that the user is
+        // logged in
+        // client.cache.reset().then(() => {
+        //   redirect({}, '/')
+        // })
+      }}
+      onError={error => {
+        console.log(error)
+      }}
+    >
+    {(create, { data, error }) => (
         <div className="container">
+        {error && <p>Issue occurred while ordering :(</p>}
          <div className="col col-50">
             <h3>Payment</h3>
             <label htmlFor="fname"> </label>
@@ -56,7 +103,7 @@ class Event extends React.Component{
                   Ticket
                 </p>
                 <div style={{margin: '12px 0 0 0'}}>
-                  <p>TOTAL $COP {(10000*tickets).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </p>
+                  <p>Total $COP {(10000*tickets).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </p>
                 </div>
                </div>  
               </div>
@@ -66,9 +113,22 @@ class Event extends React.Component{
                 e.preventDefault()
                 e.stopPropagation()
 
-                console.log({cardname: cardname.value})
-                // PROCEED CHECKOUT
-                cardname.value = cardlastname.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = ''
+                create({
+                  variables: {
+                    // 4575623182290326 CC
+                    number: cardnumber.value,
+                    exp_year: expyear.value,
+                    exp_month: expmonth.value,
+                    cvc: cvv.value,
+                    event_name: "quillalabs",
+                    price: "10000",
+                    quantity: this.state.tickets.toString(),
+                    document: idnumber.value,
+                    name: cardname.value,
+                    last_name: cardlastname.value
+                  }
+                })
+                cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = ''
               }}
             >
             <div className="row">
@@ -89,6 +149,14 @@ class Event extends React.Component{
                 />
               </div>
             </div>
+
+            <label htmlFor="ccnum">Número de Identificación</label>
+            <input type="text" id="idnum" name="idnumber" placeholder="12341234"
+              ref={node => {
+                idnumber = node
+              }}
+            />
+
             <label htmlFor="ccnum">Número de tarjeta</label>
             <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444"
               ref={node => {
@@ -127,11 +195,11 @@ class Event extends React.Component{
               className="button" style={{textAlign: 'center', width: '35%'}}>Pagar</button>
             </div>
           </form>
-
           </div>
 
         </div>
-      </div>
+        )}
+      </Mutation>
     )
   }
 }

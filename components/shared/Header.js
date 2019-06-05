@@ -1,5 +1,5 @@
 import { observer, inject } from "mobx-react";
-import Router from 'next/router'
+import { Router }  from '../../routes'
 import { Link } from '../../routes'
 import { withApollo } from 'react-apollo'
 import colors from '../../common/colors'

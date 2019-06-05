@@ -70,12 +70,6 @@ class Event extends React.Component{
       mutation={SET_PAYMENT}
       onCompleted={data => {
         console.log({data})
-
-        // Force a reload of all the current queries now that the user is
-        // logged in
-        // client.cache.reset().then(() => {
-        //   redirect({}, '/')
-        // })
       }}
       onError={error => {
         console.log(error)

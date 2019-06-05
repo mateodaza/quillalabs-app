@@ -3,6 +3,7 @@ import { withApollo } from 'react-apollo'
 import { Link } from '../../routes'
 import Colors from '../../common/colors'
 import moment from 'moment'
+
 import "./EventCard.scss"
 
 @inject("store")

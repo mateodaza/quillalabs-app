@@ -1,5 +1,6 @@
 import { observer, inject } from "mobx-react";
 import { Mutation, withApollo } from 'react-apollo'
+import { withRouter } from 'next/router'
 import gql from 'graphql-tag'
 import cookie from 'cookie'
 import redirect from '../lib/redirect'
@@ -32,7 +33,7 @@ class RegisterBox extends React.Component{
   
 
   render() {
-    const { store, client } = this.props
+    const { store, client, router } = this.props
     const { errorMsg } = this.state
     let name, email, password, password2
     return (
@@ -47,11 +48,16 @@ class RegisterBox extends React.Component{
   
           //update store
           store.authStore.login(data)
-  
+
+          // check if it comes from event page
+          const fromRoute = router.query.from
+          let toRoute = '/'
+          console.log({fromRoute})
+          fromRoute &&(toRoute = `/checkout/${fromRoute.split('/')[2]}`);
           // Force a reload of all the current queries now that the user is
           // logged in
           client.cache.reset().then(() => {
-            redirect({}, '/')
+            redirect({}, toRoute)
           })
         }}
         onError={error => {
@@ -127,4 +133,4 @@ class RegisterBox extends React.Component{
   }
 }
 
-export default withApollo(RegisterBox)
+export default withRouter(withApollo(RegisterBox))

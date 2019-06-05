@@ -1,6 +1,7 @@
 import { observer, inject } from "mobx-react";
 import { Mutation, withApollo } from 'react-apollo'
 import redirect from '../lib/redirect'
+import Router from 'next/router'
 
 @inject("store")
 @observer
@@ -10,11 +11,9 @@ class Event extends React.Component{
     const { store, client } = this.props
     let route = '/create-account'
     if( store.authStore.isLogged ){ 
-      route = '/checkout'
+      route = `/checkout/${this.props.event}`
     }
-    client.cache.reset().then(() => {
-      redirect({}, route)
-    })
+    Router.push(route)
   }
 
   render() {
@@ -42,7 +41,7 @@ class Event extends React.Component{
         <div className="container">
           <img src={image}/>
           <button onClick={this.goCheckout}
-           className="button" style={{width: '25%'}}>Get Your TIcket!</button>
+           className="button" style={{width: '25%'}}>Get Your Ticket!</button>
         </div>
 
         <style jsx>{`

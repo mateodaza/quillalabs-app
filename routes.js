@@ -1,13 +1,14 @@
 const routes = require('next-routes')
 
-                                                    // Name   Page      Pattern
-module.exports = routes()                           // ----   ----      -----
-.add('index', '')
+                                                    
+module.exports = routes()                           
+.add('home', '/', 'index')
 .add('signin')
 .add('create-account')
 .add('event', '/event/:name')
-.add('checkout')
-
+.add('checkout', '/checkout/:event')
+                                                        // Name   Page      Pattern
+                                                        // ----   ----      -----
 // .add('about')                                       // about  about     /about
 // .add('blog', '/blog/:slug')                         // blog   blog      /blog/:slug
 // .add('user', '/user/:id', 'profile')                // user   profile   /user/:id

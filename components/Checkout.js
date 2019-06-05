@@ -46,7 +46,8 @@ class Event extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      tickets: 1
+      tickets: 1,
+      errorMsg: null
     }
   }
 
@@ -61,7 +62,7 @@ class Event extends React.Component{
 
   render() {
     let cardname, cardlastname, idnumber, cardnumber, expmonth, expyear, cvv
-    const { tickets } = this.state
+    const { tickets, errorMsg } = this.state
     const { event } = this.props
     console.log('visa', visa)
     return (
@@ -105,30 +106,34 @@ class Event extends React.Component{
                 <div style={{margin: '12px 0 0 0'}}>
                   <p>Total $COP {(10000*tickets).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </p>
                 </div>
-               </div>  
+               </div>
               </div>
             </div>
               <form
               onSubmit={e => {
                 e.preventDefault()
                 e.stopPropagation()
-
-                create({
-                  variables: {
-                    // 4575623182290326 CC
-                    number: cardnumber.value,
-                    exp_year: expyear.value,
-                    exp_month: expmonth.value,
-                    cvc: cvv.value,
-                    event_name: "quillalabs",
-                    price: "10000",
-                    quantity: this.state.tickets.toString(),
-                    document: idnumber.value,
-                    name: cardname.value,
-                    last_name: cardlastname.value
-                  }
-                })
-                cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = ''
+                if(cardnumber.value && expyear.value && expmonth.value && cvv.value
+                  && idnumber.value &&cardname.value && cardlastname.value) {
+                    create({
+                      variables: {
+                        // 4575623182290326 CC
+                        number: cardnumber.value,
+                        exp_year: expyear.value,
+                        exp_month: expmonth.value,
+                        cvc: cvv.value,
+                        event_name: "quillalabs",
+                        price: "10000",
+                        quantity: this.state.tickets.toString(),
+                        document: idnumber.value,
+                        name: cardname.value,
+                        last_name: cardlastname.value
+                      }
+                    })
+                    cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = ''
+                }else {
+                  this.setState({errorMsg: 'Fields are missing'})
+                }
               }}
             >
             <div className="row">
@@ -190,7 +195,8 @@ class Event extends React.Component{
                 />
               </div>
             </div>
-            <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+            <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+            {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
             <button onClick={this.goCheckout}
               className="button" style={{textAlign: 'center', width: '35%'}}>Pagar</button>
             </div>

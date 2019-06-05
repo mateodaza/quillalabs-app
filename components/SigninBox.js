@@ -21,27 +21,38 @@ const SIGN_IN = gql`
 @observer
 class SigninBox extends React.Component{
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      errorMsg: null
+    }
+  }
+
   render() {
     const { store, client } = this.props
+    const { errorMsg } = this.state
     let email, password
     return (
       <Mutation
         mutation={SIGN_IN}
         onCompleted={data => {
+          if(data.signInUser) {
           // Store the token in cookie
-          document.cookie = cookie.serialize('token', data.signInUser.token, {
-            maxAge: 30 * 24 * 60 * 60 // 30 days
-          })
-          // console.log(document.cookie)
-
-          //update store
-          store.authStore.login(data)
-
-          // Force a reload of all the current queries now that the user is
-          // logged in
-          client.cache.reset().then(() => {
-            redirect({}, '/')
-          })
+            document.cookie = cookie.serialize('token', data.signInUser.token, {
+              maxAge: 30 * 24 * 60 * 60 // 30 days
+            })
+            // console.log(document.cookie)
+            
+            //update store
+            store.authStore.login(data)
+            // Force a reload of all the current queries now that the user is
+            // logged in
+            client.cache.reset().then(() => {
+              redirect({}, '/')
+            })
+          }else {
+            this.setState({errorMsg: 'User doesnt exist'})
+          }
         }}
         onError={error => {
           // If you want to send error to external service?
@@ -53,18 +64,21 @@ class SigninBox extends React.Component{
             onSubmit={e => {
               e.preventDefault()
               e.stopPropagation()
-
-              signinUser({
-                variables: {
-                  email: email.value,
-                  password: password.value
-                }
-              })
-
-              email.value = password.value = ''
+              if(email.value && password.value) {
+                signinUser({
+                  variables: {
+                    email: email.value,
+                    password: password.value
+                  }
+                })
+                email.value = password.value = ''
+              }else {
+                this.setState({errorMsg: 'Fields missing'})
+              }
             }}
           >
             {error && <p>No user found with that information.</p>}
+            {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
             <input
               name='email'
               placeholder='Email'

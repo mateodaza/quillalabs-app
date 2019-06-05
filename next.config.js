@@ -1,8 +1,5 @@
-const withSass = require('@zeit/next-sass')
 const withImages = require('next-images')
-module.exports = withSass(withImages({
-  target: "serverless",
-  webpack(config, options) {
-    return config
-  }
-}))
+const withSass = require('@zeit/next-sass');
+const withCSS = require('@zeit/next-css');
+
+module.exports = withImages(withCSS(withSass()));

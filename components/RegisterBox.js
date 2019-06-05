@@ -22,9 +22,19 @@ const CREATE_USER = gql`
 @inject("store")
 @observer
 class RegisterBox extends React.Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      errorMsg: null
+    }
+  }
+  
+
   render() {
     const { store, client } = this.props
-    let name, email, password
+    const { errorMsg } = this.state
+    let name, email, password, password2
     return (
       <Mutation
         mutation={CREATE_USER}
@@ -54,19 +64,27 @@ class RegisterBox extends React.Component{
             onSubmit={e => {
               e.preventDefault()
               e.stopPropagation()
-  
-              create({
-                variables: {
-                  name: name.value,
-                  email: email.value,
-                  password: password.value
+              if(name.value && email.value && password.value && password2.value) {
+                if(password.value === password2.value) {
+                  create({
+                    variables: {
+                      name: name.value,
+                      email: email.value,
+                      password: password.value
+                    }
+                  })
+                  name.value = email.value = password.value = password2.value = ''
+                }else {
+                  this.setState({errorMsg: 'Passwords are different'})
                 }
-              })
-  
-              name.value = email.value = password.value = ''
+
+              }else {
+                this.setState({errorMsg: 'Fields missing'})
+              }
             }}
           >
             {error && <p>Issue occurred while registering :(</p>}
+            {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
             <input
               name='name'
               placeholder='Name'
@@ -92,7 +110,16 @@ class RegisterBox extends React.Component{
               type='password'
             />
             <br />
-            <button className="button">Register</button>
+            <input
+              name='password2'
+              placeholder='Verify Password'
+              ref={node => {
+                password2 = node
+              }}
+              type='password'
+            />
+            <br />
+            <button className="button">Sign up</button>
           </form>
         )}
       </Mutation>

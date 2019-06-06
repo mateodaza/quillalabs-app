@@ -38,19 +38,20 @@ class EventCard extends React.Component{
                   <span className="day">coming soon</span>
                 )
               }
-              
             </div>
-            <div className="data">
-              <div className="content">
-                <span className="author">{type}</span>
-                <h1 className="title">
-                  <Link route='event' params={{name: event}}>
-                   <a href="#">{title}</a>
-                  </Link>
-                </h1>
-                <p className="text">{content}</p>
+            <Link route='event' params={{name: event}}>
+              <div className="data" style={{cursor: 'pointer'}}>
+                <div className="content">
+                  <span className="author">{type}</span>
+                  <h1 className="title">
+                    <Link route='event' params={{name: event}}>
+                    <a href="#">{title}</a>
+                    </Link>
+                  </h1>
+                  <p className="text">{content}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

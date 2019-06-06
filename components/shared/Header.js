@@ -41,8 +41,8 @@ class Header extends React.Component{
   }
 
   render() {
-    const { withHeader, store } = this.props
-    // console.log({store})
+    const { withHeader, store, store: {authStore}  } = this.props
+    console.log({authStore})
     return (
       <header>
         <div className="header-container">
@@ -56,16 +56,19 @@ class Header extends React.Component{
               </div>
             </a>
           </Link>
-          <div>
+          <div style={{padding: '5% 5% 0 0'}}>
           {
             !store.authStore.isLogged ? (
               <a href="" onClick={this.login}>
                 <p>Signin</p>
               </a>
             ): (
-              <a href="" onClick={this.logout}>
-                <p>Logout</p>
-              </a>
+              <div>
+                <p>Hola, {authStore.auth.signInUser.user.username}!</p>
+                <a style={{}} href="" onClick={this.logout}>
+                  <p style={{textAlign: 'right'}}>Logout</p>
+                </a>
+              </div>
             )
           }
           </div>

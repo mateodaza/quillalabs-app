@@ -40,8 +40,12 @@ class Event extends React.Component{
       <div>
         <div className="container">
           <img src={image}/>
-          <button onClick={this.goCheckout}
-           className="button" style={{width: '25%'}}>Get Your Ticket!</button>
+          {
+            event === 'maker' && (
+              <button onClick={this.goCheckout}
+                className="button" style={{width: '25%'}}>Get Your Ticket!</button>
+            )
+          }
         </div>
 
         <style jsx>{`

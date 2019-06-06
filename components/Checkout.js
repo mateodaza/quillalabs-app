@@ -1,5 +1,6 @@
 import { observer, inject } from "mobx-react";
 import { Mutation, withApollo } from 'react-apollo'
+import { withRouter } from 'next/router'
 import redirect from '../lib/redirect'
 import './Checkout.scss'
 
@@ -46,6 +47,7 @@ class Event extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      price: 1000,
       tickets: 1,
       errorMsg: null
     }
@@ -62,9 +64,8 @@ class Event extends React.Component{
 
   render() {
     let cardname, cardlastname, idnumber, cardnumber, expmonth, expyear, cvv
-    const { tickets, errorMsg } = this.state
-    const { event } = this.props
-    console.log('visa', visa)
+    const { tickets, errorMsg, price } = this.state
+    const { event } = this.props.router.query
     return (
       <Mutation
       mutation={SET_PAYMENT}
@@ -98,7 +99,7 @@ class Event extends React.Component{
                   Ticket
                 </p>
                 <div style={{margin: '12px 0 0 0'}}>
-                  <p>Total $COP {(10000*tickets).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </p>
+                  <p>Total $COP {(price*tickets).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </p>
                 </div>
                </div>
               </div>
@@ -116,9 +117,9 @@ class Event extends React.Component{
                         exp_year: expyear.value,
                         exp_month: expmonth.value,
                         cvc: cvv.value,
-                        event_name: "quillalabs",
-                        price: "10000",
-                        quantity: this.state.tickets.toString(),
+                        event_name: `quillalabs-${event}`,
+                        price: price.toString(),
+                        quantity: tickets.toString(),
                         document: idnumber.value,
                         name: cardname.value,
                         last_name: cardlastname.value
@@ -204,4 +205,4 @@ class Event extends React.Component{
   }
 }
 
-export default withApollo(Event)
+export default withRouter(withApollo(Event))

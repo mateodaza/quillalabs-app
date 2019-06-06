@@ -1,7 +1,8 @@
 import { observer, inject } from "mobx-react";
 import { Mutation, withApollo } from 'react-apollo'
 import redirect from '../lib/redirect'
-import { Router } from '../routes'
+import Router from 'next/router'
+// import { Router } from '../routes'
 
 @inject("store")
 @observer
@@ -14,7 +15,9 @@ class Event extends React.Component{
       route = `/checkout/${this.props.event}`
     }
     // Router.push({pathname: route, query: { event: this.props.event }})
-    Router.pushRoute(route)
+    // Router.pushRoute(route)
+    Router.push(route)
+
   }
 
   render() {
@@ -44,7 +47,7 @@ class Event extends React.Component{
           {
             event === 'maker' && (
               <button onClick={this.goCheckout}
-                className="button" style={{width: '25%'}}>Get Your Ticket!</button>
+                className="button" style={{width: '25%'}}>Adquiere tu entrada!</button>
             )
           }
         </div>

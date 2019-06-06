@@ -56,17 +56,19 @@ class Header extends React.Component{
               </div>
             </a>
           </Link>
-          <div style={{padding: '5% 5% 0 0'}}>
+          <div className="right-side">
           {
             !store.authStore.isLogged ? (
-              <a href="" onClick={this.login}>
-                <p>Signin</p>
-              </a>
+              <div className="signin-btn">
+                <a href="" onClick={this.login}>
+                  <p>Inicia sesión</p>
+                </a>
+              </div>
             ): (
               <div>
                 <p>Hola, {authStore.auth.signInUser.user.username}!</p>
                 <a style={{}} href="" onClick={this.logout}>
-                  <p style={{textAlign: 'right'}}>Logout</p>
+                  <p style={{textAlign: 'right'}}>Salir</p>
                 </a>
               </div>
             )
@@ -75,15 +77,39 @@ class Header extends React.Component{
         </div>      
         <style jsx>{`
         a{
-          color: ${colors.black}
+          color: white;
         }
         a:focus { 
           text-decoration: none;
+        }
+        p {
+          color: white;
+          font-size: 18px;
+          background-color: rgba(37, 41, 56, 1)
+        }
+        .signin-btn {
+          padding: 2px 5px;
+          background-color: rgba(37, 41, 56, 1)
         }
         .header-container{
           display: flex;
           justify-content: space-between;
           margin: 5% 2%;
+        }
+        .right-side {
+          padding: 5% 5% 0 0
+        }
+
+        @media only screen and (max-width: 600px) {
+          p {
+            font-size: 20px
+          }
+          .header-container{
+            flex-direction: column
+          }
+          .right-side {
+            padding: 12%;
+          }
         }
       `}</style>
       </header>

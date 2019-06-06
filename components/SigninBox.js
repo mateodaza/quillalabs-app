@@ -77,7 +77,7 @@ class SigninBox extends React.Component{
               }
             }}
           >
-            {error && <p>No user found with that information.</p>}
+            {error && <p>No existe un usuario con esta información.</p>}
             {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
             <input
               name='email'
@@ -96,7 +96,7 @@ class SigninBox extends React.Component{
               type='password'
             />
             <br />
-            <button className="button">Sign in</button>
+            <button className="button">Ingresa</button>
           </form>
         )}
       </Mutation>

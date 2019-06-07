@@ -1,6 +1,7 @@
 import { observer, inject } from "mobx-react";
 import { Router }  from '../../routes'
 import { Link } from '../../routes'
+import { withRouter } from 'next/router'
 import { withApollo } from 'react-apollo'
 import colors from '../../common/colors'
 import cookie from 'cookie'
@@ -41,8 +42,12 @@ class Header extends React.Component{
   }
 
   render() {
-    const { withHeader, store, store: {authStore}  } = this.props
-    console.log({authStore})
+    const { withHeader, store, store: {authStore}, router  } = this.props
+    let route = null
+    if(router.pathname === '/signin' || router.pathname === '/create-account' ) {
+      route = true
+    }
+    console.log({router})
     return (
       <header>
         <div className="header-container">
@@ -58,18 +63,14 @@ class Header extends React.Component{
           </Link>
           <div className="right-side">
           {
-            !store.authStore.isLogged ? (
-              <div className="signin-btn">
-                <a href="" onClick={this.login}>
-                  <p>Inicia sesión</p>
-                </a>
-              </div>
+            !store.authStore.isLogged? (
+              !route && (
+                <button className="signin-btn" onClick={this.login}>Inicia Sesión</button>
+              )
             ): (
-              <div>
+              <div style={{display: 'flex', flexDirection: 'column', justifyItems: 'flex-end'}}>
                 <p>Hola, {authStore.auth.signInUser.user.username}!</p>
-                <a style={{}} href="" onClick={this.logout}>
-                  <p style={{textAlign: 'right'}}>Salir</p>
-                </a>
+                <button className="signin-btn" onClick={this.logout}>Salir</button>
               </div>
             )
           }
@@ -83,18 +84,30 @@ class Header extends React.Component{
           text-decoration: none;
         }
         p {
-          color: white;
+          color: rgba(37, 41, 46, 1);
           font-size: 18px;
-          background-color: rgba(37, 41, 56, 1)
         }
         .signin-btn {
-          padding: 2px 5px;
-          background-color: rgba(37, 41, 56, 1)
+          background-color: rgba(37, 41, 46, 1);
+          box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+          cursor: pointer;
+          border: none;
+          border-radius: 8px;
+          color: white;
+          padding: 8px 16px;
+          text-align: center;
+          font-size: 14px;
+          opacity: 0.9;
+          transition: box-shadow 0.3s ease-in-out;
+        }
+        .signin-btn:hover {
+          opacity: 1;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .header-container{
           display: flex;
           justify-content: space-between;
-          margin: 5% 2%;
+          margin: 4% 2% 0 2%;
         }
         .right-side {
           padding: 5% 5% 0 0
@@ -117,4 +130,4 @@ class Header extends React.Component{
   }
 }
 
-export default withApollo(Header)
+export default withApollo(withRouter(Header))

@@ -66,6 +66,7 @@ class RegisterBox extends React.Component{
         }}
       >
         {(create, { data, error }) => (
+          <div>
           <form
             onSubmit={e => {
               e.preventDefault()
@@ -91,9 +92,10 @@ class RegisterBox extends React.Component{
           >
             {error && <p>Issue occurred while registering :(</p>}
             {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
+            <h1>Registro</h1>
             <input
               name='name'
-              placeholder='Name'
+              placeholder='Nombre'
               ref={node => {
                 name = node
               }}
@@ -101,7 +103,7 @@ class RegisterBox extends React.Component{
             <br />
             <input
               name='email'
-              placeholder='Email'
+              placeholder='E-mail'
               ref={node => {
                 email = node
               }}
@@ -118,7 +120,7 @@ class RegisterBox extends React.Component{
             <br />
             <input
               name='password2'
-              placeholder='Verify Password'
+              placeholder='Verificación Password'
               ref={node => {
                 password2 = node
               }}
@@ -127,6 +129,23 @@ class RegisterBox extends React.Component{
             <br />
             <button className="button">Sign up</button>
           </form>
+          <style jsx>{`
+            h1 {
+              color: rgba(37, 41, 46, 0.6);
+              margin: 0 0 2% 0;
+            }
+            form {
+              display: flex;
+              flex: 5;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            }
+            input {
+
+            }
+          `}</style>
+          </div>
         )}
       </Mutation>
     )

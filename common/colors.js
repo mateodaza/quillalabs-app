@@ -4,6 +4,8 @@
 export default {
   white: '#fdfbfb',
   black: 'rgba(47, 47, 45, 1)',
+  black2: 'rgba(37, 41, 46, 1)',
+  black3: 'rgba(37, 41, 46, 0.6)',
 
   //main
   yellow: 'rgba(244, 213, 72, 1)',

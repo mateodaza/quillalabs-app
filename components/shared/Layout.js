@@ -26,6 +26,7 @@ const Layout = ({ client, withHeader, children }) => {
         font-family: 'Noto Sans'
       }
       a {
+        color: rgba(46, 126, 239, 1);
         text-decoration: none
       }
       p {
@@ -40,24 +41,32 @@ const Layout = ({ client, withHeader, children }) => {
         background-color: ${colors.white}
       }
       input {
+        text-align: center; 
+        width: 40%;
+        font-size: 22px;
         padding: 5px;
+        color: ${colors.black3};
         margin: 10px 0;
         min-width: 200px;
-        border: 1px solid #ccc;
-      }
-      input:focus {
         border: 0.5px solid transparent;
+        outline: none;
+        border-bottom: 1px solid #ccc;
+      }
+      input::placeholder {
+        text-align: center;
+        color: #ccc;
       }
 
       .button {
-        background-color: ${colors.green};
+        background-color: ${colors.white};
         border: none;
-        color: white;
-        padding: 15px 10px;
+        color: ${colors.black3};
+        padding: 16px 32px;
+        border: 0.5px darkgray solid;
         text-align: center;
         text-decoration: none;
         font-size: 16px;
-        margin: 20px 2px;
+        margin: 20px 2px 50px 2px;
         cursor: pointer;
         border-radius: 8px;
         -webkit-transition-duration: 0.4s; /* Safari */

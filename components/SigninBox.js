@@ -1,5 +1,6 @@
 import { observer, inject } from "mobx-react";
 import { Mutation, withApollo } from 'react-apollo'
+import colors from '../common/colors';
 import gql from 'graphql-tag'
 import cookie from 'cookie'
 import redirect from '../lib/redirect'
@@ -60,6 +61,7 @@ class SigninBox extends React.Component{
         }}
       >
         {(signinUser, { data, error }) => (
+          <div>
           <form
             onSubmit={e => {
               e.preventDefault()
@@ -79,6 +81,7 @@ class SigninBox extends React.Component{
           >
             {error && <p>No existe un usuario con esta información.</p>}
             {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
+            <h1>Inicia Sesión</h1>
             <input
               name='email'
               placeholder='Email'
@@ -97,7 +100,25 @@ class SigninBox extends React.Component{
             />
             <br />
             <button className="button">Ingresa</button>
+            
           </form>
+          <style jsx>{`
+            h1 {
+              color: rgba(37, 41, 46, 0.6);
+              margin: 0 0 2% 0;
+            }
+            form {
+              display: flex;
+              flex: 5;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            }
+            input {
+
+            }
+          `}</style>
+          </div>
         )}
       </Mutation>
     )

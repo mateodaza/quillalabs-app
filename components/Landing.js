@@ -5,7 +5,8 @@ class Landing extends React.Component {
   render() {
     return <Layout>
       <div className="main">
-        <h1 style={{ color: 'rgba(0,0,0,0.6)', fontWeight: 'light'}}>Embajada Blockchain en Barranquilla Colombia</h1>
+        <h1 style={{ color: 'rgba(0,0,0,0.6)'}}>QUILLALABS</h1>
+        <h2 style={{ color: 'rgba(0,0,0,0.6)', fontWeight: 'lighter'}}>Embajada Blockchain en Barranquilla Colombia</h2>
       </div>
       <div className="cards-container">
         <EventCard title="Startup Grind" event="startup" content="Fireside Chat con Edward Sosa y Jose Bell. Expertos en el tema de blockchain y Criptomonedas. "
@@ -25,6 +26,7 @@ class Landing extends React.Component {
       }
       .main * {
         text-align: center;
+        padding: 1% 0;
       }
       .cards-container {
         display: grid;

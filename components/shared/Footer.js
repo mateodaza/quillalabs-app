@@ -51,14 +51,16 @@ class Footer extends React.Component{
           width: 75%;
         }
         .copyright * {
-          background: #ADA996;  /* fallback for old browsers */
-          background: -webkit-linear-gradient(to left, #0000,  #F2F2F2, ${Colors.pastel}, #ADA996);
-          background: linear-gradient(to left, #0000, #F2F2F2, ${Colors.pastel}, #ADA996 );
+          background: rgb(242,199,180); /* Old browsers */
+          background: -moz-linear-gradient(left, rgba(242,199,180,1) 0%, rgba(240,202,170,1) 2%, rgba(240,202,170,1) 2%, rgba(240,202,170,1) 6%, rgba(222,222,172,1) 38%, rgba(222,222,172,1) 41%, rgba(222,222,172,1) 44%, rgba(170,220,179,1) 68%, rgba(241,237,237,1) 99%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(left, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,rgba(241,237,237,1) 99%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to right, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,rgba(241,237,237,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2c7b4', endColorstr='#f1eded',GradientType=1 );
         }
         .copyright p {
-          color: ${Colors.white};
+          color: ${Colors.black3};
           font-size: 14px;
-          font-weight: bold;
+          font-weight: lighter;
         }
 
         .social {
@@ -129,12 +131,11 @@ class Footer extends React.Component{
             width: 100%;
           }
           .copyright * {
-            background: #ADA996;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to bottom, #0000 1%, #ADA996 100%);
-            background: linear-gradient(to bottom, #0000 15%, ${Colors.pastel} 5%, #ADA996 80%);
-          }
-          .copyright p {
-            color: ${Colors.white};
+            background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(255,255,255,1) 10%, rgba(225,225,171,1) 45%, rgba(225,225,171,1) 64%, rgba(251,198,175,1) 101%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(255,255,255,1) 10%,rgba(225,225,171,1) 45%,rgba(225,225,171,1) 64%,rgba(251,198,175,1) 101%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(255,255,255,1) 10%,rgba(225,225,171,1) 45%,rgba(225,225,171,1) 64%,rgba(251,198,175,1) 101%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fbc6af',GradientType=0 );
           }
           .social {
             width: 100%;

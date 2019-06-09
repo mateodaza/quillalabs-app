@@ -6,7 +6,7 @@ import { withApollo } from 'react-apollo'
 import colors from '../../common/colors'
 import cookie from 'cookie'
 import redirect from '../../lib/redirect'
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.png'
 
 @inject("store")
 @observer
@@ -53,11 +53,8 @@ class Header extends React.Component{
         <div className="header-container">
           <Link route='index'>
             <a onClick={this.goHome}>
-              <div style={{display: 'flex', flexDirection: 'row'}}>
-                <img src={logo} width='150px' height='150px'/>
-                <div style={{alignSelf: 'center'}}>
-                  <h1>QuillaLabs</h1>
-                </div>
+              <div style={{display: 'flex', flexDirection: 'column'}}>
+                <img src={logo} width='100px' height='100px'/>
               </div>
             </a>
           </Link>
@@ -88,6 +85,7 @@ class Header extends React.Component{
           font-size: 18px;
         }
         .signin-btn {
+          margin: 5px 0;
           background-color: rgba(37, 41, 46, 1);
           box-shadow: 0 1px 2px rgba(0,0,0,0.25);
           cursor: pointer;
@@ -107,7 +105,7 @@ class Header extends React.Component{
         .header-container{
           display: flex;
           justify-content: space-between;
-          margin: 4% 2% 0 2%;
+          margin: 4% 2% 0 5%;
         }
         .right-side {
           padding: 5% 5% 0 0

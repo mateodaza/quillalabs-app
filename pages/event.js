@@ -8,7 +8,7 @@ class Event extends React.Component {
 
   static async getInitialProps (context) {
     const name = context.query.name
-    if(name !== 'botlatam' && name!=='startup' && name!=='maker') {
+    if(name !== 'botlatam' && name!=='startup' && name!=='maker' && name!=='cripto') {
       redirect(context, '/')
     }
     return {}

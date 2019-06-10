@@ -13,6 +13,7 @@ class EventCard extends React.Component{
   render() {
     const { store, event, title, content, date, type, bgImage } = this.props
     let dateFormat = null
+    console.log({event})
     let dates = []
     if(date){
       dateFormat = moment.unix(date).locale("es")
@@ -45,7 +46,7 @@ class EventCard extends React.Component{
                   <span className="author">{type}</span>
                   <h1 className="title">
                     <Link route='event' params={{name: event}}>
-                    <a href="#">{title}</a>
+                    <p>{title}</p>
                     </Link>
                   </h1>
                   <p className="text">{content}</p>

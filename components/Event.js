@@ -34,6 +34,9 @@ class Event extends React.Component{
       case 'maker':
         image = require("../assets/flyer_test.jpeg")
         break;
+      case 'cripto':
+        image = require("../assets/lydtalk17.jpg")
+        break;
       default:
         image = require("../assets/startupgrind.png")
         break;

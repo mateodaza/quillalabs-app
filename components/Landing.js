@@ -6,16 +6,18 @@ class Landing extends React.Component {
     return <Layout>
       <div className="main">
         <h1 style={{ color: 'rgba(0,0,0,0.6)'}}>QUILLALABS</h1>
-        <h2 style={{ color: 'rgba(0,0,0,0.6)', fontWeight: 'lighter'}}>Embajada Blockchain en Barranquilla Colombia</h2>
+        <h2 style={{ color: 'rgba(0,0,0,0.6)', fontWeight: 'lighter'}}>Embajada Blockchain en Barranquilla, Colombia</h2>
       </div>
       <div className="cards-container">
-        <EventCard title="Startup Grind" event="startup" content="Fireside Chat con Edward Sosa y Jose Bell. Expertos en el tema de blockchain y Criptomonedas. "
-           date="1535660673" type="Meetup" bgImage={require("../assets/startupgrind.png")}/>
-        <EventCard title="BoT Latam" event="botlatam" content="Ven a conocer casos de uso en la Blockchain con proyectos directos del crypto valley en suiza!"
-            date="1543609443" type="Conferencia" bgImage={require("../assets/bot.png")}/>
         <EventCard title="MakerDAO Meetup" event="maker" content="Aprende acerca de MakerDAO y DAI, compartiendo una cerveza e intercambiando cripto!"
-            type="Meetup" bgImage={require("../assets/flyer_test.jpeg")}/>
-        </div>
+          type="Meetup" bgImage={require("../assets/flyer_test.jpeg")}/>
+        <EventCard title="BoT Latam" event="botlatam" content="Ven a conocer casos de uso en la Blockchain con proyectos directos del crypto valley en suiza!"
+          date="1543609443" type="Conferencia" bgImage={require("../assets/bot.png")}/>
+        <EventCard title="Startup Grind" event="startup" content="Fireside Chat con Edward Sosa y Jose Bell. Expertos en el tema de blockchain y Criptomonedas. "
+          date="1535660673" type="Meetup" bgImage={require("../assets/startupgrind.png")}/>
+        <EventCard title="Charla criptomonedas y Bitcoin" event="cripto" content="Conversatorio de emprendimiento. Criptomonedas y Bitcoin"
+          date="1508457599" type="Meetup" bgImage={require("../assets/lydtalk17.jpg")}/>
+      </div>
       <style jsx>{`
       .main {
         display: flex;

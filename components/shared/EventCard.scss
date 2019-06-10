@@ -48,6 +48,7 @@ h1 {
 .card {
   float: left;
   padding: 0 1.7rem;
+  margin: 8% 0;
   width: 100%;
   .menu-content {
     @include cf;

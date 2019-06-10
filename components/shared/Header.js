@@ -72,13 +72,27 @@ class Header extends React.Component{
                 <button className="signin-btn" onClick={this.login}>Inicia Sesión</button>
               )
             ): (
-              <div style={{display: 'flex', flexDirection: 'column', justifyItems: 'flex-end'}}>
-                <div className="user-dot">
-                  <div className="dot" />
-                  <p>{authStore.auth && authStore.auth.user.username}</p>
-                </div>
-                <button className="signin-btn" onClick={this.logout}>Salir</button>
-              </div>
+              // <div className="user-container">
+              //   <div className="user-dot">
+              //     <div className="dot" />
+              //     <p>{authStore.auth && authStore.auth.user.username}</p>
+              //   </div>
+              //   <div>
+              //     <button className="signin-btn" onClick={this.logout}>Salir</button>
+              //   </div>
+              // </div>
+              <ul className="menu">
+                <li>
+                  <div className="user-dot">
+                    <div className="dot" />
+                    <p>{authStore.auth && authStore.auth.user.username}</p>
+                  </div>
+                  <ul>
+                    <li><a href="#">Tickets</a></li>
+                    <li><button className="signin-btn" onClick={this.logout}>Salir</button></li>
+                  </ul>
+                </li>
+              </ul>
             )
           }
           </div>
@@ -95,7 +109,7 @@ class Header extends React.Component{
           font-size: 18px;
         }
         .signin-btn {
-          margin: 15px 0;
+          margin: 15px 5px;
           background-color: ${colors.white};
           box-shadow: 0 1px 2px rgba(0,0,0,0.25);
           cursor: pointer;
@@ -119,7 +133,12 @@ class Header extends React.Component{
           margin: 4% 2% 0 5%;
         }
         .right-side {
-          padding: 5% 5% 0 0
+          align-items: flex-start;
+        }
+        .user-container {
+          display: flex;
+          flexDirection: column;
+          alignItems: flex-end;
         }
         .user-dot {
           display: flex;
@@ -138,6 +157,49 @@ class Header extends React.Component{
           border-radius: 50%;
         }
 
+        li {
+          list-style-type: none;
+        }
+
+        .menu {
+          display: block;
+          margin: 0 auto;
+          position: relative;
+          width: 200px;
+        }
+        
+        .menu > li > a {
+          background: transparent;
+          color: black;
+          display: block;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+        }
+        
+        .menu ul {
+          background: transparent;
+          height: 0;
+          left: 0;
+          opacity: 0;
+          position: absolute;
+          transition: all .5s ease;
+          top: 50px;
+          width: 100%;
+        }
+        
+        .menu li:hover ul {
+          height: 200px;
+          opacity: 1;
+          transform: translateY(0);
+        }
+        
+        .menu ul a {
+          color: #000;
+          display: block;
+          padding: 5px 20px;
+        }
+
         @media only screen and (max-width: 600px) {
           p {
             font-size: 20px
@@ -145,11 +207,17 @@ class Header extends React.Component{
           img {
             margin: 5% 0 0 0;
           }
+          .user-container {
+            flex-direction: row;
+            justify-content: space-between
+          }
           .header-container{
             align-items: center;
             flex-direction: column
           }
           .right-side {
+            width: 100%;
+            flex-direction: row;
             padding: 12%;
           }
         }

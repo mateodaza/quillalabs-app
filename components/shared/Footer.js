@@ -129,6 +129,7 @@ class Footer extends React.Component{
           }
           .copyright {
             width: 100%;
+            margin: 15% 0 0 0;
           }
           .copyright * {
             background: rgb(255,255,255); /* Old browsers */

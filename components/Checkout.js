@@ -11,7 +11,7 @@ import diners from 'payment-icons/min/flat/diners.svg';
 import gql from "graphql-tag";
 
 const SET_PAYMENT = gql`
-  mutation Create($number: String!, $exp_year: String!, $exp_month: String!, $cvc: String!,
+  mutation Create($number: String!, $exp_year: String!, $exp_month: String!, $cvc: String!, $phone: String!
     $event_name: String!, $price: String!, $quantity: String!, $document: String!, $name: String!, $last_name: String!) {
     createCreditCardPayment(
       creditCard: {
@@ -28,7 +28,8 @@ const SET_PAYMENT = gql`
       customerDetails: {
         document: $document,
         name: $name,
-        lastName: $last_name
+        lastName: $last_name,
+        phone: $phone
       }
     ){
       transaction {
@@ -63,7 +64,7 @@ class Event extends React.Component{
    }
 
   render() {
-    let cardname, cardlastname, idnumber, cardnumber, expmonth, expyear, cvv
+    let cardname, cardlastname, idnumber, phonenumber, cardnumber, expmonth, expyear, cvv
     const { tickets, errorMsg, price } = this.state
     const { event } = this.props.router.query
     return (
@@ -109,7 +110,7 @@ class Event extends React.Component{
                 e.preventDefault()
                 e.stopPropagation()
                 if(cardnumber.value && expyear.value && expmonth.value && cvv.value
-                  && idnumber.value &&cardname.value && cardlastname.value) {
+                  && idnumber.value &&cardname.value && cardlastname.value && phonenumber.value) {
                     create({
                       variables: {
                         // 4575623182290326 CC
@@ -122,10 +123,11 @@ class Event extends React.Component{
                         quantity: tickets.toString(),
                         document: idnumber.value,
                         name: cardname.value,
-                        last_name: cardlastname.value
+                        last_name: cardlastname.value,
+                        phone: phonenumber.value
                       }
                     })
-                    cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = ''
+                    cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = phonenumber.value = ''
                 }else {
                   this.setState({errorMsg: 'Fields are missing'})
                 }
@@ -154,6 +156,13 @@ class Event extends React.Component{
             <input type="text" id="idnum" name="idnumber" placeholder="12341234"
               ref={node => {
                 idnumber = node
+              }}
+            />
+
+            <label htmlFor="ccnum">Número de Telefono</label>
+            <input type="text" id="phonenum" name="phonenumber" placeholder="311232394"
+              ref={node => {
+                phonenumber = node
               }}
             />
 

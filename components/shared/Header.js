@@ -43,18 +43,25 @@ class Header extends React.Component{
 
   render() {
     const { withHeader, store, store: {authStore}, router  } = this.props
-    let route = null
+    let route = false
+    let notHome = false
     if(router.pathname === '/signin' || router.pathname === '/create-account' ) {
       route = true
     }
-    console.log({router})
+    if(router.pathname !== '/') {
+      notHome = true
+    } 
+    console.log({router, authStore})
     return (
       <header>
         <div className="header-container">
           <Link route='index'>
             <a onClick={this.goHome}>
-              <div style={{display: 'flex', flexDirection: 'column'}}>
+              <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
                 <img src={logo} width='100px' height='100px'/>
+                {
+                  notHome && ( <p style={{margin:'15px 0 0 0'}}>QUILLALABS</p> )
+                }
               </div>
             </a>
           </Link>
@@ -66,7 +73,10 @@ class Header extends React.Component{
               )
             ): (
               <div style={{display: 'flex', flexDirection: 'column', justifyItems: 'flex-end'}}>
-                <p>Hola, {authStore.auth.signInUser.user.username}!</p>
+                <div className="user-dot">
+                  <div className="dot" />
+                  <p>{authStore.auth && authStore.auth.signInUser.user.username}</p>
+                </div>
                 <button className="signin-btn" onClick={this.logout}>Salir</button>
               </div>
             )
@@ -85,13 +95,13 @@ class Header extends React.Component{
           font-size: 18px;
         }
         .signin-btn {
-          margin: 5px 0;
-          background-color: rgba(37, 41, 46, 1);
+          margin: 15px 0;
+          background-color: ${colors.white};
           box-shadow: 0 1px 2px rgba(0,0,0,0.25);
           cursor: pointer;
           border: none;
           border-radius: 8px;
-          color: white;
+          color: rgba(37, 41, 46, 1);
           padding: 8px 16px;
           text-align: center;
           font-size: 14px;
@@ -104,18 +114,39 @@ class Header extends React.Component{
         }
         .header-container{
           display: flex;
+          flex-direction: row;
           justify-content: space-between;
           margin: 4% 2% 0 5%;
         }
         .right-side {
           padding: 5% 5% 0 0
         }
+        .user-dot {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        .dot {
+          height: 30px;
+          width: 30px;
+          margin-right: 20px;
+          background: rgb(249,168,133); /* Old browsers */
+          background: -moz-linear-gradient(-45deg, rgba(249,168,133,1) 0%, rgba(247,174,114,1) 9%, rgba(127,151,211,1) 88%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(-45deg, rgba(249,168,133,1) 0%,rgba(247,174,114,1) 9%,rgba(127,151,211,1) 88%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(135deg, rgba(249,168,133,1) 0%,rgba(247,174,114,1) 9%,rgba(127,151,211,1) 88%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9a885', endColorstr='#7f97d3',GradientType=1 );
+          border-radius: 50%;
+        }
 
         @media only screen and (max-width: 600px) {
           p {
             font-size: 20px
           }
+          img {
+            margin: 5% 0 0 0;
+          }
           .header-container{
+            align-items: center;
             flex-direction: column
           }
           .right-side {

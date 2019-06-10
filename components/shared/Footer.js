@@ -132,10 +132,10 @@ class Footer extends React.Component{
           }
           .copyright * {
             background: rgb(255,255,255); /* Old browsers */
-background: -moz-linear-gradient(top, rgba(255,255,255,1) 10%, rgba(225,225,171,1) 45%, rgba(225,225,171,1) 64%, rgba(251,198,175,1) 101%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, rgba(255,255,255,1) 10%,rgba(225,225,171,1) 45%,rgba(225,225,171,1) 64%,rgba(251,198,175,1) 101%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, rgba(255,255,255,1) 10%,rgba(225,225,171,1) 45%,rgba(225,225,171,1) 64%,rgba(251,198,175,1) 101%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fbc6af',GradientType=0 );
+            background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 2%, rgba(225,225,171,1) 31%, rgba(225,225,171,1) 64%, rgba(251,198,175,1) 101%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 2%,rgba(225,225,171,1) 31%,rgba(225,225,171,1) 64%,rgba(251,198,175,1) 101%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(135deg, rgba(255,255,255,1) 2%,rgba(225,225,171,1) 31%,rgba(225,225,171,1) 64%,rgba(251,198,175,1) 101%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fbc6af',GradientType=1 );
           }
           .social {
             width: 100%;

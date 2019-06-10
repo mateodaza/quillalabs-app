@@ -4,6 +4,7 @@ import { withRouter } from 'next/router'
 import gql from 'graphql-tag'
 import cookie from 'cookie'
 import redirect from '../lib/redirect'
+import Router from 'next/router'
 
 const CREATE_USER = gql`
   mutation Create($name: String!, $email: String!, $password: String!) {
@@ -27,14 +28,41 @@ class RegisterBox extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      errorMsg: null
+      errorMsg: null,
+      pwdPower: null
     }
   }
   
+  setError =(type)=> {
+    if(type === 'Invalid Input Email is invalid') {
+      return 'E-mail no es válido'
+    } else {
+      return 'GraphQL Error'
+    }
+  }
+
+  validateEmail =(email)=> {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  validatePassword =(event)=> {
+    let pwd = event
+    event.target && ( pwd = event.target.value )
+    let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+    let pwdPower = 'low'
+    if(strongRegex.test(pwd)){
+      pwdPower = 'strong'
+    }else if(mediumRegex.test(pwd)) {
+      pwdPower = 'medium'
+    }
+    this.setState({pwdPower})
+    return pwdPower
+  }
 
   render() {
     const { store, client, router } = this.props
-    const { errorMsg } = this.state
+    const { errorMsg, pwdPower } = this.state
     let name, email, password, password2
     return (
       <Mutation
@@ -47,22 +75,22 @@ class RegisterBox extends React.Component{
           })
   
           //update store
-          store.authStore.login(data)
+          store.authStore.login(data.createUser)
 
-          // check if it comes from event page
-          const fromRoute = router.query.from
-          let toRoute = '/'
-          console.log({fromRoute})
-          fromRoute &&(toRoute = `/checkout/${fromRoute.split('/')[2]}`);
           // Force a reload of all the current queries now that the user is
           // logged in
           client.cache.reset().then(() => {
-            redirect({}, toRoute)
+            // check if it comes from event page
+            const fromRoute = router.query.event
+            let toRoute = '/'
+            console.log({fromRoute})
+            fromRoute !== undefined &&(toRoute = `/checkout/${fromRoute}`);
+            Router.push(toRoute)
           })
         }}
         onError={error => {
           // If you want to send error to external service?
-          console.log(error)
+          console.log({error})
         }}
       >
         {(create, { data, error }) => (
@@ -73,29 +101,34 @@ class RegisterBox extends React.Component{
               e.stopPropagation()
               if(name.value && email.value && password.value && password2.value) {
                 if(password.value === password2.value) {
-                  create({
-                    variables: {
-                      name: name.value,
-                      email: email.value,
-                      password: password.value
+                  if(this.validateEmail(email.value)) {
+                    if(this.validatePassword(password.value) !== 'low') {
+                      create({
+                        variables: {
+                          name: name.value,
+                          email: email.value,
+                          password: password.value
+                        }
+                      })
+                      name.value = email.value = password.value = password2.value = ''
+                    }else {
+                      this.setState({errorMsg: 'Password muy debil'})
                     }
-                  })
-                  name.value = email.value = password.value = password2.value = ''
+                  }else {
+                    this.setState({errorMsg: 'Formato de e-mail no es valido'})
+                  }
                 }else {
-                  this.setState({errorMsg: 'Passwords are different'})
+                  this.setState({errorMsg: 'Passwords no coinciden'})
                 }
-
               }else {
-                this.setState({errorMsg: 'Fields missing'})
+                this.setState({errorMsg: 'Hacen falta campos'})
               }
             }}
           >
-            {error && <p>Issue occurred while registering :(</p>}
-            {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
             <h1>Registro</h1>
             <input
               name='name'
-              placeholder='Nombre'
+              placeholder='Nombre de Usuario'
               ref={node => {
                 name = node
               }}
@@ -112,12 +145,15 @@ class RegisterBox extends React.Component{
             <input
               name='password'
               placeholder='Password'
+              onChange={this.validatePassword}
               ref={node => {
                 password = node
               }}
               type='password'
             />
-            <br />
+            {
+              pwdPower ? <p>{pwdPower}</p>:<br />
+            }
             <input
               name='password2'
               placeholder='Verificación Password'
@@ -127,6 +163,8 @@ class RegisterBox extends React.Component{
               type='password'
             />
             <br />
+            {errorMsg && ( <p style={{color: 'red'}}>{errorMsg}</p> ) }
+            {error && (<p>Error 😯 {this.setError(error.graphQLErrors[0].message)}</p> )}
             <button className="button">Sign up</button>
           </form>
           <style jsx>{`

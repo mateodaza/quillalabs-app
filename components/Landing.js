@@ -14,7 +14,7 @@ class Landing extends React.Component {
         <EventCard title="BoT Latam" event="botlatam" content="Ven a conocer casos de uso en la Blockchain con proyectos directos del crypto valley en suiza!"
             date="1543609443" type="Conferencia" bgImage={require("../assets/bot.png")}/>
         <EventCard title="MakerDAO Meetup" event="maker" content="Aprende acerca de MakerDAO y DAI, compartiendo una cerveza e intercambiando cripto!"
-            type="Meetup" bgImage={require("../assets/maker.jpg")}/>
+            type="Meetup" bgImage={require("../assets/flyer_test.jpeg")}/>
         </div>
       <style jsx>{`
       .main {

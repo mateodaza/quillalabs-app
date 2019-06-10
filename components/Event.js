@@ -13,11 +13,10 @@ class Event extends React.Component{
     let route = '/create-account'
     if( store.authStore.isLogged ){ 
       route = `/checkout/${this.props.event}`
+      Router.push(route)
+    }else {
+      Router.push({pathname: route, query: { event: this.props.event }})
     }
-    // Router.push({pathname: route, query: { event: this.props.event }})
-    // Router.pushRoute(route)
-    Router.push(route)
-
   }
 
   render() {
@@ -33,7 +32,7 @@ class Event extends React.Component{
         image = require("../assets/bot.png")
         break;
       case 'maker':
-        image = require("../assets/maker.jpg")
+        image = require("../assets/flyer_test.jpeg")
         break;
       default:
         image = require("../assets/startupgrind.png")

@@ -75,7 +75,7 @@ class Header extends React.Component{
               <div style={{display: 'flex', flexDirection: 'column', justifyItems: 'flex-end'}}>
                 <div className="user-dot">
                   <div className="dot" />
-                  <p>{authStore.auth && authStore.auth.signInUser.user.username}</p>
+                  <p>{authStore.auth && authStore.auth.user.username}</p>
                 </div>
                 <button className="signin-btn" onClick={this.logout}>Salir</button>
               </div>

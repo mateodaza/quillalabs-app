@@ -7,6 +7,7 @@ module.exports = routes()
 .add('create-account')
 .add('event', '/event/:name')
 .add('checkout', '/checkout/:event')
+.add('tickets')
                                                         // Name   Page      Pattern
                                                         // ----   ----      -----
 // .add('about')                                       // about  about     /about

@@ -41,6 +41,13 @@ class Header extends React.Component{
     })
   }
 
+  goTickets=()=>{
+    const { client } = this.props
+    client.cache.reset().then(() => {
+      redirect({}, '/tickets')
+    })
+  }
+
   render() {
     const { withHeader, store, store: {authStore}, router  } = this.props
     let route = false
@@ -88,7 +95,7 @@ class Header extends React.Component{
                     <p>{authStore.auth && authStore.auth.user.username}</p>
                   </div>
                   <ul>
-                    <li><a href="#">Tickets</a></li>
+                    <li><a onClick={this.goTickets}>Tickets</a></li>
                     <li><button className="signin-btn" onClick={this.logout}>Salir</button></li>
                   </ul>
                 </li>
@@ -100,6 +107,7 @@ class Header extends React.Component{
         <style jsx>{`
         a{
           color: white;
+          cursor: pointer;
         }
         a:focus { 
           text-decoration: none;
@@ -109,7 +117,7 @@ class Header extends React.Component{
           font-size: 18px;
         }
         .signin-btn {
-          margin: 15px 5px;
+          margin: 15px 20px;
           background-color: ${colors.white};
           box-shadow: 0 1px 2px rgba(0,0,0,0.25);
           cursor: pointer;
@@ -144,11 +152,13 @@ class Header extends React.Component{
           display: flex;
           flex-direction: row;
           align-items: center;
+          padding: 0 10px 10px 10px;
+          border-bottom: 1px solid ${colors.black3};
         }
         .dot {
           height: 30px;
           width: 30px;
-          margin-right: 20px;
+          margin-right: 10px;
           background: rgb(249,168,133); /* Old browsers */
           background: -moz-linear-gradient(-45deg, rgba(249,168,133,1) 0%, rgba(247,174,114,1) 9%, rgba(127,151,211,1) 88%); /* FF3.6-15 */
           background: -webkit-linear-gradient(-45deg, rgba(249,168,133,1) 0%,rgba(247,174,114,1) 9%,rgba(127,151,211,1) 88%); /* Chrome10-25,Safari5.1-6 */
@@ -165,7 +175,6 @@ class Header extends React.Component{
           display: block;
           margin: 0 auto;
           position: relative;
-          width: 200px;
         }
         
         .menu > li > a {
@@ -198,6 +207,8 @@ class Header extends React.Component{
           color: #000;
           display: block;
           padding: 5px 20px;
+          padding: 0 10px 10px 10px;
+          border-bottom: 1px solid lightgray;
         }
 
         @media only screen and (max-width: 600px) {
@@ -217,7 +228,10 @@ class Header extends React.Component{
           }
           .right-side {
             width: 100%;
+            display: flex;
+            justify-content: center;
             flex-direction: row;
+            margin: 15px 0 0 0;
             padding: 12%;
           }
         }

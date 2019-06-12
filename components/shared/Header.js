@@ -24,7 +24,6 @@ class Header extends React.Component{
   logout=(e)=> {
     const { client, store } = this.props
     e.preventDefault();
-    console.log({document})
     document.cookie = cookie.serialize('token', '', {
       maxAge: -1 // Expire the cookie immediately
     })
@@ -58,7 +57,7 @@ class Header extends React.Component{
     if(router.pathname !== '/') {
       notHome = true
     } 
-    console.log({router, authStore})
+    // console.log({router, authStore})
     return (
       <header>
         <div className="header-container">

@@ -83,7 +83,6 @@ class RegisterBox extends React.Component{
             // check if it comes from event page
             const fromRoute = router.query.event
             let toRoute = '/'
-            console.log({fromRoute})
             fromRoute !== undefined &&(toRoute = `/checkout/${fromRoute}`);
             Router.push(toRoute)
           })
@@ -112,7 +111,7 @@ class RegisterBox extends React.Component{
                       })
                       name.value = email.value = password.value = password2.value = ''
                     }else {
-                      this.setState({errorMsg: 'Password muy debil'})
+                      this.setState({errorMsg: 'Password muy débil'})
                     }
                   }else {
                     this.setState({errorMsg: 'Formato de e-mail no es valido'})

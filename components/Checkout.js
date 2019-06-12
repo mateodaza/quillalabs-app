@@ -36,7 +36,8 @@ const SET_PAYMENT = gql`
         transactionId,
         transactionType,
         eventName,
-        ticketQuantity
+        ticketQuantity,
+        status
       }
     }
   }
@@ -72,14 +73,15 @@ class Event extends React.Component{
       mutation={SET_PAYMENT}
       onCompleted={data => {
         console.log({data})
+        cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = phonenumber.value = '' 
       }}
-      onError={error => {
+      onError={error=> {
         console.log(error)
       }}
     >
     {(create, { data, error }) => (
         <div className="container">
-        {error && <p>Issue occurred while ordering :(</p>}
+        {error && <p>El pago no pasó :(</p>}
          <div className="col col-50">
             <h3>Payment</h3>
             <label htmlFor="fname"> </label>
@@ -111,23 +113,22 @@ class Event extends React.Component{
                 e.stopPropagation()
                 if(cardnumber.value && expyear.value && expmonth.value && cvv.value
                   && idnumber.value &&cardname.value && cardlastname.value && phonenumber.value) {
-                    create({
-                      variables: {
-                        // 4575623182290326 CC
-                        number: cardnumber.value,
-                        exp_year: expyear.value,
-                        exp_month: expmonth.value,
-                        cvc: cvv.value,
-                        event_name: `quillalabs-${event}`,
-                        price: price.toString(),
-                        quantity: tickets.toString(),
-                        document: idnumber.value,
-                        name: cardname.value,
-                        last_name: cardlastname.value,
-                        phone: phonenumber.value
-                      }
-                    })
-                    cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = phonenumber.value = ''
+                      create({
+                        variables: {
+                          // 4575623182290326 CC
+                          number: cardnumber.value,
+                          exp_year: "20"+expyear.value,
+                          exp_month: expmonth.value,
+                          cvc: cvv.value,
+                          event_name: `quillalabs-${event}`,
+                          price: price.toString(),
+                          quantity: tickets.toString(),
+                          document: idnumber.value,
+                          name: cardname.value,
+                          last_name: cardlastname.value,
+                          phone: phonenumber.value
+                        }
+                      })
                 }else {
                   this.setState({errorMsg: 'Fields are missing'})
                 }
@@ -159,15 +160,15 @@ class Event extends React.Component{
               }}
             />
 
-            <label htmlFor="ccnum">Número de Telefono</label>
-            <input type="text" id="phonenum" name="phonenumber" placeholder="311232394"
+            <label htmlFor="ccnum">Número de Celular</label>
+            <input type="text" id="phonenum" name="phonenumber" placeholder="3001234123"
               ref={node => {
                 phonenumber = node
               }}
             />
 
             <label htmlFor="ccnum">Número de tarjeta</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444"
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111222233334444"
               ref={node => {
                 cardnumber = node
               }}
@@ -176,7 +177,7 @@ class Event extends React.Component{
             <div className="row">
               <div className="col-25">
                 <label htmlFor="expmonth">Mes</label>
-                <input type="text" id="expmonth" name="expmonth" placeholder="01"
+                <input type="text" id="expmonth" name="expmonth" placeholder="01" maxLength="2"
                   ref={node => {
                     expmonth = node
                   }}
@@ -184,7 +185,7 @@ class Event extends React.Component{
               </div>
               <div className="col-25">
                 <label htmlFor="expyear">Año</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2019"
+                <input type="text" id="expyear" name="expyear" placeholder="19" maxLength="2"
                   ref={node => {
                     expyear = node
                   }}
@@ -192,7 +193,7 @@ class Event extends React.Component{
               </div>
               <div className="col-25">
                 <label htmlFor="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352"
+                <input type="text" id="cvv" name="cvv" placeholder="352"  maxLength="3"
                   ref={node => {
                     cvv = node
                   }}

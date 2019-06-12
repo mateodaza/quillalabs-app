@@ -26,7 +26,6 @@ const Layout = ({ client, withHeader, children }) => {
         font-family: 'Noto Sans'
       }
       a {
-        color: rgba(46, 126, 239, 1);
         text-decoration: none
       }
       p {

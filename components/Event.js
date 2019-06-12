@@ -22,7 +22,6 @@ class Event extends React.Component{
   render() {
     const { event } = this.props
     let image = ''
-    console.log({event})
 
     switch(event) {
       case 'startup':

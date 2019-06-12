@@ -13,7 +13,6 @@ class EventCard extends React.Component{
   render() {
     const { store, event, title, content, date, type, bgImage } = this.props
     let dateFormat = null
-    console.log({event})
     let dates = []
     if(date){
       dateFormat = moment.unix(date).locale("es")

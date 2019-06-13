@@ -8,6 +8,7 @@ module.exports = routes()
 .add('event', '/event/:name')
 .add('checkout', '/checkout/:event')
 .add('tickets')
+.add('payment_confirmation', 'payment_confirmation/:qty/:price/:ref_payco')
                                                         // Name   Page      Pattern
                                                         // ----   ----      -----
 // .add('about')                                       // about  about     /about

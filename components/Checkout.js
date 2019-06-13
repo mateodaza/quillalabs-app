@@ -42,6 +42,28 @@ const SET_PAYMENT = gql`
     }
   }
 `
+
+const SET_TRANSACTION = gql`
+  mutation Create( $event_name: String!, $price: String!, $quantity: String!, $type: String!, $ref: String! ) {
+    createEventTransaction(
+      event: {
+        name: $event_name,
+        price: $price,
+        quantity: $quantity,
+        transactionRef: $ref,
+        transactionType: $type
+      }
+    ){
+      transaction {
+        transactionId,
+        transactionType,
+        eventName,
+        ticketQuantity,
+        status
+      }
+    }
+  }
+`
 @inject("store")
 @observer
 class Event extends React.Component{
@@ -70,7 +92,8 @@ class Event extends React.Component{
     const { event } = this.props.router.query
     return (
       <Mutation
-      mutation={SET_PAYMENT}
+      // mutation={SET_PAYMENT}
+      mutation={SET_TRANSACTION}
       onCompleted={data => {
         console.log({data})
         cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = phonenumber.value = '' 
@@ -113,20 +136,29 @@ class Event extends React.Component{
                 e.stopPropagation()
                 if(cardnumber.value && expyear.value && expmonth.value && cvv.value
                   && idnumber.value &&cardname.value && cardlastname.value && phonenumber.value) {
+                      // create({
+                      //   variables: {
+                      //     // 4575623182290326 CC
+                      //     number: cardnumber.value,
+                      //     exp_year: "20"+expyear.value,
+                      //     exp_month: expmonth.value,
+                      //     cvc: cvv.value,
+                      //     event_name: `quillalabs-${event}`,
+                      //     price: price.toString(),
+                      //     quantity: tickets.toString(),
+                      //     document: idnumber.value,
+                      //     name: cardname.value,
+                      //     last_name: cardlastname.value,
+                      //     phone: phonenumber.value
+                      //   }
+                      // })
                       create({
                         variables: {
-                          // 4575623182290326 CC
-                          number: cardnumber.value,
-                          exp_year: "20"+expyear.value,
-                          exp_month: expmonth.value,
-                          cvc: cvv.value,
                           event_name: `quillalabs-${event}`,
                           price: price.toString(),
                           quantity: tickets.toString(),
-                          document: idnumber.value,
-                          name: cardname.value,
-                          last_name: cardlastname.value,
-                          phone: phonenumber.value
+                          type: "online_payment", //
+                          ref: "ddd698194bb6171aa29ccad2"
                         }
                       })
                 }else {

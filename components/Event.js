@@ -1,4 +1,5 @@
 import { observer, inject } from "mobx-react";
+import Head from 'next/head'
 import { Mutation, withApollo } from 'react-apollo'
 import redirect from '../lib/redirect'
 import Router from 'next/router'
@@ -43,14 +44,34 @@ class Event extends React.Component{
 
     return (
       <div>
+        <Head>
+          <title>QuillaLabs</title>
+          <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
+        </Head>
         <div className="container">
           <img src={image}/>
           {
-            event === 'maker' && (
-              <button onClick={this.goCheckout}
-                className="button" style={{width: '25%'}}>Adquiere tu entrada!</button>
-            )
+            // event === 'maker' && (
+            //   <button onClick={this.goCheckout}
+            //     className="button" style={{width: '25%'}}>Adquiere tu entrada!</button>
+            // )
           }
+          <form>
+            <script src='https://checkout.epayco.co/checkout.js' 
+              data-epayco-key='344ff0f664418e0a5ac6ea89e3ec7619' 
+              className='epayco-button' 
+              data-epayco-amount='11900'  
+              data-epayco-name='MKR-Meetup1_QuillaLabs' 
+              data-epayco-description='MKR-Meetup1_QuillaLabs' 
+              data-epayco-currency='COP'    
+              data-epayco-country='CO' 
+              data-epayco-test='true' 
+              data-epayco-external='true' 
+              data-epayco-response={`http://localhost:3000/payment_confirmation&qty=${1}&price=${5000}`} 
+              data-epayco-confirmation={`http://localhost:3000/payment_confirmation&qty=${1}&price=${5000}`}
+              data-epayco-button='https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn2.png'> 
+            </script> 
+          </form>
         </div>
 
         <style jsx>{`

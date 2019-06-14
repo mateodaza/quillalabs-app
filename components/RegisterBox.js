@@ -32,7 +32,7 @@ class RegisterBox extends React.Component{
       pwdPower: null
     }
   }
-  
+
   setError =(type)=> {
     if(type === 'Invalid Input Email is invalid') {
       return 'E-mail no es válido'
@@ -73,7 +73,7 @@ class RegisterBox extends React.Component{
           document.cookie = cookie.serialize('token', data.createUser.token, {
             maxAge: 30 * 24 * 60 * 60 // 30 days
           })
-  
+
           //update store
           store.authStore.login(data.createUser)
 

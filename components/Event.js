@@ -9,6 +9,13 @@ import Router from 'next/router'
 @observer
 class Event extends React.Component{
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      ssrDone: false
+    }
+  }
+
   goCheckout =()=> {
     const { store, client } = this.props
     let route = '/create-account'
@@ -20,7 +27,12 @@ class Event extends React.Component{
     }
   }
 
+  componentDidMount() {
+    this.setState({ ssrDone: true})
+  }
+
   render() {
+    const { ssrDone } = this.state
     const { event } = this.props
     let image = ''
 
@@ -44,10 +56,6 @@ class Event extends React.Component{
 
     return (
       <div>
-        <Head>
-          <title>QuillaLabs</title>
-          <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
-        </Head>
         <div className="container">
           <img src={image}/>
           {
@@ -56,25 +64,32 @@ class Event extends React.Component{
             //     className="button" style={{width: '25%'}}>Adquiere tu entrada!</button>
             // )
           }
-          <form>
-            <script src='https://checkout.epayco.co/checkout.js' 
-              data-epayco-key='344ff0f664418e0a5ac6ea89e3ec7619' 
-              className='epayco-button' 
-              data-epayco-amount='11900'  
-              data-epayco-name='MKR-Meetup1_QuillaLabs' 
-              data-epayco-description='MKR-Meetup1_QuillaLabs' 
-              data-epayco-currency='COP'    
-              data-epayco-country='CO' 
-              data-epayco-test='true' 
-              data-epayco-external='true' 
-              data-epayco-response={`http://localhost:3000/payment_confirmation&qty=${1}&price=${5000}`} 
-              data-epayco-confirmation={`http://localhost:3000/payment_confirmation&qty=${1}&price=${5000}`}
-              data-epayco-button='https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn2.png'> 
-            </script> 
-          </form>
+          {
+            event === 'maker' && ssrDone && (
+              <form>
+                <script src='https://checkout.epayco.co/checkout.js' 
+                  data-epayco-key='344ff0f664418e0a5ac6ea89e3ec7619' 
+                  className='epayco-button' 
+                  data-epayco-amount='11900'  
+                  data-epayco-name='MKR-Meetup1_QuillaLabs' 
+                  data-epayco-description='MKR-Meetup1_QuillaLabs' 
+                  data-epayco-currency='COP'    
+                  data-epayco-country='CO' 
+                  data-epayco-test='true' 
+                  data-epayco-external='false' 
+                  data-epayco-response={`http://localhost:3000/payment_confirmation?qty=${1}&price=${5000}`} 
+                  data-epayco-confirmation={`http://localhost:3000/payment_confirmation?qty=${1}&price=${5000}`}
+                  data-epayco-button='https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn2.png'> 
+                </script> 
+              </form>
+            )
+          }
         </div>
 
         <style jsx>{`
+          form {
+            margin: 25px 0 0 0;
+          }
           .container {
             display: flex;
             flex-direction: column;

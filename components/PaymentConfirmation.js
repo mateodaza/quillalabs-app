@@ -1,6 +1,7 @@
 import { observer, inject } from "mobx-react";
 import Head from 'next/head'
 import { Mutation, withApollo } from 'react-apollo'
+import { withRouter } from 'next/router'
 import redirect from '../lib/redirect'
 import Router from 'next/router'
 // import { Router } from '../routes'
@@ -28,26 +29,29 @@ const SET_TRANSACTION = gql`
   }
 `
 
+class CallConfirmation extends React.Component {
+  componentDidMount() {
+    // this.props.sendResponse()
+  }
+
+  render() {
+    // React 16
+    return this.props.children || null
+    // Old School :)
+    // return <div>{ this.props.children }</div>
+  }
+}
+
 @inject("store")
 @observer
 class PaymentConfirmation extends React.Component{
-
-  constructor() {
-    super()
-    this.state = {
-      startFetch: true,
-      loading: true
-    }
-  }
 
   sendResponse =()=> {
     this.setState({startFetch: false})
   }
 
   render() {
-    const { startFetch, loading } = this.state
-    console.log(this.props.router)
-    // const { qty, price, ref_payco } = this.props.router.query
+    const { qty, price, ref_payco } = this.props.router.query
     return (
       <Mutation
       mutation={SET_TRANSACTION}
@@ -58,11 +62,10 @@ class PaymentConfirmation extends React.Component{
         console.log(error)
       }}
     >
-    {(create, { data, error }) => (
+    {(create, { data, loading, error }) => (
       <div>
       {loading && (<h3>Loading...</h3>)}
-      {startFetch && (()=>{
-        create({
+      <CallConfirmation sendResponse={()=>create({
           variables: {
             event_name: 'MKR-Meetup1_QuillaLabs',
             price: price.toString(),
@@ -70,9 +73,8 @@ class PaymentConfirmation extends React.Component{
             type: "online_payment", //
             ref: ref_payco.toString()
           }
-        })
-      })}
-
+        })}>
+      </CallConfirmation>
       <style jsx>{`
       
       `}</style>
@@ -83,4 +85,4 @@ class PaymentConfirmation extends React.Component{
   }
 }
 
-export default withApollo(PaymentConfirmation)
+export default withApollo(withRouter(PaymentConfirmation))

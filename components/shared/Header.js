@@ -91,7 +91,7 @@ class Header extends React.Component{
                 <li>
                   <div className="user-dot">
                     <div className="dot" />
-                    <p>{authStore.auth && authStore.auth.user.username}</p>
+                    <p>{authStore.auth && authStore.auth.user && authStore.auth.user.username}</p>
                   </div>
                   <ul>
                     <li><a onClick={this.goTickets}>Tickets</a></li>

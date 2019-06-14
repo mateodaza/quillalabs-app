@@ -47,13 +47,38 @@ class CallConfirmation extends React.Component {
 @inject("store")
 @observer
 class PaymentConfirmation extends React.Component{
+  
+  constructor() {
+    super()
+    this.state = {
+      qty: null,
+      price: null,
+      ref_payco: null
+    }
+  }
 
   sendResponse =()=> {
     this.setState({startFetch: false})
   }
 
+  componentDidMount() {
+    const { router } = this.props
+    let [qty, price, notPrice, ref_payco] = [null, null, null, null]
+    if(router && router.query && router.query.qty) {
+      qty = router.query.qty
+      price = router.query.price
+      ref_payco = router.query.ref_payco
+
+      // notPrice = router.query.price
+      // price = notPrice.split('?')[0]
+      // ref_payco = notPrice.split('?')[1].split('=')[1]
+    }
+    this.setState({qty, price, ref_payco})
+  }
+
   render() {
-    const { qty, price, ref_payco } = this.props.router.query
+    const { qty, price, ref_payco } = this.state
+    console.log({ qty, price, ref_payco } )
     return (
       <Mutation
       mutation={SET_TRANSACTION}
@@ -67,16 +92,20 @@ class PaymentConfirmation extends React.Component{
     {(create, { data, loading, error }) => (
       <div className="container">
       {loading && (<h3>Loading...</h3>)}
-      <CallConfirmation sendResponse={()=>create({
-          variables: {
-            event_name: 'MKR-Meetup1_QuillaLabs',
-            price: price.toString(),
-            quantity: qty.toString(),
-            type: "online_payment", //
-            ref: ref_payco.toString()
-          }
-        })}>
-      </CallConfirmation>
+      {
+        qty && price && ref_payco && (
+        <CallConfirmation sendResponse={()=>create({
+            variables: {
+              event_name: 'MKR-Meetup1_QuillaLabs',
+              price: price.toString(),
+              quantity: qty.toString(),
+              type: "online_payment", //
+              ref: ref_payco.toString()
+            }
+          })}>
+        </CallConfirmation>
+        )
+      }
       {!loading && (
         <div className="info-container">
           <div style={{textAlign: 'center', flex: 0.8}}>

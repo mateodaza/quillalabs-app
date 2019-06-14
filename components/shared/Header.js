@@ -94,7 +94,7 @@ class Header extends React.Component{
                     <p>{authStore.auth && authStore.auth.user && authStore.auth.user.username}</p>
                   </div>
                   <ul>
-                    <li><a onClick={this.goTickets}>Tickets</a></li>
+                    <li className="item"><a onClick={this.goTickets}>Tickets</a></li>
                     <li><button className="signin-btn" onClick={this.logout}>Salir</button></li>
                   </ul>
                 </li>
@@ -198,16 +198,15 @@ class Header extends React.Component{
         }
         
         .menu li:hover ul {
-          height: 200px;
           opacity: 1;
           transform: translateY(0);
         }
         
         .menu ul a {
+          width: 100%;
           color: #000;
           display: block;
-          padding: 5px 20px;
-          padding: 0 10px 10px 10px;
+          padding: 5px 0;
           border-bottom: 1px solid lightgray;
         }
 
@@ -218,11 +217,20 @@ class Header extends React.Component{
           img {
             margin: 5% 0 0 0;
           }
+          .menu {
+            width: 100%;
+          }
+          .menu li ul {
+            height: 200px;
+            opacity: 1;
+            transform: translateY(0);
+          }
           .user-container {
             flex-direction: row;
             justify-content: space-between
           }
           .header-container{
+            margin: 4% 2px;
             align-items: center;
             flex-direction: column
           }
@@ -233,6 +241,9 @@ class Header extends React.Component{
             flex-direction: row;
             margin: 15px 0 0 0;
             padding: 12% 0;
+          }
+          .item{
+            margin: 5px 15px;
           }
         }
       `}</style>

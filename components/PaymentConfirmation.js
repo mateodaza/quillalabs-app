@@ -33,7 +33,7 @@ const SET_TRANSACTION = gql`
 
 class CallConfirmation extends React.Component {
   componentDidMount() {
-    // this.props.sendResponse()
+    this.props.sendResponse()
   }
 
   render() {
@@ -93,6 +93,7 @@ class PaymentConfirmation extends React.Component{
           color: ${colors.black}
         }
         h2 {
+          font-weight: lighter;
           color: ${colors.black2}
         }
         strong {
@@ -114,35 +115,32 @@ class PaymentConfirmation extends React.Component{
           box-shadow: 0 7px 11px 0 rgba(0,0,0,0.1),0 17px 50px 0 rgba(0,0,0,0.19);
         }
         .img-footer {
-          margin-left: 80%;
-          font-size: 12px
+          font-size: 12px;
+          text-align: right;
+          margin: 8px 0 0 0;
         }
         .img-container {
           width: 35%;
-          padding: 5% 2%;
-          background-color: inherit;
+          padding: 5% 0;
           margin-top: 5%;
-          text-align: end
-          // border: 1px solid black;
-          box-shadow: 0 7px 11px 0 rgba(0,0,0,0.1),0 17px 50px 0 rgba(0,0,0,0.19);
+          text-align: end;
         }
         .info-container {
           display: flex;
           text-align: center; 
           justify-content: space-between;
           flex-direction: row;
-          align-items: center
+          align-items: center;
         }
 
-        @media ( max-width: 900px ) {
+        @media ( max-width: 600px ) {
           .info-container { 
             flex-direction: column;
+            margin: 5% 0;
           }
-          .img-footer {
-            margin-left: 50%;
-          }
-          img {
-            min-width: 100%;
+          .img-container {
+            width: 100%;
+            margin: 60px 0;
           }
         }
       `}</style>

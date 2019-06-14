@@ -77,14 +77,12 @@ class RegisterBox extends React.Component{
           //update store
           store.authStore.login(data.createUser)
 
-          // Force a reload of all the current queries now that the user is
-          // logged in
+          let route = '/'
+          if(router && router.query && router.query.event){
+            route = `/event/${router.query.event}`
+          }
           client.cache.reset().then(() => {
-            // check if it comes from event page
-            const fromRoute = router.query.event
-            let toRoute = '/'
-            fromRoute !== undefined &&(toRoute = `/checkout/${fromRoute}`);
-            Router.push(toRoute)
+            redirect({}, route)
           })
         }}
         onError={error => {

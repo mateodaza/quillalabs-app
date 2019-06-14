@@ -51,13 +51,13 @@ class Header extends React.Component{
     const { withHeader, store, store: {authStore}, router  } = this.props
     let route = false
     let notHome = false
-    if(router.pathname === '/signin' || router.pathname === '/create-account' ) {
+    if(router.pathname === '/signin' || router.pathname === '/create-account' || router.pathname === '/event' ) {
       route = true
     }
     if(router.pathname !== '/') {
       notHome = true
     } 
-    // console.log({router, authStore})
+    console.log({router, authStore})
     return (
       <header>
         <div className="header-container">
@@ -174,6 +174,7 @@ class Header extends React.Component{
           display: block;
           margin: 0 auto;
           position: relative;
+          margin-bottom: 100px;
         }
         
         .menu > li > a {
@@ -231,7 +232,7 @@ class Header extends React.Component{
             justify-content: center;
             flex-direction: row;
             margin: 15px 0 0 0;
-            padding: 12%;
+            padding: 12% 0;
           }
         }
       `}</style>

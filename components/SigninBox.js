@@ -1,5 +1,6 @@
 import { observer, inject } from "mobx-react";
 import { Mutation, withApollo } from 'react-apollo'
+import { withRouter } from 'next/router'
 import colors from '../common/colors';
 import gql from 'graphql-tag'
 import cookie from 'cookie'
@@ -30,7 +31,7 @@ class SigninBox extends React.Component{
   }
 
   render() {
-    const { store, client } = this.props
+    const { store, client, router } = this.props
     const { errorMsg } = this.state
     let email, password
     return (
@@ -48,8 +49,12 @@ class SigninBox extends React.Component{
             store.authStore.login(data.signInUser)
             // Force a reload of all the current queries now that the user is
             // logged in
+            let route = '/'
+            if(router && router.query && router.query.event){
+              route = `/event/${router.query.event}`
+            }
             client.cache.reset().then(() => {
-              redirect({}, '/')
+              redirect({}, route)
             })
           }else {
             this.setState({errorMsg: 'User doesnt exist'})
@@ -125,4 +130,4 @@ class SigninBox extends React.Component{
   }
 }
 
-export default withApollo(SigninBox)
+export default withApollo(withRouter(SigninBox))

@@ -63,7 +63,7 @@ class RegisterBox extends React.Component{
   render() {
     const { store, client, router } = this.props
     const { errorMsg, pwdPower } = this.state
-    let name, email, password, password2
+    let name, lastname, username, email, password, password2
     return (
       <Mutation
         mutation={CREATE_USER}
@@ -96,7 +96,7 @@ class RegisterBox extends React.Component{
             onSubmit={e => {
               e.preventDefault()
               e.stopPropagation()
-              if(name.value && email.value && password.value && password2.value) {
+              if(name.value && lastname.value && username.value && email.value && password.value && password2.value) {
                 if(password.value === password2.value) {
                   if(this.validateEmail(email.value)) {
                     if(this.validatePassword(password.value) !== 'low') {
@@ -125,9 +125,25 @@ class RegisterBox extends React.Component{
             <h1>Registro</h1>
             <input
               name='name'
-              placeholder='Nombre de Usuario'
+              placeholder='Nombre'
               ref={node => {
                 name = node
+              }}
+            />
+            <br />
+            <input
+              name='lastname'
+              placeholder='Apellido'
+              ref={node => {
+                lastname = node
+              }}
+            />
+            <br />
+            <input
+              name='username'
+              placeholder='Nombre de Usuario'
+              ref={node => {
+                username = node
               }}
             />
             <br />

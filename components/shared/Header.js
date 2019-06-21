@@ -1,7 +1,6 @@
 import { observer, inject } from "mobx-react";
-import { Router }  from '../../routes'
 import { Link } from '../../routes'
-import { withRouter } from 'next/router'
+import Router, { withRouter } from 'next/router'
 import { withApollo } from 'react-apollo'
 import colors from '../../common/colors'
 import cookie from 'cookie'
@@ -16,9 +15,10 @@ class Header extends React.Component{
   login=(e)=> {
     const { client } = this.props
     e.preventDefault();
-    client.cache.reset().then(() => {
-      redirect({}, '/signin')
-    })
+    // client.cache.reset().then(() => {
+    //   redirect({}, '/signin')
+    // })
+    Router.push({pathname: '/signin'})
   }
 
   logout=(e)=> {

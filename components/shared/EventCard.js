@@ -35,7 +35,7 @@ class EventCard extends React.Component{
                     <span className="year">{dates[2]}</span>
                   </span>
                 ): (
-                  <span className="day">coming soon</span>
+                  <span className="day">pronto</span>
                 )
               }
             </div>

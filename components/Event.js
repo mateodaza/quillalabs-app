@@ -96,21 +96,21 @@ class Event extends React.Component{
           <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
         </Head>
         <div className="container">
-          <div className="options">
           {
             isLogged ? (
-              event === 'maker' && ssrDone && ( <EpayBtn origin={origin} price={PRICE} qty={1}/>)
+              event === 'maker' && ssrDone && ( <div className="options"> <EpayBtn origin={origin} price={PRICE} qty={1}/> </div>)
             ): (
-              <div className="option-box">
-                <h4>Inicia sesión o registrate para adquirir tu entrada!</h4>
-                <div className="btns">
-                  <button className="btn" onClick={this.login}>Inicia Sesión</button>
-                  <button className="btn" onClick={this.signup}>Registrate</button>
+              <div className="options">
+                <div className="option-box">
+                  <h4>Inicia sesión o registrate para adquirir tu entrada!</h4>
+                  <div className="btns">
+                    <button className="btn" onClick={this.login}>Inicia Sesión</button>
+                    <button className="btn" onClick={this.signup}>Registrate</button>
+                  </div>
                 </div>
               </div>
             )
           }
-          </div>
           <img src={image}/>
           {
             // event === 'maker' && (

@@ -37,12 +37,12 @@ class Footer extends React.Component{
           flex-direction: row;
           justify-content: space-between;
           bottom: 0;
+          background-color: ${Colors.white};
         }
 
         .icon {
           width: 32px;
-          height: 32px;
-          top: 10px;
+          padding: 5%;
           position: relative;
           background-color: transparent;
         }
@@ -52,9 +52,9 @@ class Footer extends React.Component{
         }
         .copyright * {
           background: rgb(242,199,180); /* Old browsers */
-          background: -moz-linear-gradient(left, rgba(242,199,180,1) 0%, rgba(240,202,170,1) 2%, rgba(240,202,170,1) 2%, rgba(240,202,170,1) 6%, rgba(222,222,172,1) 38%, rgba(222,222,172,1) 41%, rgba(222,222,172,1) 44%, rgba(170,220,179,1) 68%, rgba(241,237,237,1) 99%); /* FF3.6-15 */
-          background: -webkit-linear-gradient(left, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,rgba(241,237,237,1) 99%); /* Chrome10-25,Safari5.1-6 */
-          background: linear-gradient(to right, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,rgba(241,237,237,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          background: -moz-linear-gradient(left, rgba(242,199,180,1) 0%, rgba(240,202,170,1) 2%, rgba(240,202,170,1) 2%, rgba(240,202,170,1) 6%, rgba(222,222,172,1) 38%, rgba(222,222,172,1) 41%, rgba(222,222,172,1) 44%, rgba(170,220,179,1) 68%, ${Colors.white} 99%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(left, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,${Colors.white} 99%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to right, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,${Colors.white} 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
           filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2c7b4', endColorstr='#f1eded',GradientType=1 );
         }
         .copyright p {
@@ -64,8 +64,20 @@ class Footer extends React.Component{
         }
 
         .social {
-          background-color: ${Colors.red};
-          width: 30%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: whi${Colors.white}te;
+          // width: 100%;
+        }
+        .social a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100px;
+          height: 60%;
+          margin-left: 15px;
+          border-radius: 50%;
         }
 
         p {
@@ -80,7 +92,7 @@ class Footer extends React.Component{
           float: left;
           line-height: 70px;
           text-decoration: none;
-          color: white;
+          color: ${Colors.white};
           text-align: center;
           font-weight: bold; 
           transition: all 0.3s;  
@@ -140,6 +152,11 @@ class Footer extends React.Component{
           }
           .social {
             width: 100%;
+          }
+          .social a{
+            width: 100%;
+            border-radius: 0;
+            margin-left: 0;
           }
           p{
             text-align: center;

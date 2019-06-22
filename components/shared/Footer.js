@@ -15,17 +15,19 @@ class Footer extends React.Component{
           <div className="copyright">
             <p>&copy; QuillaLabs - 2019</p>
           </div>
-          <div className="social">
-            <a href="https://www.instagram.com/quillalabs/" className="insta">
-              <img className="icon" src="https://en.instagram-brand.com/wp-content/themes/ig-branding/prj-ig-branding/assets/images/ig-logo.svg" />
-            </a>
-            <a href="https://twitter.com/QuillaLabs" className="tweet">
-              <img className="icon" src="http://www.macdrifter.com/theme/images/twitter-snow.svg" />
-            </a>
-            <a href="https://www.linkedin.com/company/quillalabs" className="linked">
-              <img className="icon" src="http://vcmediapartners.com/media/images/linkedin-white-icon.svg" />
-            </a>
-          </div>
+          {
+          // <div className="social">
+          //   <a href="https://www.instagram.com/quillalabs/" className="insta">
+          //     <img className="icon" src="https://en.instagram-brand.com/wp-content/themes/ig-branding/prj-ig-branding/assets/images/ig-logo.svg" />
+          //   </a>
+          //   <a href="https://twitter.com/QuillaLabs" className="tweet">
+          //     <img className="icon" src="http://www.macdrifter.com/theme/images/twitter-snow.svg" />
+          //   </a>
+          //   <a href="https://www.linkedin.com/company/quillalabs" className="linked">
+          //     <img className="icon" src="http://vcmediapartners.com/media/images/linkedin-white-icon.svg" />
+          //   </a>
+          // </div>
+          }
         </footer>
         <style jsx>{`
         * {

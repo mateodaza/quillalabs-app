@@ -39,6 +39,7 @@ class SigninBox extends React.Component{
         mutation={SIGN_IN}
         onCompleted={data => {
           if(data.signInUser) {
+            console.log({data})
           // Store the token in cookie
             document.cookie = cookie.serialize('token', data.signInUser.token, {
               maxAge: 30 * 24 * 60 * 60 // 30 days
@@ -53,9 +54,9 @@ class SigninBox extends React.Component{
             if(router && router.query && router.query.event){
               route = `/event/${router.query.event}`
             }
-            client.cache.reset().then(() => {
-              redirect({}, route)
-            })
+            // client.cache.reset().then(() => {
+            redirect({}, route)
+            // })
           }else {
             this.setState({errorMsg: 'User doesnt exist'})
           }

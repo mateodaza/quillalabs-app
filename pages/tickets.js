@@ -1,6 +1,6 @@
 // import Link from 'next/link'
 import { Link } from '../routes'
-
+import TicketsView from '../components/Tickets'
 import redirect from '../lib/redirect'
 import checkLoggedIn from '../lib/checkLoggedIn'
 
@@ -9,12 +9,12 @@ import Layout from '../components/shared/Layout'
 export default class Signin extends React.Component {
 
   static async getInitialProps (context) {
-    const { loggedInUser } = await checkLoggedIn(context.apolloClient)
-    if (!loggedInUser.getCurrentUser) {
-      console.log({loggedInUser})
-      // Redirect if its not logged in
-      redirect(context, '/')
-    }
+    // const { loggedInUser } = await checkLoggedIn(context.apolloClient)
+    // if (!loggedInUser.getCurrentUser) {
+    //   console.log({loggedInUser})
+    //   // Redirect if its not logged in
+    //   redirect(context, '/')
+    // }
     return {}
   }
 
@@ -22,7 +22,7 @@ export default class Signin extends React.Component {
     return (
       <Layout>
         <React.Fragment>
-          <h3>tickets</h3>
+          <TicketsView />
         </React.Fragment>
       </Layout>
     )

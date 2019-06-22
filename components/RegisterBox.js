@@ -7,10 +7,16 @@ import redirect from '../lib/redirect'
 import Router from 'next/router'
 
 const CREATE_USER = gql`
-  mutation Create($name: String!, $email: String!, $password: String!) {
+  mutation Create($firstname: String!, $lastname: String!, $username: String!, $phone: String!, $email: String!, $password: String!) {
     createUser(
-      username: $name
-      authProvider: { credentials: { email: $email, password: $password } }
+      username: $username
+      authProvider: { credentials: { 
+        firstName: $firstname,
+        lastName: $lastname,
+        phone: $phone,
+        email: $email, 
+        password: $password,
+      } }
     ) {
       token
       user {
@@ -63,7 +69,7 @@ class RegisterBox extends React.Component{
   render() {
     const { store, client, router } = this.props
     const { errorMsg, pwdPower } = this.state
-    let name, lastname, username, email, password, password2
+    let name, lastname, username, phone, email, password, password2
     return (
       <Mutation
         mutation={CREATE_USER}
@@ -81,9 +87,9 @@ class RegisterBox extends React.Component{
           if(router && router.query && router.query.event){
             route = `/event/${router.query.event}`
           }
-          client.cache.reset().then(() => {
-            redirect({}, route)
-          })
+          // client.cache.reset().then(() => {
+          redirect({}, route)
+          // })
         }}
         onError={error => {
           // If you want to send error to external service?
@@ -96,18 +102,22 @@ class RegisterBox extends React.Component{
             onSubmit={e => {
               e.preventDefault()
               e.stopPropagation()
-              if(name.value && lastname.value && username.value && email.value && password.value && password2.value) {
+              if(name.value && lastname.value && username.value && phone.value && email.value && password.value && password2.value) {
                 if(password.value === password2.value) {
                   if(this.validateEmail(email.value)) {
                     if(this.validatePassword(password.value) !== 'low') {
                       create({
                         variables: {
-                          name: name.value,
+                          username: username.value,
+                          firstname: name.value,
+                          lastname: lastname.value,
+                          phone: phone.value,
                           email: email.value,
                           password: password.value
                         }
                       })
-                      name.value = email.value = password.value = password2.value = ''
+                      name.value = lastname.value = email.value = password.value = password2.value = ''
+                      phone.value = username.value = ''
                     }else {
                       this.setState({errorMsg: 'Password muy débil'})
                     }
@@ -152,6 +162,14 @@ class RegisterBox extends React.Component{
               placeholder='E-mail'
               ref={node => {
                 email = node
+              }}
+            />
+            <br />
+            <input
+              name='phone'
+              placeholder='Celular'
+              ref={node => {
+                phone = node
               }}
             />
             <br />

@@ -18,7 +18,7 @@ const EpayBtn =(props)=> (
       data-epayco-description='MKR-Meetup1_QuillaLabs' 
       data-epayco-currency='COP'    
       data-epayco-country='CO' 
-      data-epayco-test='true' 
+      data-epayco-test='false' 
       data-epayco-external='false' 
       data-epayco-response={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`} 
       data-epayco-confirmation={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`}

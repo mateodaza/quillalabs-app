@@ -2,6 +2,10 @@ import { observer, inject } from "mobx-react";
 import { withApollo } from 'react-apollo'
 import Colors from '../../common/colors'
 
+let ig = "http://www.transparentpng.com/thumb/logo-instagram/eerDTf-logo-instagram-clipart-transparent.png"
+let lin = "https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5296_-_LinkedIn-512.png"
+let tw = "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1259px-Twitter_Bird.svg.png"
+
 @inject("store")
 @observer
 class Footer extends React.Component{
@@ -15,19 +19,11 @@ class Footer extends React.Component{
           <div className="copyright">
             <p>&copy; QuillaLabs - 2019</p>
           </div>
-          {
-          // <div className="social">
-          //   <a href="https://www.instagram.com/quillalabs/" className="insta">
-          //     <img className="icon" src="https://en.instagram-brand.com/wp-content/themes/ig-branding/prj-ig-branding/assets/images/ig-logo.svg" />
-          //   </a>
-          //   <a href="https://twitter.com/QuillaLabs" className="tweet">
-          //     <img className="icon" src="http://www.macdrifter.com/theme/images/twitter-snow.svg" />
-          //   </a>
-          //   <a href="https://www.linkedin.com/company/quillalabs" className="linked">
-          //     <img className="icon" src="http://vcmediapartners.com/media/images/linkedin-white-icon.svg" />
-          //   </a>
-          // </div>
-          }
+          <div className="social-icons">
+            <a><img className="icon" src={tw}></img></a>
+            <a><img className="icon" src={lin}></img></a>
+            <a><img className="icon" src={ig}></img></a>
+          </div>
         </footer>
         <style jsx>{`
         * {
@@ -37,14 +33,14 @@ class Footer extends React.Component{
         footer {
           display: flex;
           flex-direction: row;
+          align-items: center;
           justify-content: space-between;
           bottom: 0;
           background-color: ${Colors.white};
         }
 
         .icon {
-          width: 32px;
-          padding: 5%;
+          width: 42px;
           position: relative;
           background-color: transparent;
         }
@@ -65,21 +61,17 @@ class Footer extends React.Component{
           font-weight: lighter;
         }
 
-        .social {
+        .social-icons {
           display: flex;
-          justify-content: center;
+          flex: 1;
+          width: 20vw:
+          flex-direction: row;
+          justify-content: space-around;
           align-items: center;
-          background-color: whi${Colors.white}te;
-          // width: 100%;
         }
-        .social a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100px;
-          height: 60%;
-          margin-left: 15px;
-          border-radius: 50%;
+
+        a {
+          cursor: pointer;
         }
 
         p {
@@ -90,53 +82,7 @@ class Footer extends React.Component{
           text-transform: capitalize;
           letter-spacing: 1px;
         }
-        a {
-          float: left;
-          line-height: 70px;
-          text-decoration: none;
-          color: ${Colors.white};
-          text-align: center;
-          font-weight: bold; 
-          transition: all 0.3s;  
-          
-        }
-
-        a:hover {
-          transition: all 0.3s;   
-        }
         
-        .linked {
-          background-color: #0077B5;
-          font-size: 20px;
-          width: 33.3%;
-        }
-        .linked:hover {
-          background-color: ${Colors.black};
-        }
-        
-        .insta {
-          background: #f09433; 
-          background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
-          background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-          background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
-          font-size: 20px;
-          width: 33.3%;
-        }
-        .insta:hover {
-          background: ${Colors.black};
-        }
-        
-        .tweet {
-          background-color: #0084b4;
-          font-size: 20px;
-          width: 33.3%;
-        }
-        .tweet:hover {
-          background-color: ${Colors.black};
-        }
-        
-
         @media only screen and (max-width: 600px) {
           footer {
             flex-direction: column;
@@ -152,13 +98,9 @@ class Footer extends React.Component{
             background: linear-gradient(135deg, rgba(255,255,255,1) 2%,rgba(225,225,171,1) 31%,rgba(225,225,171,1) 64%,rgba(251,198,175,1) 101%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fbc6af',GradientType=1 );
           }
-          .social {
-            width: 100%;
-          }
-          .social a{
-            width: 100%;
-            border-radius: 0;
-            margin-left: 0;
+          .social-icons {
+            width: 100vw;
+            margin: 5% 0;
           }
           p{
             text-align: center;

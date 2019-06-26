@@ -18,20 +18,20 @@ const GET_TICKETS = gql`
       eventName
       ticketQuantity
     }
-    getCurrentUser {
-      user {
-        firstName
-        lastName
-      }
-      tickets {
-        price
-        status
-        eventName
-        ticketQuantity
-      }
-    }
   }
 `
+// getCurrentUser {
+//   user {
+//     firstName
+//     lastName
+//   }
+//   tickets {
+//     price
+//     status
+//     eventName
+//     ticketQuantity
+//   }
+// }
 
 @inject("store")
 @observer
@@ -58,10 +58,13 @@ class Tickets extends React.Component{
           {({ loading, error, data }) => {
             if (loading) return "Loading...";
             if (error) return `Error! ${error.message}`;
-            if (data) console.log({data})
-            return (
-              <p>HAI HAI</p>
-            );
+            if (data) return data.getCurrentUserTickets.map(tkt => {
+                  return <div>
+                    <p>evento {tkt.eventName}</p>
+                    <p>precio {tkt.price}</p>
+                    <p>estado {tkt.status}</p><br/>
+                  </div>
+                });           
           }}
         </Query>
         <style jsx>{`

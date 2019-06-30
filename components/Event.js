@@ -95,16 +95,16 @@ class Event extends React.Component{
           <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
         </Head>
         <div className="container">
-         <img src={image}/>
-         <div>
-            <div className="event-info">
-              <h2>MakerDAO Talks I: DAI Happy Hour</h2><br/>
-              <h3>Fecha: <b>18 de Julio, 2019 06:00 p.m.</b></h3>
-              <div className="divider"/>
-            </div>
+         <img src={image} style={{maxWidth: event === 'maker' ? "50%" : "70%"}}/>
+          <div>
           {
             isLogged ? (
               event === 'maker' && ssrDone && ( <div className="options">
+                <div className="event-info">
+                  <h2>MakerDAO Talks I: DAI Happy Hour</h2><br/>
+                  <h3>Fecha: <b>18 de Julio, 2019 06:00 p.m.</b></h3>
+                  <div className="divider"/>
+                </div>
                 <br/><Query query={GET_EVENTS_STATUS}>
                 {({ loading, error, data }) => {
                   console.log({data})

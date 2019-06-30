@@ -129,10 +129,11 @@ class Tickets extends React.Component{
             position:relative;
           }
           .appsContainer {
-            width: 100%;
+            width: 80%;
             display: flex;
+            flex-wrap: wrap;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content: space-between;
           }
           h2 {
             color: ${colors.black2}
@@ -160,9 +161,9 @@ class Tickets extends React.Component{
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2c7b4', endColorstr='#f1eded',GradientType=1 );
           }
           .ticket-extra {
-            text-align: justify;
+            text-align: end;
             width: 90%;
-            padding: 0 10%;
+            margin: 0 10%;
           }
           @media ( max-width: 800px ) {
             .eventImg {

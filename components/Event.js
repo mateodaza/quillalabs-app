@@ -218,6 +218,10 @@ class Event extends React.Component{
             .event-info {
               text-align: center;
             }
+            .options {
+              text-align: center;
+              margin: 5% 0 15% 0;
+            }
           }
         `}</style>
       </div>

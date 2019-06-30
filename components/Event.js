@@ -105,17 +105,17 @@ class Event extends React.Component{
           {
             isLogged ? (
               event === 'maker' && ssrDone && ( <div className="options">
-              <EpayBtn origin={origin} price={PRICE} qty={1}/>
-              <Query query={GET_EVENTS_STATUS}>
-              {({ loading, error, data }) => {
-                console.log({data})
-                if (loading) return "Loading...";
-                if (error) return `Error! ${error.message}`;
-                if (data) return <div>
-                  <h3>{100-data.getEventsStatus[0].ticketsCount} de 100 entradas disponibles</h3>
-                </div>
-              }}
-              </Query>
+                <br/><Query query={GET_EVENTS_STATUS}>
+                {({ loading, error, data }) => {
+                  console.log({data})
+                  if (loading) return "Loading...";
+                  if (error) return `Error! ${error.message}`;
+                  if (data) return <div>
+                    <h3>{100-data.getEventsStatus[0].ticketsCount} de 100 entradas disponibles</h3>
+                  </div>
+                }}
+                </Query><br/>
+                <EpayBtn origin={origin} price={PRICE} qty={1}/>
               </div>
             )): event === 'maker' && (
               <div className="options">
@@ -148,6 +148,9 @@ class Event extends React.Component{
           form {
             margin: 25px 0 0 0;
           }
+          * {
+            background-color: transparent !important;
+          }
           .container {
             display: flex;
             width: 100%;
@@ -173,9 +176,8 @@ class Event extends React.Component{
           }
           .options {
             background-color: transparent;
-            text-align: center;
-            padding: 20px 10%;
-            margin: 0 0 10% 0;
+            text-align: end;
+            padding: 0 5%;
           }
           .option-box {
             display: flex;

@@ -73,7 +73,7 @@ class Tickets extends React.Component{
                     <img className="eventImg" src={image}/>
                     <div className="ticket-info">
                       <h2>MakerDAO Talks I: DAI Happy Hour</h2><br/>
-                      <h2>Ticket # {tkt.ticketCode}</h2>
+                      <h2>Ticket # {tkt.ticketCode.toUpperCase()}</h2>
                       <h3>Estado del pago: <b style={{color: tkt.status === "pending" ? colors.red : colors.green}}>
                         {this.setStatus(tkt.status)}</b>
                       </h3><br/>

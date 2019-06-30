@@ -94,7 +94,7 @@ class Header extends React.Component{
                     <p>{authStore.auth && authStore.auth.user && authStore.auth.user.username}</p>
                   </div>
                   <ul>
-                    <li className="item"><a onClick={this.goTickets}>Tickets</a></li>
+                    <li className="item"><Link route='tickets'><a>Tickets</a></Link></li>
                     <li><button className="signin-btn" onClick={this.logout}>Salir</button></li>
                   </ul>
                 </li>

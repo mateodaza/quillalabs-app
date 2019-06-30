@@ -20,6 +20,7 @@ const GET_TICKETS = gql`
       status
       eventName
       ticketQuantity
+      ticketCode
     }
   }
 `
@@ -66,12 +67,13 @@ class Tickets extends React.Component{
           {({ loading, error, data }) => {
             if (loading) return "Loading...";
             if (error) return `Error! ${error.message}`;
-            if (data && data.getCurrentUserTickets.length > 0) { return data.getCurrentUserTickets.map((tkt, index) => {
+            console.log({data})
+            if (data && data.getCurrentUserTickets && data.getCurrentUserTickets.length > 0) { return data.getCurrentUserTickets.map((tkt, index) => {
                   return tkt.status && <div className="ticket-container" key={index}>
                     <img className="eventImg" src={image}/>
                     <div className="ticket-info">
                       <h2>MakerDAO Talks I: DAI Happy Hour</h2><br/>
-                      <h2>Ticket # ABC123</h2>
+                      <h2>Ticket # {tkt.ticketCode}</h2>
                       <h3>Estado del pago: <b style={{color: tkt.status === "pending" ? colors.red : colors.green}}>
                         {this.setStatus(tkt.status)}</b>
                       </h3><br/>

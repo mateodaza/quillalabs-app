@@ -1,25 +1,35 @@
 import { observer, inject } from "mobx-react";
 import Head from 'next/head'
-import { Mutation, withApollo } from 'react-apollo'
+import gql from "graphql-tag";
+import { Query, Mutation, withApollo } from 'react-apollo'
 import redirect from '../lib/redirect'
 import { Link } from '../routes'
 import Router, { withRouter } from 'next/router'
 // import { Router } from '../routes'
 import colors from '../common/colors'
 
-const PRICE = 10000
+const PRICE = 15000
+
+const GET_EVENTS_STATUS = gql`
+  {
+    getEventsStatus {
+      eventName
+      ticketsCount
+    }
+  }
+`
 
 const EpayBtn =(props)=> (
   <form>
     <script src='https://checkout.epayco.co/checkout.js'
       data-epayco-key='344ff0f664418e0a5ac6ea89e3ec7619'
       className='epayco-button'
-      data-epayco-amount='11900'
+      data-epayco-amount='15000'
       data-epayco-name='MKR-Meetup1_QuillaLabs'
       data-epayco-description='MKR-Meetup1_QuillaLabs'
       data-epayco-currency='COP'
       data-epayco-country='CO'
-      data-epayco-test='false'
+      data-epayco-test='true'
       data-epayco-external='false'
       data-epayco-response={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`}
       data-epayco-confirmation={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`}
@@ -85,10 +95,29 @@ class Event extends React.Component{
           <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
         </Head>
         <div className="container">
+         <img src={image}/>
+         <div>
+            <div className="event-info">
+              <h2>MakerDAO Talks I: DAI Happy Hour</h2><br/>
+              <h3>Fecha: <b>18 de Julio, 2019 06:00 p.m.</b></h3>
+              <div className="divider"/>
+            </div>
           {
             isLogged ? (
-              event === 'maker' && ssrDone && ( <div className="options"> <EpayBtn origin={origin} price={PRICE} qty={1}/> </div>)
-            ): event === 'maker' && (
+              event === 'maker' && ssrDone && ( <div className="options">
+              <EpayBtn origin={origin} price={PRICE} qty={1}/>
+              <Query query={GET_EVENTS_STATUS}>
+              {({ loading, error, data }) => {
+                console.log({data})
+                if (loading) return "Loading...";
+                if (error) return `Error! ${error.message}`;
+                if (data) return <div>
+                  <h3>{100-data.getEventsStatus[0].ticketsCount} de 100 entradas disponibles</h3>
+                </div>
+              }}
+              </Query>
+              </div>
+            )): event === 'maker' && (
               <div className="options">
                 <div className="option-box">
                   <h4>Inicia sesión o registrate para adquirir tu entrada!</h4>
@@ -104,7 +133,9 @@ class Event extends React.Component{
               </div>
             )
           }
-          <img src={image}/>
+          </div>
+
+
           {
             // event === 'maker' && (
             //   <button onClick={this.goCheckout}
@@ -119,10 +150,14 @@ class Event extends React.Component{
           }
           .container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-evenly;
             padding: 5% 0;
+          }
+          .event-info {
+            text-align: end;
+            padding: 0 5%;
           }
           h4 {
             color: ${colors.black3}
@@ -132,15 +167,15 @@ class Event extends React.Component{
           }
           img {
             align-self: center;
-            max-width: 60%;
+            max-width: 50%;
             height: auto;
             box-shadow: 0 7px 11px 0 rgba(0,0,0,0.1),0 17px 50px 0 rgba(0,0,0,0.19);
           }
           .options {
-            flex: 5;
+            background-color: transparent;
+            text-align: center;
             padding: 20px 10%;
-            margin: 0 0 5% 0;
-            border-bottom: 1px solid ${colors.black3};
+            margin: 0 0 10% 0;
           }
           .option-box {
             display: flex;
@@ -171,9 +206,15 @@ class Event extends React.Component{
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
           }
 
-          @media ( max-width: 900px ) {
+          @media ( max-width: 600px ) {
             img {
               max-width: 80%;
+            }
+            .container {
+              flex-direction: column-reverse
+            }
+            .event-info {
+              text-align: center;
             }
           }
         `}</style>

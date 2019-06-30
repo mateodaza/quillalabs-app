@@ -5,6 +5,7 @@ import Colors from '../../common/colors'
 let ig = "http://www.transparentpng.com/thumb/logo-instagram/eerDTf-logo-instagram-clipart-transparent.png"
 let lin = "https://cdn3.iconfinder.com/data/icons/social-media-logos-flat-colorful/2048/5296_-_LinkedIn-512.png"
 let tw = "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1259px-Twitter_Bird.svg.png"
+let wapp = "https://logodownload.org/wp-content/uploads/2015/04/whatsapp-logo-1-1.png"
 
 @inject("store")
 @observer
@@ -20,9 +21,10 @@ class Footer extends React.Component{
             <p>&copy; QuillaLabs - 2019</p>
           </div>
           <div className="social-icons">
-            <a><img className="icon" src={tw}></img></a>
-            <a><img className="icon" src={lin}></img></a>
-            <a><img className="icon" src={ig}></img></a>
+            <a href="https://twitter.com/quillalabs"><img className="icon" src={tw}></img></a>
+            <a href="https://www.linkedin.com/company/33268324"><img className="icon" src={lin}></img></a>
+            <a href="https://www.instagram.com/quillalabs/"><img className="icon" src={ig}></img></a>
+            <a href="https://api.whatsapp.com/send?phone=573024305947&text=&source=&data="><img className="icon" src={wapp}></img></a>
           </div>
         </footer>
         <style jsx>{`
@@ -37,10 +39,11 @@ class Footer extends React.Component{
           justify-content: space-between;
           bottom: 0;
           background-color: ${Colors.white};
+          margin-top: 10%
         }
 
         .icon {
-          width: 42px;
+          width: 28px;
           position: relative;
           background-color: transparent;
         }
@@ -85,11 +88,10 @@ class Footer extends React.Component{
         
         @media only screen and (max-width: 600px) {
           footer {
-            flex-direction: column;
+            flex-direction: column-reverse;
           }
           .copyright {
             width: 100%;
-            margin: 15% 0 0 0;
           }
           .copyright * {
             background: rgb(255,255,255); /* Old browsers */

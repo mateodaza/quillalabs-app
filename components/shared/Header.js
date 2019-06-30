@@ -56,13 +56,13 @@ class Header extends React.Component{
     }
     if(router.pathname !== '/') {
       notHome = true
-    } 
+    }
     console.log({router, authStore})
     return (
       <header>
         <div className="header-container">
           <Link route='index'>
-            <a onClick={this.goHome}>
+            <a>
               <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
                 <img src={logo} width='100px' height='100px'/>
                 {
@@ -102,13 +102,13 @@ class Header extends React.Component{
             )
           }
           </div>
-        </div>      
+        </div>
         <style jsx>{`
         a{
           color: white;
           cursor: pointer;
         }
-        a:focus { 
+        a:focus {
           text-decoration: none;
         }
         p {
@@ -176,7 +176,7 @@ class Header extends React.Component{
           position: relative;
           margin-bottom: 100px;
         }
-        
+
         .menu > li > a {
           background: transparent;
           color: black;
@@ -185,7 +185,7 @@ class Header extends React.Component{
           text-align: center;
           text-decoration: none;
         }
-        
+
         .menu ul {
           background: transparent;
           height: 0;
@@ -196,12 +196,12 @@ class Header extends React.Component{
           top: 50px;
           width: 100%;
         }
-        
+
         .menu li:hover ul {
           opacity: 1;
           transform: translateY(0);
         }
-        
+
         .menu ul a {
           width: 100%;
           color: #000;

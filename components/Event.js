@@ -2,28 +2,29 @@ import { observer, inject } from "mobx-react";
 import Head from 'next/head'
 import { Mutation, withApollo } from 'react-apollo'
 import redirect from '../lib/redirect'
+import { Link } from '../routes'
 import Router, { withRouter } from 'next/router'
 // import { Router } from '../routes'
-import colors from '../common/colors';
+import colors from '../common/colors'
 
 const PRICE = 10000
 
 const EpayBtn =(props)=> (
   <form>
-    <script src='https://checkout.epayco.co/checkout.js' 
-      data-epayco-key='344ff0f664418e0a5ac6ea89e3ec7619' 
-      className='epayco-button' 
-      data-epayco-amount='11900'  
-      data-epayco-name='MKR-Meetup1_QuillaLabs' 
-      data-epayco-description='MKR-Meetup1_QuillaLabs' 
-      data-epayco-currency='COP'    
-      data-epayco-country='CO' 
-      data-epayco-test='false' 
-      data-epayco-external='false' 
-      data-epayco-response={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`} 
+    <script src='https://checkout.epayco.co/checkout.js'
+      data-epayco-key='344ff0f664418e0a5ac6ea89e3ec7619'
+      className='epayco-button'
+      data-epayco-amount='11900'
+      data-epayco-name='MKR-Meetup1_QuillaLabs'
+      data-epayco-description='MKR-Meetup1_QuillaLabs'
+      data-epayco-currency='COP'
+      data-epayco-country='CO'
+      data-epayco-test='false'
+      data-epayco-external='false'
+      data-epayco-response={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`}
       data-epayco-confirmation={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`}
-      data-epayco-button='https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn2.png'> 
-    </script> 
+      data-epayco-button='https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn2.png'>
+    </script>
   </form>
 )
 
@@ -37,18 +38,6 @@ class Event extends React.Component{
       ssrDone: false,
       origin: null
     }
-  }
-
-  login=(e)=> {
-    const { client } = this.props
-    e.preventDefault();
-    Router.push({pathname: '/signin', query: { event: this.props.event }})
-  }
-
-  signup=(e)=> {
-    const { client } = this.props
-    e.preventDefault();
-    Router.push({pathname: '/create-account', query: { event: this.props.event }})
   }
 
   goCheckout =()=> {
@@ -99,13 +88,17 @@ class Event extends React.Component{
           {
             isLogged ? (
               event === 'maker' && ssrDone && ( <div className="options"> <EpayBtn origin={origin} price={PRICE} qty={1}/> </div>)
-            ): (
+            ): event === 'maker' && (
               <div className="options">
                 <div className="option-box">
                   <h4>Inicia sesión o registrate para adquirir tu entrada!</h4>
                   <div className="btns">
-                    <button className="btn" onClick={this.login}>Inicia Sesión</button>
-                    <button className="btn" onClick={this.signup}>Registrate</button>
+                    <Link route='signin' params={{event: this.props.event}}>
+                      <button className="btn">Inicia Sesión</button>
+                    </Link>
+                    <Link route='create-account' params={{event: this.props.event}}>
+                      <button className="btn">Registrate</button>
+                    </Link>
                   </div>
                 </div>
               </div>

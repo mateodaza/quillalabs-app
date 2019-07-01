@@ -66,12 +66,15 @@ class PaymentConfirmation extends React.Component{
     let [qty, price, notPrice, ref_payco] = [null, null, null, null]
     if(router && router.query && router.query.qty) {
       qty = router.query.qty
-      price = router.query.price
-      ref_payco = router.query.ref_payco
 
-      // notPrice = router.query.price
-      // price = notPrice.split('?')[0]
-      // ref_payco = notPrice.split('?')[1].split('=')[1]
+      notPrice = router.query.price
+      if(isNaN(notPrice)) {
+        price = notPrice.split('?')[0]
+        ref_payco = notPrice.split('?')[1].split('=')[1]
+      }else {
+        price = router.query.price
+        ref_payco = router.query.ref_payco
+      }
     }
     this.setState({qty, price, ref_payco})
   }

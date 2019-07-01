@@ -28,9 +28,10 @@ class Header extends React.Component{
       maxAge: -1 // Expire the cookie immediately
     })
     store.authStore.logout()
-    client.cache.reset().then(() => {
-      redirect({}, '/')
-    })
+    // client.cache.reset().then(() => {
+      // redirect({}, '/')
+    // })
+    Router.push({pathname: '/'})
   }
 
   goHome=()=>{

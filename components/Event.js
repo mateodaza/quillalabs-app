@@ -95,10 +95,11 @@ class Event extends React.Component{
           <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
         </Head>
         <div className="container">
-         <img src={image} style={{maxWidth: event === 'maker' ? "50%" : "70%"}}/>
+          <img src={image} style={{maxWidth: event === 'maker' ? "50%" : "100%"}}/>
           <div>
           {
             isLogged ? (
+              
               event === 'maker' && ssrDone && ( <div className="options">
                 <div className="event-info">
                   <h2>MakerDAO Talks I: DAI Happy Hour</h2><br/>
@@ -108,7 +109,7 @@ class Event extends React.Component{
                 <br/><Query query={GET_EVENTS_STATUS}>
                 {({ loading, error, data }) => {
                   console.log({data})
-                  if (loading) return "Loading...";
+                  if (loading) return "";
                   if (error) return `Error! ${error.message}`;
                   if (data) return <div>
                     <h3>{100-data.getEventsStatus[0].ticketsCount} de 100 entradas disponibles</h3>
@@ -210,13 +211,16 @@ class Event extends React.Component{
 
           @media ( max-width: 600px ) {
             img {
-              max-width: 80%;
+              max-width: 100%;
+              heigth: auto;
+              object-fit: cover;
             }
             .container {
               flex-direction: column-reverse
             }
             .event-info {
               text-align: center;
+              padding: 0;
             }
             .options {
               text-align: center;

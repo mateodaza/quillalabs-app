@@ -50,6 +50,7 @@ class Tickets extends React.Component{
 
   setStatus =(status)=> {
     const statusList = {"pending": "Pendiente", "accepted": "Aprobado"}
+    if(!status) return "Fallido"
     return statusList[status]
   }
 
@@ -69,21 +70,21 @@ class Tickets extends React.Component{
             if (error) return `Error! ${error.message}`;
             console.log({data})
             if (data && data.getCurrentUserTickets && data.getCurrentUserTickets.length > 0) { return data.getCurrentUserTickets.map((tkt, index) => {
-                  return tkt.status && <div className="ticket-container" key={index}>
+                  return <div key={index}><div className="ticket-container">
                     <img className="eventImg" src={image}/>
                     <div className="ticket-info">
                       <h2>MakerDAO Talks I: DAI Happy Hour</h2><br/>
                       <h2>Ticket # {tkt.ticketCode.toUpperCase()}</h2>
-                      <h3>Estado del pago: <b style={{color: tkt.status === "pending" ? colors.red : colors.green}}>
+                      <h3>Estado del pago: <b style={{color: tkt.status !== "accepted" ? colors.red : colors.green}}>
                         {this.setStatus(tkt.status)}</b>
                       </h3><br/>
                       <h3>Fecha: <b>18 de Julio, 2019 06:00 p.m.</b></h3>
                       <div className="divider"/>
                       <div className="ticket-extra">
-                        <p>En este evento primer evento de la serie MakerDAO aprenderás sobre esta tecnología y su moneda estable DAI.<br/><br/>
-                            Podrás comprar tu primera cerveza con una cantidad de DAI que te asignaremos durante la conferencia. <br/><br/>
-                            Para esto es necesario que tengas lista tu billetera! Descarga
-                            DexWallet disponible para android y iOS.
+                        <p>En este primer evento de la serie MakerDAO aprenderás sobre esta tecnología y su moneda estable DAI.<br/><br/>
+                          Podrás comprar tu primera cerveza con una cantidad de DAI que te asignaremos durante la conferencia. <br/><br/>
+                          Para esto es necesario que tengas lista tu billetera! <br/> <br/> Descarga
+                          DexWallet disponible para android y iOS.
                         </p><br/>
                         <div className="appsContainer">
                           <div className="imgContainer">
@@ -98,6 +99,12 @@ class Tickets extends React.Component{
                         </div>
                       </div>
                     </div>
+                  </div>
+                  {
+                    index + 1 !== data.getCurrentUserTickets.length && (
+                      <div className="divider"/>
+                    )
+                  }
                   </div>
                 });
             } else {
@@ -177,9 +184,14 @@ class Tickets extends React.Component{
               text-align: start
             }
             .ticket-extra {
-              text-align: justify;
+              text-align: start;
               width: 100%;
+              margin: 5% 0 10% 0;
               padding: 0;
+            }
+            .mediumIcon {
+              width: 250%;
+              top: 50%;
             }
           }
         `}</style>

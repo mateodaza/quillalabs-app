@@ -47,6 +47,11 @@ class RegisterBox extends React.Component{
     }
   }
 
+  powerMsg =(val)=> {
+    const values = {"low": "Baja seguridad", "medium": "Mediana seguridad", "strong": "Alta Seguridad"}
+    return values[val]
+  }
+
   validateEmail =(email)=> {
     return /\S+@\S+\.\S+/.test(email);
   }
@@ -116,16 +121,16 @@ class RegisterBox extends React.Component{
                           password: password.value
                         }
                       })
-                      name.value = lastname.value = email.value = password.value = password2.value = ''
-                      phone.value = username.value = ''
+                      // name.value = lastname.value = email.value = password.value = password2.value = ''
+                      // phone.value = username.value = ''
                     }else {
-                      this.setState({errorMsg: 'Password muy débil'})
+                      this.setState({errorMsg: 'Contraseña muy débil'})
                     }
                   }else {
                     this.setState({errorMsg: 'Formato de e-mail no es valido'})
                   }
                 }else {
-                  this.setState({errorMsg: 'Passwords no coinciden'})
+                  this.setState({errorMsg: 'Contraseñas no coinciden'})
                 }
               }else {
                 this.setState({errorMsg: 'Hacen falta campos'})
@@ -175,7 +180,7 @@ class RegisterBox extends React.Component{
             <br />
             <input
               name='password'
-              placeholder='Password'
+              placeholder='Contraseña'
               onChange={this.validatePassword}
               ref={node => {
                 password = node
@@ -183,19 +188,18 @@ class RegisterBox extends React.Component{
               type='password'
             />
             {
-              pwdPower ? <p>{pwdPower}</p>:<br />
+              pwdPower ? <p>{this.powerMsg(pwdPower)}</p>:<br />
             }
             <input
               name='password2'
-              placeholder='Verificación Password'
+              placeholder='Verificación Contraseña'
               ref={node => {
                 password2 = node
               }}
               type='password'
             />
-            <br />
             {errorMsg && ( <p style={{color: 'red'}}>{errorMsg}</p> ) }
-            {error && (<p>Error 😯 {this.setError(error.graphQLErrors[0].message)}</p> )}
+            {error && (<p>Error 😯 {error.graphQLErrors[0].message}</p> )}
             <button className="button">Sign up</button>
           </form>
           <style jsx>{`

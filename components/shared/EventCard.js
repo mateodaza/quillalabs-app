@@ -26,7 +26,7 @@ class EventCard extends React.Component{
         <div className="example-1 card">
           <div className="wrapper" style={{background: `no-repeat url(${bgImage})`,
             backgroundSize: 'contain', backgroundPosition: 'center'}}>
-            <div className="date" style={{backgroundColor: date ? Colors.red : Colors.green}}>
+            <div className="date" style={{backgroundColor: date ? event==='maker'?Colors.green:Colors.red : Colors.green}}>
               {
                 date ? (
                   <span>

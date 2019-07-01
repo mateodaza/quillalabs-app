@@ -58,7 +58,7 @@ class SigninBox extends React.Component{
             redirect({}, route)
             // })
           }else {
-            this.setState({errorMsg: 'User doesnt exist'})
+            this.setState({errorMsg: 'Credenciales incorrectas'})
           }
         }}
         onError={error => {
@@ -81,12 +81,12 @@ class SigninBox extends React.Component{
                 })
                 email.value = password.value = ''
               }else {
-                this.setState({errorMsg: 'Fields missing'})
+                this.setState({errorMsg: 'Campos incompletos'})
               }
             }}
           >
             {error && <p>No existe un usuario con esta información.</p>}
-            {errorMsg && <p style={{color: 'red'}}>{errorMsg}</p>}
+            {errorMsg && <p style={{margin: '5% 0 0 0', color: 'red'}}>{errorMsg}</p>}
             <h1>Inicia Sesión</h1>
             <input
               name='email'

@@ -28,10 +28,16 @@ class Header extends React.Component{
       maxAge: -1 // Expire the cookie immediately
     })
     store.authStore.logout()
-    // client.cache.reset().then(() => {
-      // redirect({}, '/')
-    // })
-    Router.push({pathname: '/'})
+    
+    if (typeof window !== 'undefined') {
+      window.location.replace('/')
+    }else {
+      client.cache.reset().then(() => {
+        redirect({}, '/')
+      })
+      Router.push({pathname: '/'})
+    }
+    
   }
 
   goHome=()=>{
@@ -62,16 +68,14 @@ class Header extends React.Component{
     return (
       <header>
         <div className="header-container">
-          <Link route='index'>
-            <a>
-              <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-                <img src={logo} width='100px' height='100px'/>
-                {
-                  notHome && ( <p style={{margin:'15px 0 0 0'}}>QUILLALABS</p> )
-                }
-              </div>
-            </a>
-          </Link>
+          <a href="/">
+            <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
+              <img src={logo} width='100px' height='100px'/>
+              {
+                notHome && ( <p style={{margin:'15px 0 0 0'}}>QUILLALABS</p> )
+              }
+            </div>
+          </a>
           <div className="right-side">
           {
             !store.authStore.isLogged? (

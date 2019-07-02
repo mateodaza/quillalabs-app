@@ -4,7 +4,8 @@ import gql from "graphql-tag";
 import { Query, Mutation, withApollo } from 'react-apollo'
 import redirect from '../lib/redirect'
 import { Link } from '../routes'
-import Router, { withRouter } from 'next/router'
+import { withRouter } from 'next/router'
+import { Router } from '../routes'
 // import { Router } from '../routes'
 import colors from '../common/colors'
 
@@ -55,9 +56,10 @@ class Event extends React.Component{
     let route = '/create-account'
     if( store.authStore.isLogged ){ 
       route = `/checkout/${this.props.event}`
-      Router.push(route)
+      Router.pushRoute(route)
     }else {
-      Router.push({pathname: route, query: { event: this.props.event }})
+      // Router.push({pathname: route, query: { event: this.props.event }})
+      Router.pushRoute(route, { event: this.props.event })
     }
   }
 

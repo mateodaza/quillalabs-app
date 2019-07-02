@@ -31,7 +31,7 @@ const EpayBtn =(props)=> (
       data-epayco-currency='COP'
       data-epayco-country='CO'
       data-epayco-test='true'
-      data-epayco-external='false'
+      data-epayco-external='true'
       data-epayco-response={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`}
       data-epayco-confirmation={`${props.origin}/payment_confirmation?qty=${props.qty}&price=${props.price}`}
       data-epayco-button='https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn2.png'>

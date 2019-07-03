@@ -108,29 +108,33 @@ class RegisterBox extends React.Component{
               e.preventDefault()
               e.stopPropagation()
               if(name.value && lastname.value && username.value && phone.value && email.value && password.value && password2.value) {
-                if(password.value === password2.value) {
-                  if(this.validateEmail(email.value)) {
-                    if(this.validatePassword(password.value) !== 'low') {
-                      create({
-                        variables: {
-                          username: username.value,
-                          firstname: name.value,
-                          lastname: lastname.value,
-                          phone: phone.value,
-                          email: email.value,
-                          password: password.value
-                        }
-                      })
-                      // name.value = lastname.value = email.value = password.value = password2.value = ''
-                      // phone.value = username.value = ''
+                if(!/\s/.test(username.value)) {
+                  if(password.value === password2.value) {
+                    if(this.validateEmail(email.value)) {
+                      if(this.validatePassword(password.value) !== 'low') {
+                        create({
+                          variables: {
+                            username: username.value,
+                            firstname: name.value,
+                            lastname: lastname.value,
+                            phone: phone.value,
+                            email: email.value,
+                            password: password.value
+                          }
+                        })
+                        // name.value = lastname.value = email.value = password.value = password2.value = ''
+                        // phone.value = username.value = ''
+                      }else {
+                        this.setState({errorMsg: 'Contraseña muy débil'})
+                      }
                     }else {
-                      this.setState({errorMsg: 'Contraseña muy débil'})
+                      this.setState({errorMsg: 'Formato de e-mail no es valido'})
                     }
                   }else {
-                    this.setState({errorMsg: 'Formato de e-mail no es valido'})
+                    this.setState({errorMsg: 'Contraseñas no coinciden'})
                   }
-                }else {
-                  this.setState({errorMsg: 'Contraseñas no coinciden'})
+                } else {
+                  this.setState({errorMsg: 'Nombre de usuario contiene espacios'})
                 }
               }else {
                 this.setState({errorMsg: 'Hacen falta campos'})

@@ -113,9 +113,10 @@ class Event extends React.Component{
                   console.log({data})
                   if (loading) return "";
                   if (error) return `Error! ${error.message}`;
-                  if (data) return <div>
+                  if (data && data.getEventsStatus.length > 0) return <div>
                     <h3>{100-data.getEventsStatus[0].ticketsCount} de 100 entradas disponibles</h3>
                   </div>
+                  return ''
                 }}
                 </Query><br/>
                 <EpayBtn origin={origin} price={PRICE} qty={1}/>

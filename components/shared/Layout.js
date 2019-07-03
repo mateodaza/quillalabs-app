@@ -11,6 +11,7 @@ const Layout = ({ client, withHeader, children }) => {
       <Head>
         <title>QuillaLabs</title>
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="https://i.imgur.com/QIvQlG1.png" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header />

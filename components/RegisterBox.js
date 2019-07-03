@@ -4,7 +4,7 @@ import { withRouter } from 'next/router'
 import gql from 'graphql-tag'
 import cookie from 'cookie'
 import redirect from '../lib/redirect'
-import Router from 'next/router'
+import { Router } from '../routes'
 
 const CREATE_USER = gql`
   mutation Create($firstname: String!, $lastname: String!, $username: String!, $phone: String!, $email: String!, $password: String!) {
@@ -92,9 +92,7 @@ class RegisterBox extends React.Component{
           if(router && router.query && router.query.event){
             route = `/event/${router.query.event}`
           }
-          // client.cache.reset().then(() => {
-          redirect({}, route)
-          // })
+          Router.pushRoute(route)
         }}
         onError={error => {
           // If you want to send error to external service?

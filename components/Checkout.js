@@ -95,7 +95,6 @@ class Event extends React.Component{
       // mutation={SET_PAYMENT}
       mutation={SET_TRANSACTION}
       onCompleted={data => {
-        console.log({data})
         cardname.value = cardlastname.value = idnumber.value = cardnumber.value = expmonth.value = expyear.value = cvv.value = phonenumber.value = '' 
       }}
       onError={error=> {

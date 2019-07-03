@@ -1,7 +1,8 @@
 import { observer, inject } from "mobx-react";
 import { Mutation, withApollo } from 'react-apollo'
 import { withRouter } from 'next/router'
-import colors from '../common/colors';
+import { Router } from '../routes'
+import colors from '../common/colors'
 import gql from 'graphql-tag'
 import cookie from 'cookie'
 import redirect from '../lib/redirect'
@@ -37,9 +38,9 @@ class SigninBox extends React.Component{
     return (
       <Mutation
         mutation={SIGN_IN}
-        onCompleted={data => {
+        onCompleted={async data => {
           if(data.signInUser) {
-            console.log({data})
+            // console.log({data})
           // Store the token in cookie
             document.cookie = cookie.serialize('token', data.signInUser.token, {
               maxAge: 30 * 24 * 60 * 60 // 30 days
@@ -47,21 +48,28 @@ class SigninBox extends React.Component{
             // console.log(document.cookie)
             
             //update store
-            store.authStore.login(data.signInUser)
+            await store.authStore.login(data.signInUser)
             // Force a reload of all the current queries now that the user is
             // logged in
             let route = '/'
-            if(router && router.query && router.query.event){
-              route = `/event/${router.query.event}`
+            console.log({router})
+            if(router && router.query ){
+              if(router.query.event){
+                route = `/event/${router.query.event}`
+              }else if(router.query.redirect){
+                route = `/${router.query.redirect}`
+              }
             }
-            if (typeof window !== 'undefined') {
-              window.location.replace(route)
-            }else {
-              client.cache.reset().then(() => {
-                redirect({}, route)
-              })
-              Router.push({pathname: route})
-            }
+            // if (typeof window !== 'undefined') {
+              // window.location.replace(route)
+              Router.pushRoute(route)
+            // }else {
+            //   client.cache.reset().then(() => {
+            //     redirect({}, route)
+            //   })
+            //   // Router.push({pathname: route})
+            //   Router.pushRoute(route)
+            // }
           }else {
             this.setState({errorMsg: 'Credenciales incorrectas'})
           }

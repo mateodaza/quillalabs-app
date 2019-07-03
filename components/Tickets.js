@@ -21,6 +21,7 @@ const GET_TICKETS = gql`
       eventName
       ticketQuantity
       ticketCode
+      createdAt
     }
   }
 `

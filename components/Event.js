@@ -21,7 +21,7 @@ const GET_EVENTS_STATUS = gql`
 `
 
 const EpayBtn =(props)=> (
-  <form>
+  <form style={{backgroundColor: 'transparent'}}>
     <script src='https://checkout.epayco.co/checkout.js'
       data-epayco-key='344ff0f664418e0a5ac6ea89e3ec7619'
       className='epayco-button'

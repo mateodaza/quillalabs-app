@@ -60,16 +60,19 @@ class SigninBox extends React.Component{
                 route = `/${router.query.redirect}`
               }
             }
-            // if (typeof window !== 'undefined') {
-              // window.location.replace(route)
+            if (typeof window !== 'undefined') {
+              if(route !== "/") {
+                Router.pushRoute(route)
+              }else {
+                window.location.replace(route)
+              }
+            }else {
+              client.cache.reset().then(() => {
+                redirect({}, route)
+              })
+              // Router.push({pathname: route})
               Router.pushRoute(route)
-            // }else {
-            //   client.cache.reset().then(() => {
-            //     redirect({}, route)
-            //   })
-            //   // Router.push({pathname: route})
-            //   Router.pushRoute(route)
-            // }
+            }
           }else {
             this.setState({errorMsg: 'Credenciales incorrectas'})
           }

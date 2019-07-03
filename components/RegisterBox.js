@@ -92,7 +92,16 @@ class RegisterBox extends React.Component{
           if(router && router.query && router.query.event){
             route = `/event/${router.query.event}`
           }
-          Router.pushRoute(route)
+          if (typeof window !== 'undefined') {
+            window.location.replace(route)
+            // Router.pushRoute(route)
+          }else {
+            client.cache.reset().then(() => {
+              redirect({}, route)
+            })
+            // Router.push({pathname: route})
+            Router.pushRoute(route)
+          }
         }}
         onError={error => {
           // If you want to send error to external service?

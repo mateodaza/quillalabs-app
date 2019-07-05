@@ -120,6 +120,10 @@ class Event extends React.Component{
                 }}
                 </Query><br/>
                 <EpayBtn origin={origin} price={PRICE} qty={1}/>
+                  <br/><p>Aprende acerca de MakerDAO y la moneda estable DAI, en una
+                  introducción a esta plataforma de finanzas descentralizadas,
+                  compartiendo una cerveza e intercambiando cripto!
+                </p>
               </div>
             )): event === 'maker' && (
               <div className="options">
@@ -214,7 +218,7 @@ class Event extends React.Component{
 
           @media ( max-width: 600px ) {
             img {
-              max-width: 100%;
+              min-width: 100%;
               heigth: auto;
               object-fit: cover;
             }

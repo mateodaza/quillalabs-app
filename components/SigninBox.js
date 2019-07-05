@@ -13,7 +13,7 @@ const SIGN_IN = gql`
       token,
       user {
         id
-        email,
+        email
         username
       }
     }

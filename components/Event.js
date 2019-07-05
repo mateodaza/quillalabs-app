@@ -114,7 +114,7 @@ class Event extends React.Component{
                   if (loading) return "";
                   if (error) return `Error! ${error.message}`;
                   if (data && data.getEventsStatus.length > 0) return <div>
-                    <h3>{100-data.getEventsStatus[0].ticketsCount} de 100 entradas disponibles</h3>
+                    <h3>{100-data.getEventsStatus[0].ticketsCount} entradas disponibles</h3>
                   </div>
                   return ''
                 }}

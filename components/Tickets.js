@@ -84,8 +84,8 @@ class Tickets extends React.Component{
                       <div className="ticket-extra">
                         <p>En este primer evento de la serie MakerDAO aprenderás sobre esta tecnología y su moneda estable DAI.<br/><br/>
                           Podrás comprar tu primera cerveza con una cantidad de DAI que te asignaremos durante la conferencia. <br/><br/>
-                          Para esto es necesario que tengas lista tu billetera! <br/> <br/> Descarga
-                          DexWallet disponible para android y iOS.
+                          Presenta tu número de ticket en la entrada del evento y descarga con anticipación tu DexWallet 
+                          para recibir tus primer DAI y asi comprar tu cerveza! <br/>
                         </p><br/>
                         <div className="appsContainer">
                           <div className="imgContainer">
@@ -116,8 +116,8 @@ class Tickets extends React.Component{
         <style jsx>{`
           .eventImg {
             width: 35%;
-            height: auto;
             object-fit: contain;
+            object-position: 0 0;
           }
           .tinyIcon {
             width: 100%;

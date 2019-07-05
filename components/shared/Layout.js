@@ -20,11 +20,25 @@ const Layout = ({ client, withHeader, children }) => {
       </div>
       <Footer />
       <style global jsx>{`
+      @font-face {
+        font-family: 'Avenir Next';
+        src: url(../../assets/fonts/AvenirNextLTPro-Regular.otf) format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Avenir Next Bold';
+        src: url(../../assets/fonts/AvenirNextLTPro-Bold.otf) format('truetype');
+        font-weight: bold;
+        font-style: normal;
+      }
       * {
         margin: 0;
         padding: 0;
         background-color: ${colors.white};
-        font-family: 'Noto Sans'
+      }
+      body {
+        font-family: 'Avenir Next'
       }
       a {
         text-decoration: none

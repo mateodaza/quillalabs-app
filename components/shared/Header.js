@@ -100,7 +100,7 @@ class Header extends React.Component{
                   </div>
                   <ul>
                     <li className="item"><Link route='tickets'><a>Tickets</a></Link></li>
-                    <li><button className="signin-btn" onClick={this.logout}>Salir</button></li>
+                    <li><button className="signin-btn" onClick={this.logout}>Cerrar Sesión</button></li>
                   </ul>
                 </li>
               </ul>
@@ -121,7 +121,8 @@ class Header extends React.Component{
           font-size: 18px;
         }
         .signin-btn {
-          margin: 15px 20px;
+          width: 100%;
+          margin: 15px 0;
           background-color: ${colors.white};
           box-shadow: 0 1px 2px rgba(0,0,0,0.25);
           cursor: pointer;

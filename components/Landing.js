@@ -22,9 +22,9 @@ class Landing extends React.Component {
       .main {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        height: 60vh;
-        margin: 1% 0 5% 0;
+        justify-content: flex-start;
+        height: 20vh;
+        margin: 0 0 5% 0;
       }
       .main * {
         text-align: center;
@@ -34,7 +34,7 @@ class Landing extends React.Component {
         display: grid;
         height: 100%;
         margin-bottom: 10%;
-        min-height: 100vh;
+        min-height: 50vh;
         grid-template-columns: repeat(3, 1fr);
         grid-auto-rows: auto;
         grid-gap: 1rem;

@@ -7,6 +7,7 @@ export default class AuthStore {
   @observable auth = null;
 
   constructor(stores) {
+    this.test = "ABC"
     if(stores.userSession) {
       this.login(JSON.parse(stores.userSession))
     }

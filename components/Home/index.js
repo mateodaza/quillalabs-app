@@ -15,7 +15,7 @@ function Home(props) {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
           <p> {props.store.authStore.test} </p>
         </h1>
-
+        <button onClick={()=>props.store.authStore.changeTest()}> TEST ME BITCH </button>
         <p className="description">
           Get started by editing <code>pages/index.js</code>
         </p>

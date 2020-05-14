@@ -1,4 +1,5 @@
 import localStore from 'store'
+import autoSave from "./autosave"
 import {observable, computed, action} from 'mobx';
 
 export default class AuthStore {
@@ -7,23 +8,29 @@ export default class AuthStore {
   @observable auth = null;
 
   constructor(stores) {
-    this.test = "ABC"
+    this.test = ""
     if(stores.userSession) {
       this.login(JSON.parse(stores.userSession))
     }
+
+    autoSave(this, "AuthStore")
+  }
+
+  @action changeTest() {
+    this.test = "DEFFFFFFF"
   }
 
   @action login(auth) {
     this.isLogged = true;
     this.auth = auth;
     const expiration = new Date().getTime() + 30 * 24 * 60 * 60;
-    localStore.set('USERSESSION', JSON.stringify(auth), expiration)
+    // localStore.set('USERSESSION', JSON.stringify(auth), expiration)
   }
 
   @action logout() {
     this.isLogged = false;
     this.auth = null;
-    localStore.remove('USERSESSION')
+    // localStore.remove('USERSESSION')
   }
 
 }

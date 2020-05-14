@@ -1,7 +1,11 @@
 import HomePage from '../components/Home'
+import { withAuthComponent, withAuthServerSideProps } from '../lib/withAuth';
 
-export default function Home() {
+function Home({user}) {
   return (
     <HomePage />
   )
 }
+
+export default withAuthComponent(Home)
+export const getServerSideProps = withAuthServerSideProps();

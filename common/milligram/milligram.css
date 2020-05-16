@@ -37,6 +37,10 @@ blockquote *:last-child {
   margin-bottom: 0;
 }
 
+a {
+  cursor: pointer;
+}
+
 .button,
 button,
 input[type='button'],

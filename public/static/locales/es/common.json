@@ -1,0 +1,7 @@
+{
+  "error-with-status": "{{statusCode}} error en nuestros servidores",
+  "error-without-status": "Un error ocurrió en nuestros servidores",
+
+  "login": "Ingresar",
+  "logout": "Salir"
+}

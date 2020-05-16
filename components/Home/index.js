@@ -1,16 +1,15 @@
 import Head from 'next/head'
 import { inject, observer } from 'mobx-react'
 
-import Layout from './shared/Layout'
+import UnderConstruction from './UnderConstruction1'
+import Layout from '../shared/Layout'
 
 function Home(props) {
   const { authStore } = props.store
 
   return (
     <Layout>    
-      <div className="container">
-        <a className="button button-outline" href="#">This is the beginning</a>
-      </div>
+      <UnderConstruction />
       <style jsx>{`
 
       `}</style>

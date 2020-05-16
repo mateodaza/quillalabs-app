@@ -1,5 +1,6 @@
 import colors from '../../../common/colors'
 import Head from 'next/head'
+import Header from './Header'
 
 const Layout = ({ props, children }) => {
 
@@ -12,10 +13,11 @@ const Layout = ({ props, children }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <main className="main-container">
+        <Header />
         {children}
       </main>
-      <footer className="container">
-       <p>this is the footer</p>
+      <footer className="container footer">
+       <p>QuillaLabs - 2020</p>
       </footer>
       <style global jsx>{`
       @font-face {
@@ -80,6 +82,12 @@ const Layout = ({ props, children }) => {
         background: -webkit-linear-gradient(left, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,${colors.white} 99%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(to left, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,${colors.white} 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2c7b4', endColorstr='#f1eded',GradientType=1 );
+      }
+      .footer {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        justify-content: flex-end;
       }
     `}</style>
     </div>

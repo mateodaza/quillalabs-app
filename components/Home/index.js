@@ -9,7 +9,6 @@ function Home(props) {
   return (
     <Layout>    
       <div className="container">
-        <h3>QuishaCamps</h3>
         <a className="button button-outline" href="#">This is the beginning</a>
       </div>
       <style jsx>{`

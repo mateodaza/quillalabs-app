@@ -10,7 +10,6 @@ function Text(slide, titles) {
       <style jsx>{`
         a {
           font-size: 1.5em;
-          border-bottom: 2px solid ${colors.red};
         }
       `}</style>
     </div>
@@ -23,7 +22,7 @@ function TextSlide(props) {
   const [slide, setSlide] = useState(0);
 
   const transitions = useTransition(slide, null, {
-    from: { position:'absolute', opacity: 0 },
+    from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 1 },
     config: { duration: 750 }
@@ -39,26 +38,22 @@ function TextSlide(props) {
   }
 
   return (
-    <div className="container ">
+    <div>
       <div className="slider">
         {
           transitions.map(({ item, key, props }) => <animated.div key={key} style={props}>
-              {Text(slide, titles)}
-            </animated.div>) 
+            {Text(slide, titles)}
+          </animated.div>) 
         }
-        <a onClick={()=>moveSlide(1)}><FiChevronRight /></a>
+        <a onClick={()=>moveSlide(1)}><FiChevronRight size="1.5em"/></a>
       </div>
       <style jsx>{`
         .slider {
-          width: 100%;
           display: flex;
+          flex: 1;
           flex-direction: row;
           justify-content: space-between;
-        }
-        a {
-          font-size: 1.5em;
-          position: absolute;
-          right: 0
+          border-bottom: 2px solid ${colors.red};
         }
       `}</style>
     </div>

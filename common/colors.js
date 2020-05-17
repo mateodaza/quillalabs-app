@@ -7,6 +7,8 @@ export default {
   black2: 'rgba(37, 41, 46, 1)',
   black3: 'rgba(37, 41, 46, 0.6)',
 
+  blue: '#0074D9',
+
   //main
   yellow: 'rgba(244, 213, 72, 1)',
   lightYellow: 'rgba(244, 213, 72, 0.9)',

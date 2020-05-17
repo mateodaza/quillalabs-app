@@ -3,5 +3,7 @@
   "error-without-status": "An error ocurred on our servers",
 
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "register": "Sign up"
+
 }

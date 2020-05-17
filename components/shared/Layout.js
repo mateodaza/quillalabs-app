@@ -3,8 +3,7 @@ import Head from 'next/head'
 import Header from './Header'
 import Footer from './Footer'
 
-const Layout = ({ props, children }) => {
-
+const Layout = ({ children, noHeader }) => {
   return (
     <div>
       <Head>
@@ -14,8 +13,10 @@ const Layout = ({ props, children }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <main className="main-container">
-        <Header />
-        {children}
+        { !noHeader && <Header /> }
+        <div className="main-content">
+          {children}
+        </div>
         <Footer />
       </main>
       <style global jsx>{`
@@ -49,9 +50,10 @@ const Layout = ({ props, children }) => {
         color: ${colors.black}
       }
       .main-container {
-        min-height: 100vh;
-        margin: 2% 10%;
-        background-color: ${colors.white}
+        background-color: ${colors.white};
+      }
+      .main-content {
+        min-height: 90vh;
       }
       input {
         text-align: center; 

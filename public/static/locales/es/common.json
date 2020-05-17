@@ -3,5 +3,6 @@
   "error-without-status": "Un error ocurrió en nuestros servidores",
 
   "login": "Ingresar",
-  "logout": "Salir"
+  "logout": "Salir",
+  "register": "Registro"
 }

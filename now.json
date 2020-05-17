@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "alias": "quillalabs.com",
+  "name": "quillalabs-app",
+  "builds": [
+      { "src": "next.config.js", "use": "@now/next" }
+  ]
+}

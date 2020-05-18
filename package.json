@@ -11,15 +11,16 @@
     "express": "^4.17.1",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
-    "mobx-react-form": "^2.0.8",
     "next": "9.4.0",
     "next-i18next": "^4.4.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "^5.7.2",
     "react-icons": "^3.10.0",
+    "react-id-swiper": "^3.0.0",
     "react-spring": "^8.0.27",
     "store": "^2.0.12",
-    "validatorjs": "^3.18.1"
+    "swiper": "^5.4.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",

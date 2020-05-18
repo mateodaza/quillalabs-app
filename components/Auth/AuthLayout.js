@@ -1,20 +1,11 @@
+import { inject, observer } from 'mobx-react'
 import { useState, useEffect } from 'react'
 import { random } from '../../lib/images'
 
-function AuthLayout({ children }) {
-  const [mq, setMq] = useState(false);
-  const [mobileCheck, setMobileCheck] = useState(false);
-
+function AuthLayout({ children, store }) {
+  const { authStore } = store
+  const isMobile = authStore.isMobile
   const bgImage = random.spacex
-
-  useEffect(() => {
-    const mq = window.matchMedia( "(max-width: 40rem)" );
-    console.log({mq})
-    setMq(mq.matches)
-    setMobileCheck(true)
-  }, []);
-
-  if(!mobileCheck) return null
 
   return (
     <div>  
@@ -34,14 +25,14 @@ function AuthLayout({ children }) {
         
         .left {
           left: 0;
-          width: ${mq ? "0%" : "40%"};
+          width: ${isMobile ? "0%" : "40%"};
           background: url(${bgImage});
           background-repeat: no-repeat;
           background-position: bottom right;
           background-size: cover;
         }
         .right {
-          width: ${mq ? "100%" : "60%"};
+          width: ${isMobile ? "100%" : "60%"};
           right: 0;
           padding: 0 2%
         }
@@ -50,4 +41,4 @@ function AuthLayout({ children }) {
   )
 }
 
-export default AuthLayout
+export default inject("store")(observer(AuthLayout))

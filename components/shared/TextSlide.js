@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { useTransition, animated} from 'react-spring'
 import { FiChevronRight } from 'react-icons/fi'
+import { Link } from '../../i18n'
 import colors from '../../common/colors'
 
 function Text(slide, titles) {
   return (
     <div>
-      <a>{titles[slide]}</a>
+      <Link href={`/${titles[slide].route}`}>
+        <a>{titles[slide].text}</a>
+      </Link>
       <style jsx>{`
         a {
           font-size: 1.5em;
@@ -21,11 +24,11 @@ function TextSlide(props) {
   if(!titles) return null
   const [slide, setSlide] = useState(0);
 
+  // TODO CHECK THIS ANIMATION
   const transitions = useTransition(slide, null, {
-    from: { opacity: 0 },
+    from: {  opacity: 1 },
     enter: { opacity: 1 },
     leave: { opacity: 1 },
-    config: { duration: 750 }
   })
   
   const moveSlide =(add)=> {

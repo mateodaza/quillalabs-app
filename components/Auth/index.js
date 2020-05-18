@@ -6,6 +6,7 @@ import AuthLayout from './AuthLayout'
 
 function Auth({ store, type }) {
   const { authStore } = store
+  
   let toShow = null
   if(type === 'login') {
     toShow = <SignIn />
@@ -20,11 +21,7 @@ function Auth({ store, type }) {
       {toShow}
       </Layout>
      </AuthLayout>  
-    <style jsx>{`
-
-      `}</style>
-
-      <style jsx >{`
+      <style jsx>{`
 
       `}</style>
     </div>

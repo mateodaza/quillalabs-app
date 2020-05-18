@@ -1,15 +1,11 @@
 import { inject, observer } from 'mobx-react'
-
-import UnderConstruction from './UnderConstruction1'
 import Layout from '../shared/Layout'
 
-function Home(props) {
-  const { store } = props
+function Example({store}) {
   const { authStore } = store
-
   return (
     <Layout>    
-      <UnderConstruction />
+      
       <style jsx>{`
 
       `}</style>

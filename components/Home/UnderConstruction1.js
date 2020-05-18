@@ -9,7 +9,10 @@ import Layout from '../shared/Layout'
 function UnderConstruction(props) {
   const { t, store } = props
   const { authStore} = store
-  const titles = [ t('get-to-know-us'), t('what-we-do') ]
+  const titles = [ 
+    { text: t('get-to-know-us'), route: 'about' },
+    { text: t('what-we-do'), route: 'events' }
+  ]
   return (
     <div className="container">  
       <section className="row under-container1">

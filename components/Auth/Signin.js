@@ -5,8 +5,7 @@ import colors from '../../common/colors'
 
 import SignInForm from './Forms/SignInForm'
 
-function SignIn(props) {
-  const { store, t } = props
+function SignIn({ store, t }) {
   const { authStore} = store
 
   return (

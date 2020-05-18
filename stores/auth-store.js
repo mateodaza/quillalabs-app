@@ -8,7 +8,7 @@ export default class AuthStore {
   @observable auth = null;
 
   constructor(stores) {
-    this.test = ""
+    this.settings = null
     if(stores.userSession) {
       this.login(JSON.parse(stores.userSession))
     }
@@ -16,8 +16,8 @@ export default class AuthStore {
     autoSave(this, "AuthStore")
   }
 
-  @action changeTest() {
-    this.test = "DEFFFFFFF"
+  @action update(label, value) {
+    this[label] = value
   }
 
   @action login(auth) {

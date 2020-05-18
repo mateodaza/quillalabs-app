@@ -29,7 +29,7 @@ function Header(props) {
         .header {
           display: flex;
           flex: 1;
-          padding: 2.5% 2% 0 2%;
+          padding: 4% 2% 0 2%;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
@@ -40,7 +40,7 @@ function Header(props) {
           .header {
             flex-direction: column;
             align-items: center;
-            padding: 5% 0 
+            padding: 10% 0 
           }
           .login-btn {
             margin: 10% 0 0 0;

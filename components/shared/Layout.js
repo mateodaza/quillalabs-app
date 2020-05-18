@@ -1,20 +1,29 @@
+import { withTranslation } from '../../i18n'
 import colors from '../../common/colors'
 import Head from 'next/head'
 import Header from './Header'
 import Footer from './Footer'
 
-const Layout = ({ children, noHeader }) => {
+const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
+  const lan = i18n.language === 'en' ? 'ESP' : 'ENG'
   return (
     <div>
       <Head>
         <title>QuillaLabs</title>
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="https://i.imgur.com/QIvQlG1.png" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <main className="main-container">
+        <a
+          className='lng-btn'
+          onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')}
+        >
+          {lan}
+        </a>
         { !noHeader && <Header /> }
-        <div className="main-content">
+        <div className="main-content" style={{padding: noHorizontalPadding ? "5% 0" : "5%" }}>
           {children}
         </div>
         <Footer />
@@ -84,9 +93,16 @@ const Layout = ({ children, noHeader }) => {
         background: linear-gradient(to left, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,${colors.white} 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2c7b4', endColorstr='#f1eded',GradientType=1 );
       }
+      .lng-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        padding: 0.5% 2.5% 0 0;
+      }
     `}</style>
     </div>
   )
 }
 
-export default Layout
+export default withTranslation(['common'])(Layout)

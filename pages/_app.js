@@ -3,6 +3,7 @@ import { useStore } from '../store'
 import { appWithTranslation } from '../i18n'
 import '../common/milligram/milligram.css'
 import '../common/milligram/milligram-theme.css'
+import 'swiper/css/swiper.css';
 
 function App({ Component, pageProps }) {
   const store = useStore(pageProps.initialState)

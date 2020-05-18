@@ -3058,9 +3058,9 @@ i18next-http-backend@^1.0.8:
     node-fetch "2.6.0"
 
 i18next-http-middleware@>=1.0.2:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/i18next-http-middleware/-/i18next-http-middleware-1.0.7.tgz#84390ae7e4d95b4a73f7cde5d9f9e771dde27054"
-  integrity sha512-wvS6afR/dTLZ6ej4FajgYg9Wk7fkrvffzuLsLpsk0iNGsu5xzRIN2G9IArSFrn040Sord8INydJrs+6VJuM6Kg==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/i18next-http-middleware/-/i18next-http-middleware-1.1.0.tgz#2a689660316f0666660895ef76a178e98ca8170f"
+  integrity sha512-KMJLaKhc1CeFsUA65VKG3pjbro41/fCQ9Mrl9QFPUZLgjBo0Y5XSaFlTJCzFYgMbyiHukgCBOkmKNeaAsH4qMg==
 
 i18next@^19.0.3:
   version "19.4.4"

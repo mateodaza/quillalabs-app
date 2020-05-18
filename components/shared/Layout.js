@@ -23,7 +23,7 @@ const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
           {lan}
         </a>
         { !noHeader && <Header /> }
-        <div className="main-content" style={{padding: noHorizontalPadding ? "5% 0" : "5%" }}>
+        <div className="main-content" style={{padding: noHorizontalPadding ? "5% 0" : "2%" }}>
           {children}
         </div>
         <Footer />

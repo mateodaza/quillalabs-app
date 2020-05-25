@@ -3,8 +3,7 @@ import { inject, observer } from 'mobx-react'
 import UnderConstruction from './UnderConstruction1'
 import Layout from '../shared/Layout'
 
-function Home(props) {
-  const { store } = props
+function Home({store}) {
   const { authStore } = store
 
   return (

@@ -19,7 +19,7 @@ export default class AuthStore {
   @action update(label, value) {
     this[label] = value
   }
-
+ 
   @action login(auth) {
     this.isLogged = true;
     this.auth = auth;

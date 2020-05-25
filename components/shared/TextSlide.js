@@ -44,18 +44,20 @@ function TextSlide(props) {
     <div>
       <div className="slider">
         {
-          transitions.map(({ item, key, props }) => <animated.div key={key} style={props}>
-            {Text(slide, titles)}
-          </animated.div>) 
+          // transitions.map(({ item, key, props }) => <animated.div key={key} style={props}>
+          //   {Text(slide, titles)}
+          // </animated.div>) 
+          // <a onClick={()=>moveSlide(1)}><FiChevronRight size="1.5em"/></a>
         }
-        <a onClick={()=>moveSlide(1)}><FiChevronRight size="1.5em"/></a>
+        { Text(0, titles) }
+        { Text(1, titles) }
       </div>
       <style jsx>{`
         .slider {
           display: flex;
-          flex: 1;
-          flex-direction: row;
-          justify-content: space-between;
+          flex-direction: column;
+          align-items: flex-end;
+          margin: 12% 0;
           border-bottom: 2px solid ${colors.red};
         }
       `}</style>

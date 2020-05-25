@@ -1,6 +1,7 @@
 
 import { useForm } from 'react-hook-form';
 import { withTranslation, Link } from '../../../i18n'
+import { callAPI } from '../../../helpers/services'
 import colors from '../../../common/colors'
 
 import Field from '../../shared/Field'
@@ -9,8 +10,19 @@ const RegisterForm =({t})=> {
 
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
+    // TODO: KKEEP THE FLOW
     console.log(data);
+    const res = await callAPI("/users", {
+      method: 'post',
+      body: JSON.stringify({
+        user: {
+          email: data.registerEmail,
+          password: data.registerPassword
+        }
+      })
+    });
+    console.log({res});
   };
 
   const fields = [{
@@ -26,6 +38,7 @@ const RegisterForm =({t})=> {
     type: 'password',
     label: t('password'),
     placeholder: t('password').toLowerCase(),
+    rules: /^.{8,}$/,
     // rules: /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/,
     error: t('error-password'),
     required: true
@@ -35,6 +48,7 @@ const RegisterForm =({t})=> {
     type: 'password',
     label: t('verify-password'),
     placeholder: t('password').toLowerCase(),
+    rules: /^.{8,}$/,
     // rules: /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/,
     error: t('error-password'),
     required: true

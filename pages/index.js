@@ -14,4 +14,10 @@ Home.getInitialProps = async () => ({
 })
 
 export default withAuthComponent(withTranslation('common')(Home))
-export const getServerSideProps = withAuthServerSideProps();
+
+export const getServerSideProps = withAuthServerSideProps((context, user)=>{
+  // This is an example to make a fetch server side with auth
+  return {
+    props: {},
+  }
+});

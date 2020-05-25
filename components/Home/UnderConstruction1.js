@@ -27,16 +27,16 @@ function UnderConstruction(props) {
         .under-construction-img {
           width: 45vw;
           height: 100%;
-          margin: 10% 0;
+          margin: 5% 0;
         }
         .under-container1 {
           display: flex;
           width: 100%;
           align-items: center;
-          justify-content: space-evenly;
+          justify-content: space-between;
         }
         .under-container1-txt {
-          margin: 0 0 0 2vw;
+          margin: 0 0 0 1em;
           display: flex;
           flex-direction: column;
         }

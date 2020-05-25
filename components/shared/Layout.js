@@ -1,3 +1,4 @@
+import { SWRConfig } from 'swr'
 import { withTranslation } from '../../i18n'
 import colors from '../../common/colors'
 import Head from 'next/head'
@@ -7,7 +8,12 @@ import Footer from './Footer'
 const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
   const lan = i18n.language === 'en' ? 'ESP' : 'ENG'
   return (
-    <div>
+    <SWRConfig 
+      value={{
+        refreshInterval: 3000,
+        fetcher: (...args) => fetch(...args).then(res => res.json())
+      }}
+    >
       <Head>
         <title>QuillaLabs</title>
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet" />
@@ -101,7 +107,7 @@ const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
         padding: 0.5% 2.5% 0 0;
       }
     `}</style>
-    </div>
+    </SWRConfig>
   )
 }
 

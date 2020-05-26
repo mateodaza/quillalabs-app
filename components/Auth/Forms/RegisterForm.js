@@ -2,6 +2,8 @@
 import { useForm } from 'react-hook-form';
 import { withTranslation, Link } from '../../../i18n'
 import { callAPI } from '../../../helpers/services'
+import { useToasts } from 'react-toast-notifications'
+import Router from 'next/router'
 import colors from '../../../common/colors'
 
 import Field from '../../shared/Field'
@@ -9,20 +11,23 @@ import Field from '../../shared/Field'
 const RegisterForm =({t})=> {
 
   const { register, handleSubmit, errors } = useForm();
+  const { addToast } = useToasts()
 
-  const onSubmit = async(data) => {
-    // TODO: KKEEP THE FLOW
-    console.log(data);
+  const onSubmit = async(formData) => {
     const res = await callAPI("/users", {
       method: 'post',
       body: JSON.stringify({
         user: {
-          email: data.registerEmail,
-          password: data.registerPassword
+          email: formData.registerEmail,
+          password: formData.registerPassword
         }
       })
-    });
-    console.log({res});
+    }, null, addToast);
+    const { data } = res
+    if(data) {
+      addToast('Go check your e-mail', { appearance: 'success', })
+      Router.push("/login")
+    }
   };
 
   const fields = [{

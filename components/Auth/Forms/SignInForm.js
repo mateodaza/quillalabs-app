@@ -1,16 +1,36 @@
 
+import { inject, observer } from 'mobx-react'
 import { useForm } from 'react-hook-form';
+import { callAPI } from '../../../helpers/services'
 import { withTranslation, Link } from '../../../i18n'
+import { useToasts } from 'react-toast-notifications'
+import Router from 'next/router'
 import colors from '../../../common/colors'
 
 import Field from '../../shared/Field'
 
-const SignInForm =({t})=> {
+const SignInForm =({store, t})=> {
 
   const { register, handleSubmit, errors } = useForm();
+  const { addToast } = useToasts()
+  const { authStore } = store
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async(formData) => {
+    const res = await callAPI("/sessions", {
+      method: 'post',
+      body: JSON.stringify({
+        user: {
+          email: formData.email,
+          password: formData.password
+        }
+      })
+    }, null, addToast);
+    const { data } = res
+    if(data) {
+      authStore.loginUser(data)
+      addToast('Welcome', { appearance: 'success' })
+      Router.push("/dashboard")
+    }
   };
 
   const fields = [{
@@ -90,4 +110,4 @@ const SignInForm =({t})=> {
   </div>
 )};
 
-export default withTranslation(["auth", "common"])(SignInForm)
+export default withTranslation(['auth', 'common'])(inject("store")(observer(SignInForm)))

@@ -1,36 +1,50 @@
-import localStore from 'store'
 import autoSave from "./autosave"
+import Router from 'next/router'
 import {observable, computed, action} from 'mobx';
+import { callAPI } from '../helpers/services'
 
 export default class AuthStore {
   
   @observable isLogged = false;
+  @observable settings = false;
   @observable auth = null;
 
   constructor(stores) {
     this.settings = null
-    if(stores.userSession) {
-      this.login(JSON.parse(stores.userSession))
-    }
 
+    autoSave(this, "AuthStore")
+  }
+
+  @action destroyStore() {
+    this.isLogged = false
+    this.settings = false
+    this.auth = null
     autoSave(this, "AuthStore")
   }
 
   @action update(label, value) {
     this[label] = value
   }
- 
-  @action login(auth) {
+
+  @action loginUser(auth) {
     this.isLogged = true;
     this.auth = auth;
-    const expiration = new Date().getTime() + 30 * 24 * 60 * 60;
-    // localStore.set('USERSESSION', JSON.stringify(auth), expiration)
+    autoSave(this, "AuthStore")
   }
 
-  @action logout() {
-    this.isLogged = false;
-    this.auth = null;
-    // localStore.remove('USERSESSION')
+  @action async logoutUser() {
+    const res = await callAPI("/sessions", {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${this.auth.token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    const { data } = res
+    console.log({data})
+    this.destroyStore()
+    Router.push("/")
   }
+
 
 }

@@ -3,11 +3,10 @@ import { withTranslation } from '../i18n'
 import mobileCheck from '../lib/mobileCheck'
 import { inject, observer } from 'mobx-react'
 
-import { withAuthComponent, withAuthServerSideProps } from '../lib/withAuth';
 
 function Register({user}) {
   return (
-    <Auth type="register" />
+    <Auth type="register"/>
   )
 }
 
@@ -18,6 +17,5 @@ Register.getInitialProps = async (ctx) => {
   }
 }
 
-const RegisterComponent = withAuthComponent(withTranslation('common')(Register))
-export default inject("store")(observer(RegisterComponent))
-export const getServerSideProps = withAuthServerSideProps(Register.getInitialProps);
+const RegisterComponent = inject("store")(observer(Register))
+export default withTranslation('common')(RegisterComponent)

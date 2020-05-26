@@ -7,7 +7,7 @@ import { logos } from '../../lib/images'
 function Header(props) {
   const { store, t } = props
   const { authStore } = store
-
+  const { isLogged } = authStore
   return (
     <div>
       <div className="header">
@@ -17,9 +17,17 @@ function Header(props) {
             <p style={{fontSize: '1.2em', margin:'5%'}}>QUILLALABS</p>
           </div>
         </a></Link>
-        <Link href="/login">
-          <button className="button-large login-btn">{t('login')}</button>
-        </Link>
+        {
+          isLogged ? (
+            <Link href="/dashboard">
+              <button className="button-large login-btn">Dashboard</button>
+            </Link>
+          ): (
+            <Link href="/login">
+              <button className="button-large login-btn">{t('login')}</button>
+            </Link>
+          )
+        }
       </div>
       <style jsx>{`
         button {

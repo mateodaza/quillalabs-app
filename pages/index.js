@@ -1,23 +1,16 @@
 import HomePage from '../components/Home'
 import { withTranslation } from '../i18n'
 
-import { withAuthComponent, withAuthServerSideProps } from '../lib/withAuth';
-
-function Home({user}) {
+function Home(props) {
   return (
     <HomePage />
   )
 }
 
-Home.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'home'],
-})
-
-export default withAuthComponent(withTranslation('common')(Home))
-
-export const getServerSideProps = withAuthServerSideProps((context, user)=>{
-  // This is an example to make a fetch server side with auth
+Home.getInitialProps = async () => {
   return {
-    props: {},
+    namespacesRequired: ['common', 'home'],
   }
-});
+}
+
+export default withTranslation('common')(Home)

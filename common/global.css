@@ -1,0 +1,5 @@
+.react-toast-notifications__container, 
+.react-toast-notifications__container > *,
+.react-toast-notifications__toast__icon {
+  background-color: transparent !important;
+}

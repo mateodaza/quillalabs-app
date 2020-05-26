@@ -1,7 +1,7 @@
 import env from './env'
 const { apiRoute } = env
 
-export const callAPI = (url, customOptions, customRoute) => {
+export const callAPI = (url, customOptions, customRoute, addToast) => {
 
   let route = customRoute || apiRoute
   let finalRoute = route+url
@@ -10,19 +10,25 @@ export const callAPI = (url, customOptions, customRoute) => {
   options.headers ={
     'Accept': 'application/json',
     'Content-Type': 'application/json'
-  },
-
-  console.log({finalRoute, options})
+  }
   const fetchData = async () => {
-    let response = null
+    let data = null
     let error = null
     try {
       const res = await fetch(finalRoute, options);
-      response = await res.json();
+      data = await res.json();
+      if(data.error) {
+        // console.log({data})
+        addToast(data.error, { appearance: 'error' })
+        data = null
+      }
     } catch (error) {
       error = error
+      addToast && addToast(`There was an error: ${error}`, {
+        appearance: 'error',
+      })
     }
-    return { response, error };
+    return { data, error };
   };
 
   return fetchData();

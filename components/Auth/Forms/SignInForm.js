@@ -16,7 +16,7 @@ const SignInForm =({store, t})=> {
   const { authStore } = store
 
   const onSubmit = async(formData) => {
-    const res = await callAPI("/sessions", {
+    const res = await callAPI("/sessions", null, {
       method: 'post',
       body: JSON.stringify({
         user: {

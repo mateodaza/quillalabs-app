@@ -33,15 +33,10 @@ export default class AuthStore {
   }
 
   @action async logoutUser() {
-    const res = await callAPI("/sessions", {
+    const res = await callAPI("/sessions", this.auth.token, {
       method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${this.auth.token}`,
-        'Content-Type': 'application/json',
-      },
     });
     const { data } = res
-    console.log({data})
     this.destroyStore()
     Router.push("/")
   }

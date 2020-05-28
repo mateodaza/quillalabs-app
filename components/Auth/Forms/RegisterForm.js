@@ -14,7 +14,7 @@ const RegisterForm =({t})=> {
   const { addToast } = useToasts()
 
   const onSubmit = async(formData) => {
-    const res = await callAPI("/users", {
+    const res = await callAPI("/users", null, {
       method: 'post',
       body: JSON.stringify({
         user: {

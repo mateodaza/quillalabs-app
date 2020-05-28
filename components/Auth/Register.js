@@ -8,6 +8,7 @@ import RegisterForm from './Forms/RegisterForm'
 function SignIn(props) {
   const { store, t, mobileCheck } = props
   const { authStore} = store
+  // TODO CHECK MOBILE CHECK WITH NEW VERSION
   console.log({mobileCheck})
   return (
     <div className="container login">  

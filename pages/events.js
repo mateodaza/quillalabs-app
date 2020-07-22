@@ -3,9 +3,9 @@ import { withTranslation } from '../i18n'
 import mobileCheck from '../lib/mobileCheck'
 import { inject, observer } from 'mobx-react'
 
-function EventsView({user}) {
+function EventsView({user, mobileCheck}) {
   return (
-    <Events />
+    <Events mobileCheck/>
   )
 }
 

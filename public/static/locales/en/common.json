@@ -4,6 +4,7 @@
 
   "login": "Login",
   "logout": "Logout",
-  "register": "Sign up"
+  "register": "Sign up",
 
+  "event-title": "Events and Conferences about Blockchain"
 }

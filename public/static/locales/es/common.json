@@ -4,5 +4,7 @@
 
   "login": "Ingresar",
   "logout": "Salir",
-  "register": "Registro"
+  "register": "Registro",
+
+  "event-title": "Eventos y Conferencias sobre Blockchain"
 }

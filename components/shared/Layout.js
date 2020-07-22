@@ -6,7 +6,6 @@ import Header from './Header'
 import Footer from './Footer'
 
 const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
-  const lan = i18n.language === 'en' ? 'ESP' : 'ENG'
   return (
     <SWRConfig 
       value={{
@@ -21,14 +20,8 @@ const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
         <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      { !noHeader && <Header /> }
       <main className="main-container">
-        <a
-          className='lng-btn'
-          onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')}
-        >
-          {lan}
-        </a>
-        { !noHeader && <Header /> }
         <div className="main-content" style={{padding: noHorizontalPadding ? "5% 0" : "2%" }}>
           {children}
         </div>
@@ -66,9 +59,11 @@ const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
       }
       .main-container {
         background-color: ${colors.white};
+        margin: 0 5%;
       }
       .main-content {
         min-height: 90vh;
+        margin: 2% 0;
       }
       input {
         text-align: center; 
@@ -99,13 +94,7 @@ const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
         background: linear-gradient(to left, rgba(242,199,180,1) 0%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 2%,rgba(240,202,170,1) 6%,rgba(222,222,172,1) 38%,rgba(222,222,172,1) 41%,rgba(222,222,172,1) 44%,rgba(170,220,179,1) 68%,${colors.white} 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2c7b4', endColorstr='#f1eded',GradientType=1 );
       }
-      .lng-btn {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 1;
-        padding: 0.5% 2.5% 0 0;
-      }
+
     `}</style>
     </SWRConfig>
   )

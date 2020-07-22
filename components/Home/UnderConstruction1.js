@@ -25,7 +25,7 @@ function UnderConstruction(props) {
       </section>
       <style jsx>{`
         .under-construction-img {
-          width: 45vw;
+          width: 40vw;
           height: 100%;
           margin: 5% 0;
         }
@@ -36,9 +36,10 @@ function UnderConstruction(props) {
           justify-content: space-between;
         }
         .under-container1-txt {
-          margin: 0 0 0 1em;
+          margin: 0 0.5em;
           display: flex;
           flex-direction: column;
+          text-align: right;
         }
         .under-container1-txt h5{
           margin-top: -1vw

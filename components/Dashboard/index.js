@@ -21,5 +21,5 @@ function Dashboard({store, t}) {
 }
 
 // TODO MOVE ALL OF THIS TO A LAYOUT HOC
-const component = WithAuth(Dashboard, true)
+const component = WithAuth(Dashboard)
 export default withTranslation('common')(component)

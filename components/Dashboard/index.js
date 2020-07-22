@@ -1,7 +1,9 @@
 import { inject, observer } from 'mobx-react'
+import { withTranslation } from '../../i18n'
 import Layout from '../shared/Layout'
+import WithAuth from '../../lib/withAuth'
 
-function Dashboard({store}) {
+function Dashboard({store, t}) {
   const { authStore } = store
   return (
     <Layout>    
@@ -18,4 +20,6 @@ function Dashboard({store}) {
   )
 }
 
-export default Dashboard
+// TODO MOVE ALL OF THIS TO A LAYOUT HOC
+const component = WithAuth(Dashboard, true)
+export default withTranslation('common')(component)

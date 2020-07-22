@@ -1,3 +1,4 @@
+import App from 'next/app'
 import { Provider } from 'mobx-react'
 import { useStore } from '../store'
 import { appWithTranslation } from '../i18n'
@@ -7,7 +8,7 @@ import '../common/milligram/milligram.css'
 import '../common/milligram/milligram-theme.css'
 import 'swiper/css/swiper.css';
 
-function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialState)
 
   return (
@@ -25,4 +26,9 @@ function App({ Component, pageProps }) {
   )
 }
 
-export default appWithTranslation(App)
+MyApp.getInitialProps = async (appContext) => {
+  const appProps = await App.getInitialProps(appContext)
+  return { ...appProps }
+}
+
+export default appWithTranslation(MyApp)

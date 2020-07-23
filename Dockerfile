@@ -14,4 +14,5 @@ COPY . .
 
 
 # Start the service
+CMD npm run build
 CMD npm start

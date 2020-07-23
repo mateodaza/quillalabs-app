@@ -12,8 +12,7 @@ RUN npm install --only=production
 # Copy the local code to the container
 COPY . .
 
-# Building app
-# RUN npm run build // not working, so please build it before deploying
-
-# Start the service
-CMD npm start
+# start app
+RUN npm run build
+EXPOSE 3000
+CMD npm run start

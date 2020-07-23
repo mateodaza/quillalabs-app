@@ -4,6 +4,7 @@ import { events } from '../../lib/images'
 import colors from '../../common/colors'
 import Swiper from 'react-id-swiper';
 import Layout from '../shared/Layout'
+import WithAuth from '../../lib/withAuth'
 
 function Events({t, store}) {
   console.log({t})
@@ -107,4 +108,4 @@ function Events({t, store}) {
   )
 }
 
-export default withTranslation(['common'])(inject("store")(observer(Events)))
+export default withTranslation(['common'])(WithAuth(Events, false))

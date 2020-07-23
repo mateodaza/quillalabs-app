@@ -5,17 +5,16 @@ import Layout from '../shared/Layout'
 import WithAuth from '../../lib/withAuth'
 import { Fragment } from 'react'
 
-function About({store, t}) {
+function CaribeEth({store, t}) {
   const { isMobile } = store.authStore
   return (
     <Layout> 
       <div className="row about-container">
         <div className="left-content">
-          <img className="big-img" src={random.tomas_sanchez} alt="tomas sanchez"/>
-          <p style={{fontSize: '12px'}}>TOMÁS SÁNCHEZ - Relación, 1986</p>
+          <img className="big-img" src={random.eth_art_1} alt="tomas sanchez"/>
         </div>
         <div className="right-content">
-          <h3>{t('what-we-do')}</h3>
+          <h3>Caribe.Eth</h3>
           <p>{t('what-we-do-text')}</p>
         </div>
       </div>   
@@ -44,7 +43,7 @@ function About({store, t}) {
         }
         @media screen and (max-width: 900px) {
           .left-content {
-            margin: 5% 0 0 0;
+            margin: 5% 0;
             width: 100%;
           }
           .right-content {
@@ -60,4 +59,4 @@ function About({store, t}) {
   )
 }
 
-export default withTranslation(['home', 'common'])(WithAuth(About, false))
+export default withTranslation(['home', 'common'])(WithAuth(CaribeEth, false))

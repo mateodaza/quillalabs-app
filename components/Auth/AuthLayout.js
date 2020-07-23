@@ -4,8 +4,7 @@ import { random } from '../../lib/images'
 
 function AuthLayout({ children, store }) {
   const { authStore } = store
-  const isMobile = authStore.isMobile
-  const bgImage = random.spacex
+  const bgImage = random.eth_art_1
 
   return (
     <div>  
@@ -25,16 +24,26 @@ function AuthLayout({ children, store }) {
         
         .left {
           left: 0;
-          width: ${isMobile ? "0%" : "40%"};
+          width: 40%;
           background: url(${bgImage});
           background-repeat: no-repeat;
           background-position: bottom right;
           background-size: cover;
         }
         .right {
-          width: ${isMobile ? "100%" : "60%"};
+          width: 60%;
           right: 0;
           padding: 0 2%
+        }
+
+        @media (max-width: 50.0rem) { 
+          .left {
+            width: 0%
+          }
+          .right {
+            width: 100%;
+            left: 0
+          }
         }
       `}</style>
     </div>

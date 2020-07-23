@@ -9,12 +9,11 @@ function EventsView({user, mobileCheck}) {
   )
 }
 
-Events.getInitialProps = async (ctx) => {
+EventsView.getInitialProps = async (ctx) => {
   return {
     namespacesRequired: ['common'],
     mobileCheck: mobileCheck(ctx)
   }
 }
 
-const EventsComponent = inject("store")(observer(EventsView))
-export default withTranslation('common')(EventsComponent)
+export default withTranslation('common')(EventsView)

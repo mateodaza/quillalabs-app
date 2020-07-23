@@ -10,12 +10,11 @@ function AboutPage({user}) {
   )
 }
 
-About.getInitialProps = async (ctx) => {
+AboutPage.getInitialProps = async (ctx) => {
   return {
     namespacesRequired: ['common'],
     mobileCheck: mobileCheck(ctx)
   }
 }
 
-const AboutComponent = inject("store")(observer(AboutPage))
-export default withTranslation('common')(AboutComponent)
+export default withTranslation('common')(AboutPage)

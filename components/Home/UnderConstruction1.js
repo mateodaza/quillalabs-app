@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react'
 import { withTranslation } from '../../i18n'
 import { random } from '../../lib/images'
 
-import TextSlide from '../shared/TextSlide'
+import TextSlide from './TextSlide'
 import Layout from '../shared/Layout'
 
 function UnderConstruction(props) {
@@ -11,11 +11,12 @@ function UnderConstruction(props) {
   const { authStore} = store
   const titles = [ 
     { text: t('get-to-know-us'), route: 'about' },
-    { text: t('what-we-do'), route: 'events' }
+    { text: t('what-we-do'), route: 'events' },
+    { text: "Caribe.Eth", route: 'caribe-eth' }
   ]
   return (
     <div className="container">  
-      <section className="row under-container1">
+      <section className="row container1">
         <img src={random.rocket_under_construction} className="under-construction-img"
           alt="Photo by Austrian National Library on Unsplash"/>
         <div className="under-container1-txt">
@@ -24,10 +25,16 @@ function UnderConstruction(props) {
         </div>
       </section>
       <style jsx>{`
+        .container1 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          // background-color: red
+        }
         .under-construction-img {
           width: 40vw;
           height: 100%;
-          margin: 5% 0;
+          margin: 5% 2.5%;
         }
         .under-container1 {
           display: flex;
@@ -45,7 +52,7 @@ function UnderConstruction(props) {
           margin-top: -1vw
         }
 
-        @media (max-width: 40.0rem) { 
+        @media screen and (max-width: 600px) {
           .under-construction-img {
             width: 85vw;
             height: 100%;

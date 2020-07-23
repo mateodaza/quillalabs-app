@@ -9,7 +9,7 @@ function Header(props) {
   const { store, i18n, t } = props
   const { authStore } = store
   const { isLogged } = authStore
-  const lan = i18n.language === 'en' ? 'ESP' : 'ENG'
+  const lan = i18n.language === 'en' ? 'ESPAÑOL' : 'ENGLISH'
 
   const [isSticky, setSticky] = useState(false);
   const ref = useRef(null);
@@ -27,16 +27,31 @@ function Header(props) {
     };
   }, []);
 
+  const langBtn =()=> (
+    <Fragment> 
+    <a
+      className='lng-btn'
+      onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')}
+    >
+      {lan}
+    </a>
+    <style jsx>{`
+    @media (max-width: 40.0rem) { 
+      .lng-btn {
+        position: absolute;
+        right: 1em;
+        top: 0.5em;
+        font-size: 12px;
+      }
+    }
+    `}</style>
+    </Fragment>
+  )
+
   return (
     <Fragment>
       <div className={`sticky-wrapper${isSticky ? ' sticky' : ''}`} ref={ref}>
         <div className="header"  id="myHeader">
-          <a
-            className='lng-btn'
-            onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en')}
-          >
-            {lan}
-          </a>
           <Link href="/"><a>
             <div style={{display: 'flex', alignItems: 'center', flexDirection: 'row'}}>
               <img src={logos.basic} width='50px' height='50px'/>
@@ -44,15 +59,16 @@ function Header(props) {
             </div>
           </a></Link>
           {
-            isLogged ? (
-              <Link href="/dashboard">
-                <button className="button-large login-btn">Dashboard</button>
-              </Link>
-            ): (
-              <Link href="/login">
-                <button className="button-large login-btn">{t('login')}</button>
-              </Link>
-            )
+            // isLogged ? (
+            //   <Link href="/dashboard">
+            //     <button className="button-large login-btn">Dashboard</button>
+            //   </Link>
+            // ): (
+            //   <Link href="/login">
+            //     <button className="button-large login-btn">{t('login')}</button>
+            //   </Link>
+            // )
+            langBtn()
           }
         </div>
       </div>
@@ -63,13 +79,13 @@ function Header(props) {
         }
         .header {
           display: flex;
-          padding: 4% 2% 2% 2%;
+          padding: 2%;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
           width: 100%;
           border: null;
-          // border-bottom: 1px solid lightgray;
+          border-bottom: 1px solid rgba(0,0,0,0.08);
           box-shadow: 0px 6px 50px -11px rgba(0,0,0,0.14);
           -webkit-box-shadow: 0px 6px 50px -11px rgba(0,0,0,0.14);
           -moz-box-shadow: 0px 6px 50px -11px rgba(0,0,0,0.14);
@@ -93,23 +109,11 @@ function Header(props) {
           z-index: 1;
         }
 
-        .lng-btn {
-          position: absolute;
-          background-color: transparent;
-          top: 0;
-          right: 0;
-          z-index: 1;
-          padding: 0.5% 2.5% 0 0;
-        }
-
         @media (max-width: 40.0rem) { 
           .header {
             flex-direction: column;
             align-items: center;
             padding: 10% 0 
-          }
-          .login-btn {
-            margin: 10% 0 0 0;
           }
         }
 

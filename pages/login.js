@@ -1,8 +1,6 @@
 import Auth from '../components/Auth'
 import { withTranslation } from '../i18n'
 import mobileCheck from '../lib/mobileCheck'
-import { inject, observer } from 'mobx-react'
-
 
 function Login({user}) {
   return (
@@ -17,5 +15,4 @@ Login.getInitialProps = async (ctx) => {
   }
 }
 
-const LoginComponent = inject("store")(observer(Login))
-export default withTranslation('common')(LoginComponent)
+export default withTranslation('common')(Login)

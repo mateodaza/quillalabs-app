@@ -13,7 +13,7 @@ RUN npm install --only=production
 COPY . .
 
 # Building app
-RUN npm run build
+# RUN npm run build // not working, so please build it before deploying
 
 # Start the service
 CMD npm start

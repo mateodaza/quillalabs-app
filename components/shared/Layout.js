@@ -46,16 +46,20 @@ const Layout = ({ children, noHeader, t, i18n, noHorizontalPadding }) => {
         background-color: ${colors.white};
       }
       body {
-        font-family: 'Avenir Next'
+        font-family: 'Avenir Next';
+        font-weight: 400;
+        font-style: normal;
       }
       a {
-        text-decoration: none
+        text-decoration: none;
+        font-weight: 400;
       }
       p {
         color: ${colors.black}
+        font-weight: 400;
       }
-      h3 {
-        color: ${colors.black}
+      h1, h2, h3, h4, h5 {
+        font-weight: 400;
       }
       .main-container {
         background-color: ${colors.white};

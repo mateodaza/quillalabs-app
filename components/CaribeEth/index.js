@@ -1,4 +1,5 @@
 import { inject, observer } from 'mobx-react'
+import { useRouter } from 'next/router'
 import { random } from '../../lib/images'
 import { withTranslation } from '../../i18n'
 import Layout from '../shared/Layout'
@@ -7,6 +8,18 @@ import { Fragment } from 'react'
 
 function CaribeEth({store, t}) {
   const { isMobile } = store.authStore
+  const router = useRouter()
+
+  const goToTelegram = (e) => {
+    e.preventDefault()
+    router.push("//t.me/EthereumCaribe")
+  }
+
+  const goToTwitter = (e) => {
+    e.preventDefault()
+    router.push("//twitter.com/EthereumCaribe")
+  }
+
   return (
     <Layout> 
       <div className="row about-container">
@@ -16,6 +29,15 @@ function CaribeEth({store, t}) {
         <div className="right-content">
           <h3>Caribe.Eth</h3>
           <p>{t('what-we-do-text')}</p>
+          <div className="row social">
+            <a onClick={goToTwitter} >
+              Twitter
+            </a>
+            <a onClick={goToTelegram} >
+              Telegram
+            </a>
+          </div>
+
         </div>
       </div>   
       <style jsx>{`
@@ -40,6 +62,11 @@ function CaribeEth({store, t}) {
           width: 100%;
           align-self: center;
           height: auto;
+        }
+
+        .social {
+          width: 100%;
+          justify-content: space-evenly;
         }
         @media screen and (max-width: 900px) {
           .left-content {

@@ -17,6 +17,9 @@ function About({store, t}) {
         <div className="right-content">
           <h3>{t('what-we-do')}</h3>
           <p>{t('what-we-do-text')}</p>
+          <h6><strong>{t('what-we-do-text-one')}</strong></h6>
+          <h6><strong>{t('what-we-do-text-two')}</strong></h6>
+          <h6><strong>{t('what-we-do-text-three')}</strong></h6>
         </div>
       </div>   
       <style jsx>{`

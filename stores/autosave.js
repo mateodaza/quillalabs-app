@@ -1,7 +1,7 @@
 import { autorun, toJS, set } from 'mobx'
 import store from "store"
 
-export default function(_this, name) {
+export default function Autosave(_this, name) {
 	let firstRun = true
 	// will run on change
 	autorun(() => {

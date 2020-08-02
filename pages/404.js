@@ -4,7 +4,7 @@ function Custom404() {
   
   return <div className="container centered">
     <div className="column">
-      <h1>404 - Page Not Found</h1>
+      <h1>404 - Page Not Found.</h1>
       <Link href="/"><a>Go to our home instead</a></Link>
     </div>
     <style jsx>{`

@@ -1,6 +1,7 @@
 import { inject, observer } from 'mobx-react'
 import { useRouter } from 'next/router'
 import { random } from '../../lib/images'
+import Link from 'next/link';    
 import { withTranslation } from '../../i18n'
 import Layout from '../shared/Layout'
 import WithAuth from '../../lib/withAuth'
@@ -9,16 +10,6 @@ import { Fragment } from 'react'
 function CaribeEth({store, t}) {
   const { isMobile } = store.authStore
   const router = useRouter()
-
-  const goToTelegram = (e) => {
-    e.preventDefault()
-    router.push("//t.me/EthereumCaribe")
-  }
-
-  const goToTwitter = (e) => {
-    e.preventDefault()
-    router.push("//twitter.com/EthereumCaribe")
-  }
 
   return (
     <Layout> 
@@ -30,12 +21,16 @@ function CaribeEth({store, t}) {
           <h3>Caribe.Eth</h3>
           <p>{t('what-we-do-text')}</p>
           <div className="row social">
-            <a onClick={goToTwitter} >
+            <Link href="https://twitter.com/EthereumCaribe" prefetch={false}>
+            <a style={{marginRight: '2em'}}>
               Twitter
             </a>
-            <a onClick={goToTelegram} >
+            </Link>
+            <Link href="https://t.me/EthereumCaribe" prefetch={false}>
+            <a >
               Telegram
             </a>
+            </Link>
           </div>
 
         </div>
@@ -66,7 +61,7 @@ function CaribeEth({store, t}) {
 
         .social {
           width: 100%;
-          justify-content: space-evenly;
+          justify-content: flex-start
         }
         @media screen and (max-width: 900px) {
           .left-content {

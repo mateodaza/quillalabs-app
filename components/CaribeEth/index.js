@@ -19,7 +19,7 @@ function CaribeEth({store, t}) {
         </div>
         <div className="right-content">
           <h3>Caribe.Eth</h3>
-          <p>{t('what-we-do-text')}</p>
+          <p>{t("ethcaribe-what-we-do")}</p>
           <div className="row social">
             <Link href="https://twitter.com/EthereumCaribe" prefetch={false}>
             <a style={{marginRight: '2em'}}>

@@ -27,7 +27,7 @@
     "react-toastify": "^6.0.5",
     "react-top-loading-bar": "^1.2.0",
     "store": "^2.0.12",
-    "swiper": "^5.4.0",
+    "swiper": "^6.5.1",
     "swr": "^0.2.2",
     "web3": "^1.2.11"
   }
